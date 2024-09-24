@@ -1,0 +1,87 @@
+.menuItemWrapper {
+  background-color: #f5f4f2;
+  width: calc(50% - 25px);
+  height: 100%;
+  display: flex;
+  padding: 6px;
+  position: relative;
+  border-radius: 24px;
+  flex-direction: column;
+  margin: 8px 0 0 8px;
+}
+
+.menuItemPictureWrapper {
+  background: #fff;
+  width: 100%;
+  height: 165px;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  border-radius: 18px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuItemPicture {
+  width: 100%;
+  object-fit: cover;
+}
+
+.menuItemInfoWrapper {
+  padding: 0 6px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.menuItemPrice {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 600;
+  color: #21201f;
+}
+
+.menuItemName {
+  -webkit-line-clamp: 2;
+  line-height: 15px;
+  margin: 4px 0;
+  overflow: hidden;
+  font-size: 13px;
+  word-break: break-word;
+  font-weight: normal;
+  line-height: 15px;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+  -webkit-box-orient: vertical;
+}
+
+.menuItemAddButtonWrapper {
+  width: 100%;
+  height: 36px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 100px;
+  background-color: #ffffff;
+}
+
+.menuItemAddButton {
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  color: #21201f;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  min-width: 24px;
+  align-items: center;
+  border-radius: 16px;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.menuItemAddButtonPlus {
+  width: 18px;
+  height: 18px;
+}

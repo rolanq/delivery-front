@@ -1,0 +1,16 @@
+.container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 0 16px;
+  margin: 20px 0;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 28px;
+  color: #21201f;
+  line-height: 31px;
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
