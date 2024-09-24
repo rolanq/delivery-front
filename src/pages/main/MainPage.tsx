@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./mainPage.module.css";
 import { Restuarants } from "../../features/Restuarants/Restuarants";
 import { NavBar } from "../../features/NavBar/NavBar";

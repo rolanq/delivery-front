@@ -1,4 +1,4 @@
-import React, { FC, StyleHTMLAttributes } from "react";
+import { FC } from "react";
 import styles from "./RestuarantCard.module.css";
 import star from "../../../assets/star.svg";
 import { Link } from "react-router-dom";

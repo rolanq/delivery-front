@@ -1,11 +1,9 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Menu } from "../../features/Menu/Menu";
 import styles from "./RestuarantPage.module.css";
 import arrowLeft from "../../assets/arrow-left.svg";
-import { ScrollTop } from "../../features/ScrollTop/ScrollTop";
 import { RESTUARANTS_MOCK } from "../../shared/mock";
-import { BottomSheet, BottomSheetRef } from "react-spring-bottom-sheet";
 import { RestuarantBottomSheet } from "./RestuarantBottomSheet/RestuarantBottomSheet";
 
 export const RestuarantPage = () => {
@@ -63,7 +61,9 @@ export const RestuarantPage = () => {
         </div>
       </section>
 
-      {isBottomSheetOpen && <RestuarantBottomSheet setOpen={setIsBottomSheetOpen} />}
+      {isBottomSheetOpen && (
+        <RestuarantBottomSheet setOpen={setIsBottomSheetOpen} />
+      )}
     </>
   );
 };

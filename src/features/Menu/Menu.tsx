@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./Menu.module.css";
 import { ICard, MENU_MOCK } from "../../shared/mock";
 import { MenuCategory } from "./MenuCategory/MenuCategory";
@@ -7,8 +7,8 @@ interface IProps {
   restuarant: ICard;
 }
 
-export const Menu: FC<IProps> = (props) => {
-  const { restuarant } = props;
+export const Menu: FC<IProps> = () => {
+  // const { restuarant } = props;
 
   return (
     <section className={styles.menuSection}>

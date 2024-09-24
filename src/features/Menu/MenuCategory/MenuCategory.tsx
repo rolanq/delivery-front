@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { MenuCard } from "../MenuCard/MenuCard";
 import { ICategory } from "../../../shared/mock";
 import styles from "./MenuCategory.module.css";

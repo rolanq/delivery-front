@@ -1,4 +1,3 @@
-import React from "react";
 import { RestuarantCard } from "./RestuarantCard/RestuarantCard";
 import styles from "./Restuarants.module.css";
 import { RESTUARANTS_MOCK } from "../../shared/mock";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { IMenuCard } from "../../../shared/mock";
 import styles from "./MenuCard.module.css";
 import plus from "../../../assets/plus.svg";
