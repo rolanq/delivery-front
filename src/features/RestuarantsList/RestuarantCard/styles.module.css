@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+}
+
+.infoContainer {
+  margin-top: 5px;
+  padding: 0 10px;
+}
+
+.star {
+  width: 12px;
+  height: 12px;
+}
+
+.rating {
+  font-size: 12px;
+  margin-bottom: 2px;
+}

@@ -1,0 +1,12 @@
+.imageWrapper {
+  height: 200px;
+  border-radius: 24px;
+  background-color: gray;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.image {
+  border-radius: 24px;
+  width: 100%;
+}

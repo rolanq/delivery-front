@@ -1,0 +1,34 @@
+import { RESTUARANTS_MOCK } from "@shared/mock";
+import { Flex } from "antd";
+import React from "react";
+import { RestuarantCard } from "./RestuarantCard/RestuarantCard";
+import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
+
+const SkeletonRestuarantList = () => {
+  return (
+    <Flex vertical gap={"20px"}>
+      {new Array(4).fill('').map(() => (
+        <Flex vertical gap={"15px"}>
+          <CustomSkeleton height={"200px"} />
+          <CustomSkeleton height={"20px"} />
+        </Flex>
+      ))}
+    </Flex>
+  );
+};
+
+export const RestuarantsList = () => {
+  const isLoading = false;
+
+  if (isLoading) {
+    return <SkeletonRestuarantList />;
+  }
+
+  return (
+    <Flex vertical gap={"30px"}>
+      {RESTUARANTS_MOCK.map((restuarant) => (
+        <RestuarantCard key={restuarant.id} restuarant={restuarant} />
+      ))}
+    </Flex>
+  );
+};
