@@ -1,8 +1,9 @@
 .content {
-    padding: 0 20px;
-    min-height: 100vh;
+  padding: 0 20px;
+  min-height: 100vh;
+  background-color: #fff;
 }
 
 .skeleton {
-    width: 100%
+  width: 100%;
 }
