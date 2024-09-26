@@ -1,8 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { FC, useLayoutEffect, useState } from "react";
 import { Restuarants } from "@pages/Retuarants/Restuarants";
-import { ConfigProvider, Flex, Layout } from "antd";
-import Title from "antd/es/typography/Title";
+import { ConfigProvider } from "antd";
 import { GlobalLoader } from "@features/GlobalLoader/GlobalLoader";
 
 export const App: FC = () => {
@@ -19,7 +18,6 @@ export const App: FC = () => {
 
   return (
     <>
-      <GlobalLoader isLoading={isLoading} />
       <ConfigProvider
         theme={{
           token: {
@@ -32,6 +30,7 @@ export const App: FC = () => {
           <Route index element={<Restuarants />} />
         </Routes>
       </ConfigProvider>
+      {isLoading && <GlobalLoader />}
     </>
   );
 };

@@ -1,13 +1,17 @@
 import { RESTUARANTS_MOCK } from "@shared/mock";
 import { Flex } from "antd";
-import React from "react";
+import { FC } from "react";
 import { RestuarantCard } from "./RestuarantCard/RestuarantCard";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
+
+interface IProps {
+  isLoading: boolean;
+}
 
 const SkeletonRestuarantList = () => {
   return (
     <Flex vertical gap={"20px"}>
-      {new Array(4).fill('').map(() => (
+      {new Array(4).fill("").map(() => (
         <Flex vertical gap={"15px"}>
           <CustomSkeleton height={"200px"} />
           <CustomSkeleton height={"20px"} />
@@ -17,9 +21,7 @@ const SkeletonRestuarantList = () => {
   );
 };
 
-export const RestuarantsList = () => {
-  const isLoading = false;
-
+export const RestuarantsList: FC<IProps> = ({ isLoading }) => {
   if (isLoading) {
     return <SkeletonRestuarantList />;
   }

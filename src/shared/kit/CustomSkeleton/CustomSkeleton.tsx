@@ -1,5 +1,5 @@
 import { Skeleton } from "antd";
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from './styles.module.css'
 
 interface IProps {
@@ -12,7 +12,7 @@ export const CustomSkeleton: FC<IProps> = ({ width = "100%", height = "100%" }) 
     <Skeleton.Node
       active
       style={{ width, height, borderRadius: "10px" }}
-      rootClassName={styles.width}
+      rootClassName={styles.skeleton}
     />
   );
 };

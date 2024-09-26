@@ -1,20 +1,29 @@
-import React from "react";
+import { useState } from "react";
 import Title from "antd/es/typography/Title";
 import { NavBar } from "@features/NavBar/NavBar";
 import { Content } from "antd/es/layout/layout";
 import styles from "./styles.module.css";
 import { RestuarantsList } from "@features/RestuarantsList/RestuarantsList";
-import { Skeleton } from "antd";
+import { Flex, Switch } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 
 export const Restuarants = () => {
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <>
       <NavBar />
       <Content className={styles.content}>
-        <Title level={2}>{isLoading ? <CustomSkeleton height={"30px"} /> : "Рестораны"}</Title>
-        <RestuarantsList />
+        <Flex justify="space-between">
+          {isLoading ? (
+            <CustomSkeleton height={"30px"} width={"60%"} />
+          ) : (
+            <Title level={2}>Рестораны</Title>
+          )}
+          <Switch value={isLoading} onClick={() => setIsLoading(!isLoading)} />
+        </Flex>
+
+        <RestuarantsList isLoading={isLoading} />
       </Content>
     </>
   );

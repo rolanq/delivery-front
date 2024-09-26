@@ -1,35 +1,46 @@
-import { Layout, Flex } from "antd";
-import { Content } from "antd/es/layout/layout";
+import { Flex } from "antd";
 import Title from "antd/es/typography/Title";
-import React, { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
+import { animated, useSpring } from "@react-spring/web";
 
-interface IProps {
-  isLoading: boolean;
-}
+interface IProps {}
 
-export const GlobalLoader: FC<IProps> = ({ isLoading }) => {
+export const GlobalLoader: FC<IProps> = () => {
+  const [props] = useSpring(
+    () => ({
+      config: { duration: 300 },
+      delay: 700,
+      from: { opacity: 1 },
+      to: [
+        {
+          opacity: 1,
+        },
+        {
+          opacity: 0,
+        },
+      ],
+    }),
+    []
+  );
+
   useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    }
+    document.body.style.overflow = "hidden";
+
     return () => {
       document.body.style.overflow = "scroll";
     };
-  }, [isLoading]);
+  }, []);
 
   return (
-    <Content
-      className={classNames(
-        styles.wrapper,
-        styles.block,
-        isLoading ? styles.show : styles.hide
-      )}
+    <animated.div
+      className={classNames(styles.wrapper, styles.block)}
+      style={props}
     >
       <Flex justify="center" align="center" className={styles.block}>
         <Title>Delivery</Title>
       </Flex>
-    </Content>
+    </animated.div>
   );
 };

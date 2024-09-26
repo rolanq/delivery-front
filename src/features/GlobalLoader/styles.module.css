@@ -3,19 +3,11 @@
   left: 0;
   position: absolute;
   background-color: white;
-  z-index: 1000;
+  height: 100vh;
+  width: 100vw;
 }
 
 .block {
-  height: 100vh;
-  width: 100vw;
-  transition: opacity 0.3s;
-}
-
-.show {
-  opacity: 1;
-}
-
-.hide {
-  opacity: 0;
+  width: 100%;
+  height: 100%;
 }
