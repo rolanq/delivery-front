@@ -39,7 +39,7 @@ export const GlobalLoader: FC<IProps> = () => {
       style={props}
     >
       <Flex justify="center" align="center" className={styles.block}>
-        <Title>Delivery</Title>
+        <Title>EKEER</Title>
       </Flex>
     </animated.div>
   );

@@ -8,7 +8,7 @@ import { Flex, Switch } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 
 export const Restuarants = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
