@@ -36,7 +36,10 @@ export const GlobalLoader: FC<IProps> = () => {
       style={props}
     >
       <Flex justify="center" align="center" className={styles.block}>
-        <Title>EKEER</Title>
+        <Title className={styles.text}>EKEE</Title>
+        <Title className={styles.text} style={{ color: "#C23B22" }}>
+          R
+        </Title>
       </Flex>
     </animated.div>
   );
