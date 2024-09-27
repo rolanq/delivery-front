@@ -27,7 +27,7 @@ export const RestuarantsList: FC<IProps> = ({ isLoading }) => {
   }
 
   return (
-    <Flex vertical gap={"30px"}>
+    <Flex gap={"30px"} wrap >
       {RESTUARANTS_MOCK.map((restuarant) => (
         <RestuarantCard key={restuarant.id} restuarant={restuarant} />
       ))}
