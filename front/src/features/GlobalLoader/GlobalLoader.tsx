@@ -15,9 +15,6 @@ export const GlobalLoader: FC<IProps> = () => {
       from: { opacity: 1 },
       to: [
         {
-          opacity: 1,
-        },
-        {
           opacity: 0,
         },
       ],
