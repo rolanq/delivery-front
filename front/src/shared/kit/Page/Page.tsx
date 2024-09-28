@@ -16,13 +16,7 @@ export const Page: FC<IProps> = ({
   const ref = usePreventCollapse();
 
   useEffect(() => {
-    if (!scrollable) {
-      document.body.style.overflow = "hidden";
-    }
-
-    return () => {
-      document.body.style.overflow = "scroll";
-    };
+    document.body.style.overflow = "hidden";
   }, []);
   return (
     <Content
@@ -34,7 +28,7 @@ export const Page: FC<IProps> = ({
         overflow: scrollable ? "scroll" : "hidden",
       }}
     >
-      {children}
+      <div>{children}</div>
     </Content>
   );
 };

@@ -24,10 +24,6 @@ export const GlobalLoader: FC<IProps> = () => {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "scroll";
-    };
   }, []);
 
   return (
