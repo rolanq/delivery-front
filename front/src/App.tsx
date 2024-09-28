@@ -20,6 +20,7 @@ export const App: FC = () => {
   return (
     <>
       <ConfigProvider
+        layout={{ style: { background: "#FFF", boxSizing: "border-box" } }}
         theme={{
           token: {
             fontFamily: "'Noto Sans JP', sans-serif",
@@ -31,6 +32,7 @@ export const App: FC = () => {
           {ROUTES.map((route) => (
             <>
               <Route
+                key={route.path}
                 index={route.index}
                 path={route.path}
                 element={<route.element />}

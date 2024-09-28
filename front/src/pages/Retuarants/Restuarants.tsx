@@ -4,11 +4,11 @@ import { NavBar } from "@features/NavBar/NavBar";
 import { Content } from "antd/es/layout/layout";
 import styles from "./styles.module.css";
 import { RestuarantsList } from "@features/RestuarantsList/RestuarantsList";
-import { Flex, Switch } from "antd";
+import { Flex } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 
 export const Restuarants: FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   return (
     <>
@@ -20,7 +20,6 @@ export const Restuarants: FC = () => {
           ) : (
             <Title level={2}>Рестораны</Title>
           )}
-          <Switch value={isLoading} onClick={() => setIsLoading(!isLoading)} />
         </Flex>
 
         <RestuarantsList isLoading={isLoading} />

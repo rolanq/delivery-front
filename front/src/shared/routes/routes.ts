@@ -3,7 +3,9 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { Cart } from "@pages/Cart/Cart";
 import { ErrorPage } from "@pages/Error/ErrorPage";
+import { Me } from "@pages/Me/Me";
 import { Restuarants } from "@pages/Retuarants/Restuarants";
 import { FC } from "react";
 
@@ -26,12 +28,13 @@ export const ROUTES: Route[] = [
   },
   {
     path: "/cart",
-    element: ErrorPage,
+    element: Cart,
   },
   {
     path: "/me",
-    element: ErrorPage,
+    element: Me,
   },
+  { path: "*", element: ErrorPage },
 ];
 
 export const FooterRoutes = [

@@ -12,6 +12,7 @@ export const Footer: FC = () => {
       <Flex className={styles.container}>
         {FooterRoutes.map((route) => (
           <NavLink
+            key={route.name}
             to={route.to}
             className={({ isActive }) =>
               classNames(
