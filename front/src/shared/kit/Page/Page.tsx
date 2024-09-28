@@ -1,6 +1,7 @@
 import { Content } from "antd/es/layout/layout";
 import React, { FC, useEffect } from "react";
 import styles from "./styles.module.css";
+import { usePreventCollapse } from "@shared/hooks/usePreventCollapse";
 
 interface IProps {
   children?: React.ReactNode;
@@ -12,6 +13,8 @@ export const Page: FC<IProps> = ({
   paddingVertical,
   scrollable = true,
 }) => {
+  const ref = usePreventCollapse();
+
   useEffect(() => {
     if (!scrollable) {
       document.body.style.overflow = "hidden";
@@ -24,6 +27,7 @@ export const Page: FC<IProps> = ({
   return (
     <Content
       className={styles.wrapper}
+      ref={ref}
       style={{
         paddingTop: paddingVertical ? "20px" : 0,
         paddingBottom: paddingVertical ? "20px" : 0,
