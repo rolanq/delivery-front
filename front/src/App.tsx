@@ -15,7 +15,15 @@ export const App: FC = () => {
 
     const w: any = window;
     w.Telegram.WebApp.setBackgroundColor("#FFF")
-    console.log(w.Telegram.WebApp);
+    
+    if (w.visualViewport) {
+      w.visualViewport.addEventListener('resize', () => {
+        document.body.style.height = w.visualViewport.height + 'px';
+      });
+    }
+    w.addEventListener('scroll', () => {
+      if (w.scrollY > 0) w.scrollTo(0, 0);
+    });
     
   }, [location.pathname]);
 
