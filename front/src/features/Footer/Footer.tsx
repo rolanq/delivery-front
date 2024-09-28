@@ -1,45 +1,30 @@
 import { Footer as FooterAnt } from "antd/es/layout/layout";
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./styles.module.css";
 import { Flex, Typography } from "antd";
-import {
-  AppstoreOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-
-interface IPropsItem {
-  children: React.ReactNode;
-}
-
-const FooterItem: FC<IPropsItem> = ({ children }) => {
-  return (
-    <Flex vertical gap="5px" align="center" className={styles.menuItem}>
-      {children}
-    </Flex>
-  );
-};
+import { NavLink } from "react-router-dom";
+import { FooterRoutes } from "@shared/routes/routes";
+import classNames from "classnames";
 
 export const Footer: FC = () => {
-  const menuItems = [
-    <>
-      <AppstoreOutlined />
-      <Typography>Рестораны</Typography>
-    </>,
-    <>
-      <ShoppingCartOutlined />
-      <Typography>Корзина</Typography>
-    </>,
-    <>
-      <UserOutlined />
-      <Typography>Я</Typography>
-    </>,
-  ];
   return (
     <FooterAnt className={styles.wrapper}>
       <Flex className={styles.container}>
-        {menuItems.map((item) => (
-          <FooterItem>{item}</FooterItem>
+        {FooterRoutes.map((route) => (
+          <NavLink
+            to={route.to}
+            className={({ isActive }) =>
+              classNames(
+                styles.menuItem,
+                isActive ? styles.active : styles.notActive
+              )
+            }
+          >
+            <Flex vertical gap="5px" align="center">
+              <route.icon className={styles.icon} />
+              <Typography>{route.name}</Typography>
+            </Flex>
+          </NavLink>
         ))}
       </Flex>
     </FooterAnt>

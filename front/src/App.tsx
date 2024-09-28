@@ -1,9 +1,9 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { FC, useLayoutEffect, useState } from "react";
-import { Restuarants } from "@pages/Retuarants/Restuarants";
 import { ConfigProvider } from "antd";
 import { GlobalLoader } from "@features/GlobalLoader/GlobalLoader";
 import { Footer } from "@features/Footer/Footer";
+import { ROUTES } from "@shared/routes/routes";
 
 export const App: FC = () => {
   const location = useLocation();
@@ -28,7 +28,15 @@ export const App: FC = () => {
         }}
       >
         <Routes>
-          <Route index element={<Restuarants />} />
+          {ROUTES.map((route) => (
+            <>
+              <Route
+                index={route.index}
+                path={route.path}
+                element={<route.element />}
+              />
+            </>
+          ))}
         </Routes>
       </ConfigProvider>
       <Footer />

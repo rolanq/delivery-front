@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import Title from "antd/es/typography/Title";
 import { NavBar } from "@features/NavBar/NavBar";
 import { Content } from "antd/es/layout/layout";
@@ -7,7 +7,7 @@ import { RestuarantsList } from "@features/RestuarantsList/RestuarantsList";
 import { Flex, Switch } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 
-export const Restuarants = () => {
+export const Restuarants: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (

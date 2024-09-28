@@ -1,0 +1,13 @@
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    background-color: #c23b22;
+    color: white;
+    border: 0;
+}

@@ -31,6 +31,15 @@ export const RESTUARANTS_MOCK: ICard[] = [
       "https://eda.yandex/images/3790679/59a4bdb4a9ea24997c9b3623ecfa1521-648x312.jpg",
   },
   {
+    id: 4,
+    name: "Что-то с чем-то и точка",
+    rating: 0.9,
+    timing: 50,
+    categories: ["Фастфуд"],
+    image:
+      "https://eda.yandex/images/3724421/6f2f08dcfe935121fc72c6ee6e3a6508-648x312.JPG",
+  },
+  {
     id: 1,
     name: "АВБГ",
     rating: 5.0,
@@ -53,15 +62,7 @@ export const RESTUARANTS_MOCK: ICard[] = [
     timing: 50,
     categories: ["Шаурма", "Тестовая категория"],
   },
-  {
-    id: 4,
-    name: "Что-то с чем-то и точка",
-    rating: 0.9,
-    timing: 50,
-    categories: ["Фастфуд"],
-    image:
-      "https://eda.yandex/images/3724421/6f2f08dcfe935121fc72c6ee6e3a6508-648x312.JPG",
-  },
+  
 ];
 
 export const MENU_MOCK: ICategory[] = [
