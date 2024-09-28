@@ -10,8 +10,8 @@ interface IProps {
 
 export const MenuItem: FC<IProps> = ({ name, path }) => {
   return (
-    <Link to={path} >
-      <Flex align="center"className={styles.container}>
+    <Link to={path}>
+      <Flex className={styles.container}>
         <Typography>{name}</Typography>
       </Flex>
     </Link>

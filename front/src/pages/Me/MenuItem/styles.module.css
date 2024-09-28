@@ -1,8 +1,7 @@
 .container {
-    padding: 15px 25px;
-    border-bottom: 1px solid black;
-}
-
-.arrow {
-  color: black;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: none;
 }

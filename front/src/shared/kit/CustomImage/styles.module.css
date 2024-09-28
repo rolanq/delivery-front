@@ -1,7 +1,7 @@
 .imageWrapper {
   height: 200px;
   border-radius: 24px;
-  background-color: gray;
+  background-color: rgba(0, 0, 0, 0.06);
   overflow: hidden;
   object-fit: cover;
 }

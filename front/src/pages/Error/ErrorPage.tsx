@@ -22,7 +22,12 @@ export const ErrorPage: FC = () => {
           <Typography>Страница не найдена</Typography>
         </Flex>
 
-        <Button onClick={goToMainPage} className={styles.button} type="text">
+        <Button
+          onClick={goToMainPage}
+          className={styles.button}
+          type="primary"
+          color="default"
+        >
           Вернуться
         </Button>
       </Flex>
