@@ -10,19 +10,16 @@ export const Restuarants: FC = () => {
   const [isLoading] = useState(false);
 
   return (
-    <>
-      <NavBar />
-      <Page>
-        <Flex justify="space-between">
-          {isLoading ? (
-            <CustomSkeleton height={"30px"} width={"60%"} />
-          ) : (
-            <Title level={2}>Рестораны</Title>
-          )}
-        </Flex>
+    <Page header>
+      <Flex justify="space-between">
+        {isLoading ? (
+          <CustomSkeleton height={"30px"} width={"60%"} />
+        ) : (
+          <Title level={2}>Рестораны</Title>
+        )}
+      </Flex>
 
-        <RestuarantsList isLoading={isLoading} />
-      </Page>
-    </>
+      <RestuarantsList isLoading={isLoading} />
+    </Page>
   );
 };

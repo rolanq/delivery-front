@@ -2,22 +2,22 @@ import { Content } from "antd/es/layout/layout";
 import React, { FC, useEffect } from "react";
 import styles from "./styles.module.css";
 import { usePreventCollapse } from "@shared/hooks/usePreventCollapse";
+import { NavBar } from "@features/NavBar/NavBar";
 
 interface IProps {
   children?: React.ReactNode;
   paddingVertical?: boolean;
   scrollable?: boolean;
+  header?: boolean;
 }
 export const Page: FC<IProps> = ({
   children,
   paddingVertical,
   scrollable = true,
+  header = false,
 }) => {
   const ref = usePreventCollapse();
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  }, []);
   return (
     <Content
       className={styles.wrapper}
@@ -28,7 +28,8 @@ export const Page: FC<IProps> = ({
         overflow: scrollable ? "scroll" : "hidden",
       }}
     >
-      <div>{children}</div>
+      {header && <NavBar />}
+      <div className={styles.content}>{children}</div>
     </Content>
   );
 };

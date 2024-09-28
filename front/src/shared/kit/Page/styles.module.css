@@ -6,8 +6,6 @@
   overflow: hidden;
   position: relative;
   padding: 0 20px;
-  margin-bottom: 80px;
-  min-height: 100vh;
   background-color: #fff;
 }
 
@@ -18,5 +16,5 @@
   overflow-y: auto;
   flex: 1;
   margin-inline: auto;
-  margin-bottom: -4px;
+  padding-bottom: 80px;
 }

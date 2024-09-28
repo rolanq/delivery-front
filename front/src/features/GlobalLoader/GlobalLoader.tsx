@@ -21,11 +21,7 @@ export const GlobalLoader: FC<IProps> = () => {
     }),
     []
   );
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-  }, []);
-
+  
   return (
     <animated.div
       className={classNames(styles.wrapper, styles.block)}
