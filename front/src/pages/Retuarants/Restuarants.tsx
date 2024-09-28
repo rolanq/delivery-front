@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import Title from "antd/es/typography/Title";
-import { NavBar } from "@features/NavBar/NavBar";
 import { RestuarantsList } from "@features/RestuarantsList/RestuarantsList";
 import { Flex } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";

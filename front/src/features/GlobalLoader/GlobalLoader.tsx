@@ -1,6 +1,6 @@
 import { Flex } from "antd";
 import Title from "antd/es/typography/Title";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { animated, useSpring } from "@react-spring/web";
@@ -21,7 +21,7 @@ export const GlobalLoader: FC<IProps> = () => {
     }),
     []
   );
-  
+
   return (
     <animated.div
       className={classNames(styles.wrapper, styles.block)}

@@ -1,5 +1,5 @@
 import { Content } from "antd/es/layout/layout";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import styles from "./styles.module.css";
 import { usePreventCollapse } from "@shared/hooks/usePreventCollapse";
 import { NavBar } from "@features/NavBar/NavBar";
