@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import { RestuarantsList } from "@features/RestuarantsList/RestuarantsList";
 import { Flex } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
+import { Page } from "@shared/kit/Page/Page";
 
 export const Restuarants: FC = () => {
   const [isLoading] = useState(false);
@@ -13,7 +14,7 @@ export const Restuarants: FC = () => {
   return (
     <>
       <NavBar />
-      <Content className={styles.content}>
+      <Page>
         <Flex justify="space-between">
           {isLoading ? (
             <CustomSkeleton height={"30px"} width={"60%"} />
@@ -23,7 +24,7 @@ export const Restuarants: FC = () => {
         </Flex>
 
         <RestuarantsList isLoading={isLoading} />
-      </Content>
+      </Page>
     </>
   );
 };
