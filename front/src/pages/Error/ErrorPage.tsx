@@ -1,5 +1,4 @@
 import { Button, Flex, Typography } from "antd";
-import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import { FC } from "react";
 import styles from "./styles.module.css";

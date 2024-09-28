@@ -1,5 +1,4 @@
 import { Flex } from "antd";
-import { Content } from "antd/es/layout/layout";
 import { FC } from "react";
 import { MenuItem } from "./MenuItem/MenuItem";
 import styles from "./styles.module.css";
