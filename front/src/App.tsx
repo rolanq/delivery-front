@@ -12,6 +12,11 @@ export const App: FC = () => {
 
   useLayoutEffect(() => {
     document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+    const w: any = window;
+    w.Telegram.WebApp.setBackgroundColor("#FFF")
+    console.log(w.Telegram.WebApp);
+    
   }, [location.pathname]);
 
   setTimeout(() => {
