@@ -20,7 +20,6 @@ export const App: FC = () => {
   return (
     <>
       <ConfigProvider
-        layout={{ style: { background: "#FFF", boxSizing: "border-box" } }}
         theme={{
           token: {
             fontFamily: "'Noto Sans JP', sans-serif",
