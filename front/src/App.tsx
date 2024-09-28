@@ -4,6 +4,7 @@ import { ConfigProvider } from "antd";
 import { GlobalLoader } from "@features/GlobalLoader/GlobalLoader";
 import { Footer } from "@features/Footer/Footer";
 import { ROUTES } from "@shared/routes/routes";
+import { SDKProvider } from "@telegram-apps/sdk-react";
 
 export const App: FC = () => {
   const location = useLocation();
@@ -19,29 +20,31 @@ export const App: FC = () => {
 
   return (
     <>
-      <ConfigProvider
-        theme={{
-          token: {
-            fontFamily: "'Noto Sans JP', sans-serif",
-            fontWeightStrong: 800,
-          },
-        }}
-      >
-        <Routes>
-          {ROUTES.map((route) => (
-            <>
-              <Route
-                key={route.path}
-                index={route.index}
-                path={route.path}
-                element={<route.element />}
-              />
-            </>
-          ))}
-        </Routes>
-      </ConfigProvider>
-      <Footer />
-      {isLoading && <GlobalLoader />}
+      <SDKProvider acceptCustomStyles debug>
+        <ConfigProvider
+          theme={{
+            token: {
+              fontFamily: "'Noto Sans JP', sans-serif",
+              fontWeightStrong: 800,
+            },
+          }}
+        >
+          <Routes>
+            {ROUTES.map((route) => (
+              <>
+                <Route
+                  key={route.path}
+                  index={route.index}
+                  path={route.path}
+                  element={<route.element />}
+                />
+              </>
+            ))}
+          </Routes>
+        </ConfigProvider>
+        <Footer />
+        {isLoading && <GlobalLoader />}
+      </SDKProvider>
     </>
   );
 };
