@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "init": "npm install",
     "codegen": "graphql-codegen --config codegen.json",
     "dev": "vite",
     "build": "tsc -b && vite build",
