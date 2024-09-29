@@ -1,8 +1,8 @@
-import { RESTUARANTS_MOCK } from "@shared/mock";
 import { Flex } from "antd";
 import { FC } from "react";
 import { RestuarantCard } from "./RestuarantCard/RestuarantCard";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
+import { useGetRestaurantsQuery } from "@graphql/graphql";
 
 interface IProps {
   isLoading: boolean;
@@ -21,15 +21,17 @@ const SkeletonRestuarantList = () => {
   );
 };
 
-export const RestuarantsList: FC<IProps> = ({ isLoading }) => {
-  if (isLoading) {
+export const RestuarantsList: FC<IProps> = () => {
+  const { data, loading } = useGetRestaurantsQuery();
+
+  if (loading) {
     return <SkeletonRestuarantList />;
   }
 
   return (
-    <Flex gap={"30px"} wrap >
-      {RESTUARANTS_MOCK.map((restuarant) => (
-        <RestuarantCard key={restuarant.id} restuarant={restuarant} />
+    <Flex gap={"30px"} wrap>
+      {data?.getRestaurants?.map((restuarant) => (
+        <RestuarantCard key={restuarant?.id} restuarant={restuarant} />
       ))}
     </Flex>
   );

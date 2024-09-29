@@ -1,0 +1,15 @@
+type User {
+  id: ID!
+  name: String!
+  phone: String
+  email: String
+  address: String
+}
+
+type Restuarant {
+  id: ID!
+  name: String!
+  rating: String
+  categories: String
+  image: String
+}

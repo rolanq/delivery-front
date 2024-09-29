@@ -1,0 +1,9 @@
+query GetRestaurants {
+  getRestaurants {
+    id
+    name
+    rating
+    categories
+    image
+  }
+}

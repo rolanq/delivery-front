@@ -1,10 +1,9 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { FC, useLayoutEffect, useState } from "react";
-import { ConfigProvider } from "antd";
 import { GlobalLoader } from "@features/GlobalLoader/GlobalLoader";
 import { Footer } from "@features/Footer/Footer";
 import { ROUTES } from "@shared/routes/routes";
-import { SDKProvider } from "@telegram-apps/sdk-react";
+import { ProvidersWrapper } from "@shared/providersWrapper/ProvidersWrapper";
 
 export const App: FC = () => {
   const location = useLocation();
@@ -14,17 +13,16 @@ export const App: FC = () => {
     document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
     const w: any = window;
-    w.Telegram.WebApp.setBackgroundColor("#FFF")
-    
+    w.Telegram.WebApp.setBackgroundColor("#FFF");
+
     if (w.visualViewport) {
-      w.visualViewport.addEventListener('resize', () => {
-        document.body.style.height = w.visualViewport.height + 'px';
+      w.visualViewport.addEventListener("resize", () => {
+        document.body.style.height = w.visualViewport.height + "px";
       });
     }
-    w.addEventListener('scroll', () => {
+    w.addEventListener("scroll", () => {
       if (w.scrollY > 0) w.scrollTo(0, 0);
     });
-    
   }, [location.pathname]);
 
   setTimeout(() => {
@@ -33,31 +31,22 @@ export const App: FC = () => {
 
   return (
     <>
-      <SDKProvider acceptCustomStyles debug>
-        <ConfigProvider
-          theme={{
-            token: {
-              fontFamily: "'Noto Sans JP', sans-serif",
-              fontWeightStrong: 800,
-            },
-          }}
-        >
-          <Routes>
-            {ROUTES.map((route) => (
-              <>
-                <Route
-                  key={route.path}
-                  index={route.index}
-                  path={route.path}
-                  element={<route.element />}
-                />
-              </>
-            ))}
-          </Routes>
-        </ConfigProvider>
+      <ProvidersWrapper>
+        <Routes>
+          {ROUTES.map((route) => (
+            <>
+              <Route
+                key={route.path}
+                index={route.index}
+                path={route.path}
+                element={<route.element />}
+              />
+            </>
+          ))}
+        </Routes>
         <Footer />
         {isLoading && <GlobalLoader />}
-      </SDKProvider>
+      </ProvidersWrapper>
     </>
   );
 };
