@@ -27,7 +27,7 @@ const app = express();
 
 app.use(cors(corsOptions));
 app.use(
-  "/",
+  "/api/",
   graphqlHTTP({
     schema,
     rootValue: rootResolvers,

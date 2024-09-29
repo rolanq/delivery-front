@@ -9,7 +9,7 @@ interface IProps {
 
 export const ProvidersWrapper: FC<IProps> = ({ children }) => {
   const client = new ApolloClient({
-    uri: "http://localhost:5000/graphql",
+    uri: `${window.location.protocol}//${window.location.hostname}${import.meta.env.VITE_API_URL}`,
     cache: new InMemoryCache(),
   });
 
