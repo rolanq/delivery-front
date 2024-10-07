@@ -1,4 +1,0 @@
-type Query {
-    getUser(id: ID!): User
-    getRestaurants: [Restuarant]
-}
