@@ -10,11 +10,12 @@ interface IProps {}
 export const GlobalLoader: FC<IProps> = () => {
   const [props] = useSpring(
     () => ({
-      config: { duration: 300 },
-      delay: 700,
-      from: { opacity: 1 },
+      config: { duration: 250 },
+      delay: 1000,
+      from: { opacity: 1, zIndex: 10000 },
       to: {
         opacity: 0,
+        zIndex: -100
       },
     }),
     []
