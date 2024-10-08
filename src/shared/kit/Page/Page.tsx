@@ -8,6 +8,7 @@ interface IProps {
   paddingVertical?: boolean;
   scrollable?: boolean;
 }
+
 export const Page: FC<IProps> = ({
   children,
   paddingVertical,

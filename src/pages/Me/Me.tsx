@@ -2,15 +2,15 @@ import { Flex } from "antd";
 import { FC } from "react";
 import { MenuItem } from "./MenuItem/MenuItem";
 import styles from "./styles.module.css";
-import { Page } from "@shared/kit/Page/Page";
 import { MeWidget } from "./MeWidget/MeWidget";
 import { useUserStore } from "@shared/stores/User";
+import { Layout } from "@shared/kit/Layout/Layout";
 
 export const Me: FC = () => {
   const user = useUserStore((state) => state.user);
-  
+
   return (
-    <Page paddingVertical scrollable={false}>
+    <Layout footer paddingVertical scrollable={false}>
       <Flex vertical align="center" className={styles.container} gap="30px">
         {/* <CustomSkeleton height={"240px"} width={"100%"} /> */}
         <MeWidget />
@@ -21,9 +21,15 @@ export const Me: FC = () => {
           className={styles.container}
         >
           <MenuItem path="/settings" name="Настройки" />
-          {user && <MenuItem path="/logout" name="Выйти" classname={styles.logoutButton} />}
+          {user && (
+            <MenuItem
+              path="/logout"
+              name="Выйти"
+              classname={styles.logoutButton}
+            />
+          )}
         </Flex>
       </Flex>
-    </Page>
+    </Layout>
   );
 };

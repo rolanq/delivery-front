@@ -31,7 +31,7 @@ export const App: FC = () => {
 
   return (
     <>
-      <ProvidersWrapper >
+      <ProvidersWrapper>
         <Routes>
           {ROUTES.map((route) => (
             <>
@@ -44,7 +44,6 @@ export const App: FC = () => {
             </>
           ))}
         </Routes>
-        <Footer />
         {isLoading && <GlobalLoader />}
       </ProvidersWrapper>
     </>
