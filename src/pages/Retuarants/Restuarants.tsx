@@ -9,7 +9,7 @@ export const Restuarants: FC = () => {
   const [isLoading] = useState(false);
 
   return (
-    <Layout footer header paddingVertical>
+    <Layout footer paddingVertical>
       <Flex justify="space-between">
         {isLoading ? (
           <CustomSkeleton height={"30px"} width={"60%"} />
