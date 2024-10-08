@@ -1,8 +1,9 @@
-import { Flex } from "antd";
-import { FC } from "react";
+import { Flex, List } from "antd";
+import { FC, useMemo } from "react";
 import { RestuarantCard } from "./RestuarantCard/RestuarantCard";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 import { useGetRestaurantsQuery } from "@graphql/graphql";
+import { useIsMobile } from "@shared/hooks/useIsMobile";
 
 interface IProps {
   isLoading: boolean;
@@ -22,17 +23,15 @@ const SkeletonRestuarantList = () => {
 };
 
 export const RestuarantsList: FC<IProps> = () => {
-  const { data, loading } = useGetRestaurantsQuery();
+  const { data, loading: isLoading } = useGetRestaurantsQuery();
+  const isMobile = useIsMobile();
 
-  if (loading) {
+  if (isLoading) {
     return <SkeletonRestuarantList />;
   }
 
   return (
-    <Flex gap={"30px"} wrap>
-      {data?.getRestaurants?.map((restuarant) => (
-        <RestuarantCard key={restuarant?.id} restuarant={restuarant} />
-      ))}
-    </Flex>
+    <List dataSource={data?.getRestaurants ?? []} renderItem={(restuarant) => <RestuarantCard restuarant={restuarant} />}>
+    </List>
   );
 };

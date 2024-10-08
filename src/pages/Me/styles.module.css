@@ -1,3 +1,15 @@
 .container {
   width: 100%;
 }
+
+.fullHeight {
+  height: 100%;
+}
+
+.logoutButton {
+  background-color: #c23b22;
+}
+
+.logoutButton > span {
+  color: white;
+}

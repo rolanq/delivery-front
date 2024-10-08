@@ -31,7 +31,7 @@ export const App: FC = () => {
 
   return (
     <>
-      <ProvidersWrapper>
+      <ProvidersWrapper >
         <Routes>
           {ROUTES.map((route) => (
             <>

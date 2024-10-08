@@ -24,7 +24,7 @@ export const Page: FC<IProps> = ({
       ref={ref}
       style={{
         paddingTop: paddingVertical ? "20px" : 0,
-        paddingBottom: paddingVertical ? "20px" : 0,
+        paddingBottom: paddingVertical ? "80px" : 0,
         overflow: scrollable ? "scroll" : "hidden",
       }}
     >
