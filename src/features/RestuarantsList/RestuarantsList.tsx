@@ -24,12 +24,19 @@ const SkeletonRestuarantList = () => {
 export const RestuarantsList: FC<IProps> = () => {
   const { data, loading: isLoading } = useGetRestaurantsQuery();
 
+  console.log(isLoading);
+  
+
   if (isLoading) {
     return <SkeletonRestuarantList />;
   }
 
   return (
-    <List dataSource={data?.getRestaurants ?? []} renderItem={(restuarant) => <RestuarantCard key={restuarant?.id} restuarant={restuarant} />}>
-    </List>
+    <List
+      dataSource={data?.getRestaurants ?? []}
+      renderItem={(restuarant) => (
+        <RestuarantCard key={restuarant?.id} restuarant={restuarant} />
+      )}
+    />
   );
 };

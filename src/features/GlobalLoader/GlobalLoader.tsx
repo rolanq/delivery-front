@@ -13,11 +13,9 @@ export const GlobalLoader: FC<IProps> = () => {
       config: { duration: 300 },
       delay: 700,
       from: { opacity: 1 },
-      to: [
-        {
-          opacity: 0,
-        },
-      ],
+      to: {
+        opacity: 0,
+      },
     }),
     []
   );

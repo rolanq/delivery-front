@@ -1,13 +1,11 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { FC, useLayoutEffect, useState } from "react";
+import { FC, useLayoutEffect } from "react";
 import { GlobalLoader } from "@features/GlobalLoader/GlobalLoader";
-import { Footer } from "@features/Footer/Footer";
 import { ROUTES } from "@shared/routes/routes";
 import { ProvidersWrapper } from "@shared/providersWrapper/ProvidersWrapper";
 
 export const App: FC = () => {
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
 
   useLayoutEffect(() => {
     document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -25,10 +23,6 @@ export const App: FC = () => {
     });
   }, [location.pathname]);
 
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 1000);
-
   return (
     <>
       <ProvidersWrapper>
@@ -44,7 +38,7 @@ export const App: FC = () => {
             </>
           ))}
         </Routes>
-        {isLoading && <GlobalLoader />}
+        <GlobalLoader />
       </ProvidersWrapper>
     </>
   );
