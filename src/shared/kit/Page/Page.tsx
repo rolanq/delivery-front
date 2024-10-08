@@ -12,7 +12,6 @@ interface IProps {
 export const Page: FC<IProps> = ({
   children,
   paddingVertical,
-  scrollable = true,
 }) => {
   const ref = usePreventCollapse();
 
@@ -20,9 +19,6 @@ export const Page: FC<IProps> = ({
     <Content
       className={styles.wrapper}
       ref={ref}
-      style={{
-        overflow: scrollable ? "scroll" : "hidden",
-      }}
     >
       <div
         className={styles.content}

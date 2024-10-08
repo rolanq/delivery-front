@@ -3,6 +3,7 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { Login } from "@pages/Auth/Login/Login";
 import { Cart } from "@pages/Cart/Cart";
 import { ErrorPage } from "@pages/Error/ErrorPage";
 import { Me } from "@pages/Me/Me";
@@ -33,6 +34,10 @@ export const ROUTES: Route[] = [
   {
     path: "/me",
     element: Me,
+  },
+  {
+    path: "/login",
+    element: Login
   },
   { path: "*", element: ErrorPage },
 ];

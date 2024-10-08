@@ -10,9 +10,9 @@ interface IProps {
 
 const SkeletonRestuarantList = () => {
   return (
-    <Flex vertical gap={"20px"}>
+    <Flex vertical gap={"10px"}>
       {new Array(4).fill("").map((_, i) => (
-        <Flex vertical gap={"15px"} key={i}>
+        <Flex vertical key={i}>
           <CustomSkeleton height={"200px"} />
           <CustomSkeleton height={"20px"} />
         </Flex>
@@ -23,10 +23,7 @@ const SkeletonRestuarantList = () => {
 
 export const RestuarantsList: FC<IProps> = () => {
   const { data, loading: isLoading } = useGetRestaurantsQuery();
-
-  console.log(isLoading);
   
-
   if (isLoading) {
     return <SkeletonRestuarantList />;
   }

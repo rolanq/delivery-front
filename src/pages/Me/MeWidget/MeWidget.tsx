@@ -2,8 +2,8 @@ import styles from "./styles.module.css";
 import { Flex, Typography } from "antd";
 import { useUserStore } from "@shared/stores/User";
 import Title from "antd/es/typography/Title";
-import { MenuItem } from "../MenuItem/MenuItem";
 import classNames from "classnames";
+import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 
 export const MeWidget = () => {
   const user = useUserStore((state) => state.user);
@@ -40,10 +40,11 @@ export const MeWidget = () => {
               className={styles.info}
             >
               <Title level={5}>Вы не авторизованы</Title>
-              <MenuItem
+              <CustomButton
+                label="Войти"
+                variant="secondary"
+                type="link"
                 path="/login"
-                name="Войти"
-                classname={styles.loginButton}
               />
             </Flex>
           </>
