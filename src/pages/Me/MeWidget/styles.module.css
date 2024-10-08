@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  min-height: 180px;
+  max-height: 180px;
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+}
+
+.content {
+  padding: 10px 20px;
+  height: 100%;
+}
+
+.cardTitle > h3 {
+  margin: 0 !important;
+}
+
+.info {
+  height: 100%;
+}
+
+.loginButton {
+  background-color: #c23b22;
+}
+
+.loginButton > span {
+  color: white;
+}
+
+.blur {
+  filter: blur(3px);
+}

@@ -24,8 +24,8 @@
       "@features/*": ["features/*"],
       "@pages/*": ["pages/*"],
       "@assets/*": ["assets/*"],
+      "@graphql/*": ["graphql/*"],
       "@shared/*": ["shared/*"],
-      "@graphql/*": ["graphql/*"]
     }
   },
   "include": ["src"]

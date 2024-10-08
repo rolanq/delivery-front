@@ -11,7 +11,6 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
   const client = new ApolloClient({
     uri: `${import.meta.env.VITE_API_URL}/api/graphql`,
     cache: new InMemoryCache(),
-    
   });
 
   return (

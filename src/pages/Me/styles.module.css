@@ -1,9 +1,7 @@
 .container {
   width: 100%;
-}
-
-.fullHeight {
   height: 100%;
+  box-sizing: border-box;
 }
 
 .logoutButton {
