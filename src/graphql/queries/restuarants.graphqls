@@ -7,3 +7,23 @@ query GetRestaurants {
     image
   }
 }
+
+query GetRestuarant($id: ID!) {
+  getRestuarant(id: $id) {
+    id
+    name
+    rating
+    categories
+    image
+    MenuCategories {
+      id
+      name 
+      MenuItems {
+        id
+        name
+        image
+        price
+      }
+    }
+  }
+}

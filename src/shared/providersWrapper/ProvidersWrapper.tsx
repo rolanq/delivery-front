@@ -7,9 +7,11 @@ interface IProps {
   children: React.ReactNode;
 }
 
+const apiUrl = import.meta.env.VITE_MAINTENCE === "production" ? import.meta.env.VITE_API_URL : import.meta.env.VITE_API_URL_DEV
+
 export const ProvidersWrapper: FC<IProps> = ({ children }) => {
   const client = new ApolloClient({
-    uri: `${import.meta.env.VITE_API_URL}/api/graphql`,
+    uri: `${apiUrl}/api/graphql`,
     cache: new InMemoryCache(),
   });
 

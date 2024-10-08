@@ -7,6 +7,7 @@ import { Login } from "@pages/Auth/Login/Login";
 import { Cart } from "@pages/Cart/Cart";
 import { ErrorPage } from "@pages/Error/ErrorPage";
 import { Me } from "@pages/Me/Me";
+import { Restuarant } from "@pages/Restuarant/Restuarant";
 import { Restuarants } from "@pages/Retuarants/Restuarants";
 import { FC } from "react";
 
@@ -25,7 +26,7 @@ export const ROUTES: Route[] = [
   },
   {
     path: "/r/:id",
-    element: ErrorPage,
+    element: Restuarant,
   },
   {
     path: "/cart",

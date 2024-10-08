@@ -17,18 +17,40 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type MenuCategory = {
+  __typename?: 'MenuCategory';
+  MenuItems?: Maybe<Array<Maybe<MenuItem>>>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type MenuItem = {
+  __typename?: 'MenuItem';
+  id: Scalars['ID']['output'];
+  image?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  price?: Maybe<Scalars['Int']['output']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   getRestaurants?: Maybe<Array<Maybe<Restuarant>>>;
+  getRestuarant?: Maybe<Restuarant>;
+};
+
+
+export type QueryGetRestuarantArgs = {
+  id: Scalars['ID']['input'];
 };
 
 export type Restuarant = {
   __typename?: 'Restuarant';
+  MenuCategories?: Maybe<Array<Maybe<MenuCategory>>>;
   categories?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   image?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
-  rating?: Maybe<Scalars['String']['output']>;
+  rating?: Maybe<Scalars['Float']['output']>;
 };
 
 export type User = {
@@ -43,7 +65,14 @@ export type User = {
 export type GetRestaurantsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRestaurantsQuery = { __typename?: 'Query', getRestaurants?: Array<{ __typename?: 'Restuarant', id: string, name: string, rating?: string | null, categories?: string | null, image?: string | null } | null> | null };
+export type GetRestaurantsQuery = { __typename?: 'Query', getRestaurants?: Array<{ __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, image?: string | null } | null> | null };
+
+export type GetRestuarantQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetRestuarantQuery = { __typename?: 'Query', getRestuarant?: { __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, image?: string | null, MenuCategories?: Array<{ __typename?: 'MenuCategory', id: string, name: string, MenuItems?: Array<{ __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, price?: number | null } | null> | null } | null> | null } | null };
 
 
 export const GetRestaurantsDocument = gql`
@@ -89,3 +118,57 @@ export type GetRestaurantsQueryHookResult = ReturnType<typeof useGetRestaurantsQ
 export type GetRestaurantsLazyQueryHookResult = ReturnType<typeof useGetRestaurantsLazyQuery>;
 export type GetRestaurantsSuspenseQueryHookResult = ReturnType<typeof useGetRestaurantsSuspenseQuery>;
 export type GetRestaurantsQueryResult = Apollo.QueryResult<GetRestaurantsQuery, GetRestaurantsQueryVariables>;
+export const GetRestuarantDocument = gql`
+    query GetRestuarant($id: ID!) {
+  getRestuarant(id: $id) {
+    id
+    name
+    rating
+    categories
+    image
+    MenuCategories {
+      id
+      name
+      MenuItems {
+        id
+        name
+        image
+        price
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetRestuarantQuery__
+ *
+ * To run a query within a React component, call `useGetRestuarantQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRestuarantQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRestuarantQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetRestuarantQuery(baseOptions: Apollo.QueryHookOptions<GetRestuarantQuery, GetRestuarantQueryVariables> & ({ variables: GetRestuarantQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRestuarantQuery, GetRestuarantQueryVariables>(GetRestuarantDocument, options);
+      }
+export function useGetRestuarantLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRestuarantQuery, GetRestuarantQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRestuarantQuery, GetRestuarantQueryVariables>(GetRestuarantDocument, options);
+        }
+export function useGetRestuarantSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetRestuarantQuery, GetRestuarantQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetRestuarantQuery, GetRestuarantQueryVariables>(GetRestuarantDocument, options);
+        }
+export type GetRestuarantQueryHookResult = ReturnType<typeof useGetRestuarantQuery>;
+export type GetRestuarantLazyQueryHookResult = ReturnType<typeof useGetRestuarantLazyQuery>;
+export type GetRestuarantSuspenseQueryHookResult = ReturnType<typeof useGetRestuarantSuspenseQuery>;
+export type GetRestuarantQueryResult = Apollo.QueryResult<GetRestuarantQuery, GetRestuarantQueryVariables>;

@@ -2,11 +2,7 @@ import { Flex, List } from "antd";
 import { FC } from "react";
 import { RestuarantCard } from "./RestuarantCard/RestuarantCard";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
-import { useGetRestaurantsQuery } from "@graphql/graphql";
-
-interface IProps {
-  isLoading: boolean;
-}
+import { useRestuarantsStore } from "@shared/stores/Restuarants";
 
 const SkeletonRestuarantList = () => {
   return (
@@ -21,16 +17,16 @@ const SkeletonRestuarantList = () => {
   );
 };
 
-export const RestuarantsList: FC<IProps> = () => {
-  const { data, loading: isLoading } = useGetRestaurantsQuery();
-  
-  if (isLoading) {
+export const RestuarantsList: FC = () => {
+  const restuarants = useRestuarantsStore((state) => state.restuarants);
+
+  if (!restuarants.length) {
     return <SkeletonRestuarantList />;
   }
 
   return (
     <List
-      dataSource={data?.getRestaurants ?? []}
+      dataSource={restuarants}
       renderItem={(restuarant) => (
         <RestuarantCard key={restuarant?.id} restuarant={restuarant} />
       )}

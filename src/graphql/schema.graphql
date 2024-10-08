@@ -1,5 +1,6 @@
 type Query {
   getRestaurants: [Restuarant]
+  getRestuarant(id: ID!): Restuarant
 }
 
 type User {
@@ -13,7 +14,21 @@ type User {
 type Restuarant {
   id: ID!
   name: String!
-  rating: String
+  rating: Float
   categories: String
   image: String
+  MenuCategories: [MenuCategory]
+}
+
+type MenuCategory {
+  id: ID!
+  name: String!
+  MenuItems: [MenuItem]
+}
+
+type MenuItem {
+  id: ID!
+  name: String
+  image: String
+  price: Int
 }
