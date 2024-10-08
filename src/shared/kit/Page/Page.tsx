@@ -20,12 +20,15 @@ export const Page: FC<IProps> = ({
       className={styles.wrapper}
       ref={ref}
       style={{
-        paddingTop: paddingVertical ? "64px" : 0,
-        paddingBottom: paddingVertical ? "64px" : 0,
         overflow: scrollable ? "scroll" : "hidden",
       }}
     >
-      <div className={styles.content}>{children}</div>
+      <div
+        className={styles.content}
+        style={{ paddingBottom: paddingVertical ? "64px" : 0 }}
+      >
+        {children}
+      </div>
     </Content>
   );
 };

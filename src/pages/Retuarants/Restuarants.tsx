@@ -4,14 +4,13 @@ import { RestuarantsList } from "@features/RestuarantsList/RestuarantsList";
 import { Flex } from "antd";
 import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 import { Page } from "@shared/kit/Page/Page";
-import { NavBar } from "@features/NavBar/NavBar";
+
 
 export const Restuarants: FC = () => {
   const [isLoading] = useState(false);
 
   return (
     <>
-      <NavBar />
       <Page paddingVertical>
         <Flex justify="space-between">
           {isLoading ? (
