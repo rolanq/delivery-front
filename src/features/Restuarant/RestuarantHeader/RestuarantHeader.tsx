@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./styles.module.css";
 import { HeartOutlined, MoreOutlined, StarFilled } from "@ant-design/icons";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
@@ -10,10 +10,14 @@ import { useIsScrolled } from "@shared/hooks/useIsScrolled";
 import { CustomHeader } from "@shared/kit/CustomHeader/CustomHeader";
 import { GoBackButton } from "@features/GoBackButton/GoBackButton";
 import { Categories } from "@features/Categories/Categories";
+import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
 
 export const RestuarantHeader: FC = () => {
   const isScrolled = useIsScrolled(270, false);
   const restuarant = useRestuarantStore((state) => state.restuarant);
+  const [openRating, setOpenRating] = useState(false);
+  const [openTiming, setOpenTiming] = useState(false);
+  const [openMore, setOpenMore] = useState(false);
 
   return (
     <>
@@ -30,6 +34,7 @@ export const RestuarantHeader: FC = () => {
           <Flex gap="10px" wrap>
             <Flex vertical justify="space-between" gap="10px">
               <CustomButton
+                onClick={() => setOpenTiming(true)}
                 fullHeight
                 className={classNames(styles.infoBlocks)}
                 label={
@@ -44,6 +49,7 @@ export const RestuarantHeader: FC = () => {
               />
               <CustomButton
                 fullWidth
+                onClick={() => setOpenMore(true)}
                 className={classNames(styles.infoBlocks, styles.moreButton)}
                 label={<MoreOutlined className={styles.more} />}
                 variant="tertiary"
@@ -51,6 +57,7 @@ export const RestuarantHeader: FC = () => {
             </Flex>
             <Flex align="flex-end">
               <CustomButton
+                onClick={() => setOpenRating(true)}
                 className={styles.infoBlocks}
                 label={
                   <Flex align="center" justify="center" gap="5px">
@@ -85,6 +92,36 @@ export const RestuarantHeader: FC = () => {
           </Flex>
         </CustomHeader>
       )}
+      <CustomBottomSheet
+        snap={20}
+        open={openRating}
+        onDismiss={() => setOpenRating(false)}
+      >
+        <Flex vertical className={styles.bottomSheet}>
+          <Title level={3}>Рейтинг ресторана: {restuarant?.rating}</Title>
+          <Typography>
+            Рейтинг основан на оценках пользователей. Обновляется каждый день
+          </Typography>
+        </Flex>
+      </CustomBottomSheet>
+      <CustomBottomSheet
+        snap={20}
+        open={openTiming}
+        onDismiss={() => setOpenTiming(false)}
+      >
+        <Flex vertical className={styles.bottomSheet}>
+          <Title level={3}>Примерное время доставки: 35 минут</Title>
+        </Flex>
+      </CustomBottomSheet>
+      <CustomBottomSheet
+        snap={20}
+        open={openMore}
+        onDismiss={() => setOpenMore(false)}
+      >
+        <Flex vertical className={styles.bottomSheet}>
+          <Title level={3}>Здесь тоже что-то будет</Title>
+        </Flex>
+      </CustomBottomSheet>
     </>
   );
 };

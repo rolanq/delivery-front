@@ -10,6 +10,7 @@ interface IProps {
   onDismiss: () => void;
   children?: React.ReactNode;
   footer?: React.ReactNode;
+  snap?: number;
 }
 
 export const CustomBottomSheet: FC<IProps> = ({
@@ -17,6 +18,7 @@ export const CustomBottomSheet: FC<IProps> = ({
   onDismiss,
   children,
   footer,
+  snap = 30
 }) => {
   const viewportHeight = Math.max(
     document.documentElement.clientHeight || 0,
@@ -30,7 +32,7 @@ export const CustomBottomSheet: FC<IProps> = ({
       expandOnContentDrag
       defaultSnap={(viewportHeight / 100) * 80}
       snapPoints={() => [
-        (viewportHeight / 100) * 80,
+        (viewportHeight / 100) * snap,
       ]}
       maxHeight={(viewportHeight / 100) * 80}
       open={open}

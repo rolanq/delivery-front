@@ -49,10 +49,11 @@ export const Menu = () => {
       </Flex>
 
       <CustomBottomSheet
+        snap={75}
         open={!!activeMenuItem}
         onDismiss={onCloseBottomSheet}
         footer={
-          <Flex className={styles.bottomSheetFooter} justify="space-between">
+          <Flex className={styles.bottomSheetFooter} align="center" justify="space-between">
             <Flex vertical>
               <Typography.Text>{activeMenuItem?.name}</Typography.Text>
               <Title style={{ margin: 0 }} level={4}>
