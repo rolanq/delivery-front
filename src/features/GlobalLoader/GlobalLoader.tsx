@@ -21,8 +21,6 @@ export const GlobalLoader: FC<IProps> = () => {
     []
   );
 
-  return <></>
-
   return (
     <animated.div
       className={classNames(styles.wrapper, styles.block)}
