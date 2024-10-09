@@ -42,7 +42,7 @@ export const Layout: FC<IProps> = ({
           <div
             className={classNames(
               goBackButtonClassName,
-              styles.goBackButtonWrapper
+              styles.goBackButtonWrapper,
             )}
             onClick={() => navigate("/")}
           >

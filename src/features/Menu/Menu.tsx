@@ -32,11 +32,13 @@ export const Menu = () => {
       </div>
       <Flex vertical className={styles.menuList} gap="20px">
         {restuarant?.MenuCategories?.map((category) => (
-          <Flex id={category?.id} vertical>
-            <Title style={{margin: "0 0 8px 8px"}} level={3}>{category?.name}</Title>
+          <Flex key={category?.id} id={category?.id} vertical>
+            <Title style={{ margin: "0 0 8px 8px" }} level={3}>
+              {category?.name}
+            </Title>
             <Flex wrap>
               {category?.MenuItems?.map((menuItem) => (
-                <MenuCard menuItem={menuItem} />
+                <MenuCard key={menuItem?.id} menuItem={menuItem} />
               ))}
             </Flex>
           </Flex>
