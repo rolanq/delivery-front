@@ -31,7 +31,6 @@ export const CustomBottomSheet: FC<IProps> = ({
       defaultSnap={(viewportHeight / 100) * 80}
       snapPoints={() => [
         (viewportHeight / 100) * 80,
-        (viewportHeight / 100) * 30,
       ]}
       maxHeight={(viewportHeight / 100) * 80}
       open={open}
