@@ -7,10 +7,10 @@
 }
 
 .menuList {
-  height: 100vh;
   width: 100%;
+  padding-top: 27px;
 }
 
 .menuList > h3 {
-    margin: 0 8px;
+  margin: 0 8px;
 }
