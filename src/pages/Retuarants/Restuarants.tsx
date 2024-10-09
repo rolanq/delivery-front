@@ -11,7 +11,7 @@ export const Restuarants: FC = () => {
   const restuarants = useRestuarantsStore((state) => state.restuarants);
   const setRestuarants = useRestuarantsStore((state) => state.setRestuarants);
 
-  const {  } = useGetRestaurantsQuery({
+  const {} = useGetRestaurantsQuery({
     onCompleted: (data) => {
       if (data.getRestaurants?.length) {
         setRestuarants([...data.getRestaurants] as Restuarant[]);
@@ -20,7 +20,7 @@ export const Restuarants: FC = () => {
   });
 
   return (
-    <Layout footer paddingVertical>
+    <Layout header footer paddingVertical>
       <Flex justify="space-between">
         {!restuarants.length ? (
           <CustomSkeleton height={"30px"} width={"60%"} />

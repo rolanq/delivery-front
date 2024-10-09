@@ -1,11 +1,11 @@
 import { Footer } from "@features/Footer/Footer";
-import { NavBar } from "@features/NavBar/NavBar";
 import React, { FC } from "react";
 import { Page } from "../Page/Page";
 import styles from "./styles.module.css";
 import goBackArrow from "@assets/arrow-left.svg";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { Header } from "@features/Header/Header";
 
 interface IProps {
   header?: boolean;
@@ -31,7 +31,7 @@ export const Layout: FC<IProps> = ({
   const navigate = useNavigate();
   return (
     <>
-      {header && <NavBar />}
+      {header && <Header />}
       <Page
         paddingVertical={paddingVertical}
         horizontalPadding={horizontalPadding}
