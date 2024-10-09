@@ -1,0 +1,16 @@
+[data-rsbs-overlay] {
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+[data-rsbs-header="true"] {
+  display: none;
+}
+
+[data-rsbs-footer="true"] {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+[data-rsbs-scroll="true"] {
+  position: relative;
+}

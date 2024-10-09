@@ -8,11 +8,12 @@ import { PlusOutlined } from "@ant-design/icons";
 
 interface IProps {
   menuItem: MenuItem | null;
+  onClick: (item: MenuItem | null) => void
 }
 
-export const MenuCard: FC<IProps> = ({ menuItem }) => {
+export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
   return (
-    <Flex className={styles.container} vertical>
+    <Flex className={styles.container} vertical onClick={() => onClick(menuItem)}>
       <div className={styles.imageContainer}>
         <CustomImage src={menuItem?.image ?? ""} height="auto" />
       </div>

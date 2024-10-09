@@ -6,3 +6,18 @@
 .menuList > h3 {
   margin: 0 8px;
 }
+
+.bottomSheet {
+  height: 100%;
+  width: 100%;
+}
+
+.bottomSheetImage {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.bottomSheetContent {
+  height: 100%;
+  padding: 10px 20px;
+}
