@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { FC } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import goBackArrow from "@assets/arrow-left.svg";

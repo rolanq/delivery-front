@@ -1,8 +1,6 @@
 import { Footer } from "@features/Footer/Footer";
 import React, { FC } from "react";
 import { Page } from "../Page/Page";
-import { useNavigate } from "react-router-dom";
-import classNames from "classnames";
 import { Header } from "@features/Header/Header";
 import { GoBackButton } from "@features/GoBackButton/GoBackButton";
 
@@ -27,7 +25,6 @@ export const Layout: FC<IProps> = ({
   goBackButtonClassName,
   children,
 }) => {
-  const navigate = useNavigate();
   return (
     <>
       {header && <Header />}

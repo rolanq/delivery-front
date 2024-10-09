@@ -1,6 +1,5 @@
-import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { useRestuarantStore } from "@shared/stores/Restuarant";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import styles from "./styles.module.css";
 import Title from "antd/es/typography/Title";
 import { MenuCard } from "./MenuCard/MenuCard";
