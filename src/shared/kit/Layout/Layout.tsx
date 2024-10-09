@@ -36,6 +36,7 @@ export const Layout: FC<IProps> = ({
         paddingVertical={paddingVertical}
         horizontalPadding={horizontalPadding}
         scrollable={scrollable}
+        paddingTopWithHeader={header}
       >
         {goBackButton && (
           <div

@@ -8,6 +8,7 @@ interface IProps {
   paddingVertical?: boolean;
   horizontalPadding?: boolean;
   scrollable?: boolean;
+  paddingTopWithHeader?: boolean;
 }
 
 export const Page: FC<IProps> = ({
@@ -15,6 +16,7 @@ export const Page: FC<IProps> = ({
   paddingVertical,
   horizontalPadding,
   scrollable = true,
+  paddingTopWithHeader = false,
 }) => {
   const ref = usePreventCollapse();
 
@@ -22,12 +24,17 @@ export const Page: FC<IProps> = ({
     <Content className={styles.wrapper} ref={ref}>
       <div
         className={styles.content}
+        id="scrollable_content"
         style={{
           paddingBottom: paddingVertical ? "64px" : 0,
-          paddingTop: paddingVertical ? "20px" : 0,
+          paddingTop: paddingVertical
+            ? paddingTopWithHeader
+              ? "64px"
+              : "20px"
+            : 0,
           paddingLeft: horizontalPadding ? "20px" : 0,
           paddingRight: horizontalPadding ? "20px" : 0,
-          overflow: scrollable ? "auto" : "hidden"
+          overflow: scrollable ? "auto" : "hidden",
         }}
       >
         {children}

@@ -9,26 +9,31 @@ interface IProps {
 }
 
 export const CustomHeader: FC<IProps> = ({ children, className }) => {
-  const [position, setPosition] = useState(window.pageYOffset);
-  const [visible, setVisible] = useState(true);
-
-  console.log(window.pageYOffset);
+  const [lastPosition, setLastPosition] = useState(0);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
+    const content = document.getElementById("scrollable_content");
+
     const handleScroll = () => {
-      let moving = window.pageYOffset;
+      let scrolling = content?.scrollTop ?? 0;
+      
+      if (scrolling > lastPosition) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
 
-      setVisible(position > moving);
-      setPosition(moving);
+      setLastPosition(scrolling);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    content?.addEventListener("scroll", handleScroll, { capture: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      content?.removeEventListener("scroll", handleScroll, { capture: true });
     };
-  }, [position, window.pageYOffset]);
+  }, [lastPosition]);
 
-  const cls = visible ? styles.visible : styles.hidden;
+  const cls = show ? styles.visible : styles.hidden;
 
   return (
     <Header className={classNames(styles.container, cls, className)}>

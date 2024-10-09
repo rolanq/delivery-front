@@ -11,16 +11,13 @@ export const App: FC = () => {
     document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
     const w: any = window;
-    w.Telegram.WebApp.setBackgroundColor("#FFF");
 
     if (w.visualViewport) {
       w.visualViewport.addEventListener("resize", () => {
         document.body.style.height = w.visualViewport.height + "px";
       });
     }
-    w.addEventListener("scroll", () => {
-      if (w.scrollY > 0) w.scrollTo(0, 0);
-    });
+
   }, [location.pathname]);
 
   return (

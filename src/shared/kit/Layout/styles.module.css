@@ -1,6 +1,6 @@
 .goBackButtonWrapper {
   z-index: 500;
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   height: 40px;
