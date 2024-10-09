@@ -30,8 +30,6 @@ export const Restuarant: FC = () => {
 
   return (
     <Layout
-      goBackButton
-      goBackButtonClassName={styles.goBackButton}
       scrollable
       horizontalPadding={false}
     >

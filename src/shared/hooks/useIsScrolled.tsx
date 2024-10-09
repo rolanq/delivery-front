@@ -24,9 +24,9 @@ export const useIsScrolled = (
       }
     };
 
-    content?.addEventListener("scroll", handleScroll, { capture: true });
+    content?.addEventListener("scroll", handleScroll);
     return () => {
-      content?.removeEventListener("scroll", handleScroll, { capture: true });
+      content?.removeEventListener("scroll", handleScroll);
     };
   }, [lastPosition]);
 

@@ -1,0 +1,13 @@
+.categoriesListContainer {
+  overflow: scroll;
+}
+
+.categoriesList {
+  min-width: max-content;
+  min-height: 40px;
+}
+
+.category {
+    padding: 5px 10px;
+    transition: background-color 1ms;
+}

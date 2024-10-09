@@ -4,32 +4,14 @@ import { Flex, Typography } from "antd";
 import styles from "./styles.module.css";
 import Title from "antd/es/typography/Title";
 import { MenuCard } from "./MenuCard/MenuCard";
+import { Categories } from "@features/Categories/Categories";
 
 export const Menu = () => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
 
-  const onClickCategory = (id: string | undefined) => {
-    if (id) {
-      const section = document.getElementById(id);
-
-      section?.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
-
   return (
     <>
-      <div className={styles.categoriesListContainer}>
-        <Flex className={styles.categoriesList} gap="5px">
-          {restuarant?.MenuCategories?.map((category) => (
-            <CustomButton
-              key={category?.id}
-              variant="transparent"
-              onClick={() => onClickCategory(category?.id)}
-              label={<Typography.Text>{category?.name}</Typography.Text>}
-            />
-          ))}
-        </Flex>
-      </div>
+      <Categories />
       <Flex vertical className={styles.menuList} gap="20px">
         {restuarant?.MenuCategories?.map((category) => (
           <Flex key={category?.id} id={category?.id} vertical>

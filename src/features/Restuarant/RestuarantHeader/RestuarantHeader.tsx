@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./styles.module.css";
-import { MoreOutlined, StarFilled } from "@ant-design/icons";
+import { HeartOutlined, MoreOutlined, StarFilled } from "@ant-design/icons";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { Flex, Typography } from "antd";
 import classNames from "classnames";
@@ -8,14 +8,17 @@ import Title from "antd/es/typography/Title";
 import { useRestuarantStore } from "@shared/stores/Restuarant";
 import { useIsScrolled } from "@shared/hooks/useIsScrolled";
 import { CustomHeader } from "@shared/kit/CustomHeader/CustomHeader";
+import { GoBackButton } from "@features/GoBackButton/GoBackButton";
+import { Categories } from "@features/Categories/Categories";
 
 export const RestuarantHeader: FC = () => {
-  const isScrolled = useIsScrolled(270, false)
+  const isScrolled = useIsScrolled(270, false);
   const restuarant = useRestuarantStore((state) => state.restuarant);
 
   return (
     <>
       <div className={styles.background}>
+        <GoBackButton classname={styles.goBackButton} />
         <Flex className={styles.infoBlock} vertical>
           <Title
             className={styles.restuarantName}
@@ -64,7 +67,24 @@ export const RestuarantHeader: FC = () => {
         </Flex>
         <img src={restuarant?.image ?? ""} alt="restuarant image" />
       </div>
-      {isScrolled && <CustomHeader></CustomHeader>}
+      {isScrolled && (
+        <CustomHeader>
+          <Flex vertical>
+            <Flex
+              align="center"
+              justify="space-between"
+              className={styles.droppingHeaderWrapper}
+            >
+              <GoBackButton classname={styles.goBackButtonHeader} />
+              <Title level={4}>{restuarant?.name}</Title>
+              <HeartOutlined className={styles.favorites} />
+            </Flex>
+            <Flex className={styles.categoriesWrapper}>
+              <Categories />
+            </Flex>
+          </Flex>
+        </CustomHeader>
+      )}
     </>
   );
 };

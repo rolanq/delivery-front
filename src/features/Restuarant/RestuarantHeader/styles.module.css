@@ -61,3 +61,38 @@
   color: #fff;
   text-shadow: 0px 0px 10px #00000045;
 }
+
+.goBackButton {
+  position: absolute;
+  background-color: #ffffffd0;
+  box-shadow: 0px 0px 10px #00000045;
+}
+
+.goBackButtonHeader {
+  position: unset;
+  background-color: unset;
+  box-shadow: unset;
+}
+
+.droppingHeaderWrapper {
+  height: 100%;
+  padding: 0 20px;
+}
+
+.droppingHeaderWrapper > h4 {
+  margin-bottom: 0;
+}
+
+.favorites {
+  padding: 10px;
+}
+
+.favorites > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.categoriesWrapper {
+  background-color: #fff;
+  padding: 0 20px;
+}

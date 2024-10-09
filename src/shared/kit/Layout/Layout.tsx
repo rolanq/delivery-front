@@ -1,11 +1,10 @@
 import { Footer } from "@features/Footer/Footer";
 import React, { FC } from "react";
 import { Page } from "../Page/Page";
-import styles from "./styles.module.css";
-import goBackArrow from "@assets/arrow-left.svg";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { Header } from "@features/Header/Header";
+import { GoBackButton } from "@features/GoBackButton/GoBackButton";
 
 interface IProps {
   header?: boolean;
@@ -38,17 +37,7 @@ export const Layout: FC<IProps> = ({
         scrollable={scrollable}
         paddingTopWithHeader={header}
       >
-        {goBackButton && (
-          <div
-            className={classNames(
-              goBackButtonClassName,
-              styles.goBackButtonWrapper,
-            )}
-            onClick={() => navigate("/")}
-          >
-            <img src={goBackArrow} alt="goBackArrow" />
-          </div>
-        )}
+        {goBackButton && <GoBackButton classname={goBackButtonClassName} />}
         {children}
       </Page>
       {footer && <Footer />}

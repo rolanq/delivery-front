@@ -14,6 +14,7 @@ interface IProps {
   fullHeight?: boolean;
   path?: string;
   type?: "button" | "link";
+  id?: string;
 }
 
 export const CustomButton: FC<IProps> = ({
@@ -26,6 +27,7 @@ export const CustomButton: FC<IProps> = ({
   fullHeight = false,
   type = "button",
   path,
+  id,
 }) => {
   const navigate = useNavigate();
 
@@ -40,13 +42,14 @@ export const CustomButton: FC<IProps> = ({
   };
   return (
     <Flex
+      id={id}
       className={classNames(
         className,
         styles.container,
         styles[variant],
         styles[labelPosition],
         fullWidth ? styles.fullWidth : styles.minWidth,
-        fullHeight ? styles.fullHeight : styles.minHeight,
+        fullHeight ? styles.fullHeight : styles.minHeight
       )}
       onClick={getOnClick()}
     >
