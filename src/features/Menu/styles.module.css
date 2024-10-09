@@ -1,0 +1,16 @@
+.categoriesListContainer {
+  overflow: scroll;
+}
+
+.categoriesList {
+  min-width: max-content;
+}
+
+.menuList {
+  height: 100vh;
+  width: 100%;
+}
+
+.menuList > h3 {
+    margin: 0 8px;
+}

@@ -3,6 +3,7 @@
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 .primary {
@@ -15,6 +16,19 @@
 
 .secondary > span {
   color: white;
+}
+
+.tertiary {
+  background-color: #fff;
+}
+
+.tertiary > span {
+  color: black;
+}
+
+.transparent {
+  background-color: transparent;
+  box-shadow: unset;
 }
 
 .center {
@@ -35,4 +49,12 @@
 
 .fullWidth {
   width: 100%;
+}
+
+.minHeight {
+  height: fit-content;
+}
+
+.fullHeight {
+  height: 100%;
 }

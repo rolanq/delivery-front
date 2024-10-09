@@ -15,19 +15,26 @@ export const RestuarantCard: FC<IProps> = ({ restuarant }) => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate(`r/${restuarant?.id}`)
-  }
+    navigate(`r/${restuarant?.id}`);
+  };
 
   return (
     <Flex vertical className={styles.container} onClick={onClick}>
       <CustomImage src={restuarant?.image ?? ""} />
-      <Flex justify="space-between" className={styles.infoContainer}>
-        <Title level={5}>{restuarant?.name}</Title>
-        <Flex align="center" gap={2}>
-          <StarFilled className={styles.star} />
-          <Typography.Text className={styles.rating}>
-            {restuarant?.rating}
-          </Typography.Text>
+      <Flex vertical className={styles.infoContainer}>
+        <Flex justify="space-between" align="center">
+          <Title style={{ margin: 0 }} level={5}>
+            {restuarant?.name}
+          </Title>
+          <Flex align="center" gap={2}>
+            <StarFilled className={styles.star} />
+            <Typography.Text className={styles.rating}>
+              {restuarant?.rating}
+            </Typography.Text>
+          </Flex>
+        </Flex>
+        <Flex justify="flex-start">
+          <Typography.Text>{restuarant?.categories}</Typography.Text>
         </Flex>
       </Flex>
     </Flex>

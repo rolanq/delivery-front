@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { Flex, Typography } from "antd";
@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
   className?: string;
-  label?: string;
+  label?: ReactNode;
   onClick?: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary" | "transparent";
   labelPosition?: "left" | "center" | "right";
   fullWidth?: boolean;
+  fullHeight?: boolean;
   path?: string;
   type?: "button" | "link";
 }
@@ -22,6 +23,7 @@ export const CustomButton: FC<IProps> = ({
   variant = "primary",
   labelPosition = "center",
   fullWidth = false,
+  fullHeight = false,
   type = "button",
   path,
 }) => {
@@ -43,7 +45,8 @@ export const CustomButton: FC<IProps> = ({
         styles.container,
         styles[variant],
         styles[labelPosition],
-        fullWidth ? styles.fullWidth : styles.minWidth
+        fullWidth ? styles.fullWidth : styles.minWidth,
+        fullHeight ? styles.fullHeight : styles.minHeight,
       )}
       onClick={getOnClick()}
     >

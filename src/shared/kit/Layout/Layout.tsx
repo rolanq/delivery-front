@@ -5,29 +5,46 @@ import { Page } from "../Page/Page";
 import styles from "./styles.module.css";
 import goBackArrow from "@assets/arrow-left.svg";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
 
 interface IProps {
   header?: boolean;
   footer?: boolean;
   paddingVertical?: boolean;
+  horizontalPadding?: boolean;
+  scrollable?: boolean;
   goBackButton?: boolean;
+  goBackButtonClassName?: string;
   children: React.ReactNode;
 }
 
 export const Layout: FC<IProps> = ({
   footer,
   header,
-  paddingVertical,
+  paddingVertical = false,
+  horizontalPadding = true,
+  scrollable = true,
   goBackButton,
+  goBackButtonClassName,
   children,
 }) => {
   const navigate = useNavigate();
   return (
     <>
       {header && <NavBar />}
-      <Page paddingVertical={paddingVertical}>
+      <Page
+        paddingVertical={paddingVertical}
+        horizontalPadding={horizontalPadding}
+        scrollable={scrollable}
+      >
         {goBackButton && (
-          <div className={styles.goBackButtonWrapper} onClick={() => navigate('/')}>
+          <div
+            className={classNames(
+              goBackButtonClassName,
+              styles.goBackButtonWrapper
+            )}
+            onClick={() => navigate("/")}
+          >
             <img src={goBackArrow} alt="goBackArrow" />
           </div>
         )}

@@ -1,0 +1,37 @@
+.container {
+  background: #f5f4f2;
+  margin: 8px 0 0 8px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: calc(50% - 10px);
+  padding: 5px;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.imageContainer {
+  margin-bottom: 8px;
+}
+
+.info {
+  padding: 0 5px;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 18px;
+  line-height: 19px;
+  font-weight: 600;
+}
+
+.name {
+  margin: 4px 0;
+  font-size: 12px;
+  line-height: 17px;
+  font-weight: 400;
+}
+
+.buttonAdd {
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}

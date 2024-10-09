@@ -10,7 +10,7 @@ export const Me: FC = () => {
   const user = useUserStore((state) => state.user);
 
   return (
-    <Layout footer paddingVertical>
+    <Layout footer paddingVertical scrollable={false}>
       {/* <CustomSkeleton height={"240px"} width={"100%"} /> */}
       <MeWidget />
       <Flex

@@ -6,23 +6,29 @@ import { usePreventCollapse } from "@shared/hooks/usePreventCollapse";
 interface IProps {
   children?: React.ReactNode;
   paddingVertical?: boolean;
+  horizontalPadding?: boolean;
   scrollable?: boolean;
 }
 
 export const Page: FC<IProps> = ({
   children,
   paddingVertical,
+  horizontalPadding,
+  scrollable = true,
 }) => {
   const ref = usePreventCollapse();
 
   return (
-    <Content
-      className={styles.wrapper}
-      ref={ref}
-    >
+    <Content className={styles.wrapper} ref={ref}>
       <div
         className={styles.content}
-        style={{ paddingBottom: paddingVertical ? "64px" : 0 }}
+        style={{
+          paddingBottom: paddingVertical ? "64px" : 0,
+          paddingTop: paddingVertical ? "20px" : 0,
+          paddingLeft: horizontalPadding ? "20px" : 0,
+          paddingRight: horizontalPadding ? "20px" : 0,
+          overflow: scrollable ? "auto" : "hidden"
+        }}
       >
         {children}
       </div>

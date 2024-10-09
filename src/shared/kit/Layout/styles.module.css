@@ -1,5 +1,8 @@
 .goBackButtonWrapper {
+  z-index: 500;
   position: absolute;
+  top: 20px;
+  left: 20px;
   height: 40px;
   width: 40px;
   display: flex;
@@ -7,6 +10,6 @@
   justify-content: center;
   border-radius: 100%;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(145, 145, 145, 0.225);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }

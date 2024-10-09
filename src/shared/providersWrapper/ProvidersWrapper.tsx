@@ -26,8 +26,8 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
             },
             components: {
               Typography: {
-                "colorTextSecondary": "white"
-              }
+                "colorTextSecondary": "white",
+              },
             }
           }}
         >
