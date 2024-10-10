@@ -3,16 +3,11 @@ import Title from "antd/es/typography/Title";
 import React, { FC } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-
-const colors = {
-    primary: "black",
-    secondary: "white",
-    tertiary: "#b0b0b0",
-    fourth: "#c23b22"
-}
+import { colors } from "../consts/colors";
+import { Variants } from "../consts/variantTypes";
 
 interface IProps {
-  variant?: "primary" | "secondary" | "tertiary" | "fourth";
+  variant?: Variants;
   size?: "sm" | "md" | "lg";
   titleLevel?: 1 | 2 | 3 | 4 | 5;
   marginBottom?: boolean;
@@ -38,7 +33,7 @@ export const CustomText: FC<IProps> = ({
         style={{
           marginBottom: marginBottom ? "10px" : 0,
           marginTop: marginTop ? "10px" : 0,
-          color: colors[variant]
+          color: colors[variant],
         }}
       >
         {children}
@@ -52,6 +47,7 @@ export const CustomText: FC<IProps> = ({
       style={{
         marginBottom: marginBottom ? "10px" : 0,
         marginTop: marginTop ? "10px" : 0,
+        color: colors[variant],
       }}
     >
       {children}

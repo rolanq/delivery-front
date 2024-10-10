@@ -47,27 +47,34 @@ export const Menu = () => {
       </Flex>
 
       <CustomBottomSheet
-        snap={75}
+        snap={90}
         open={!!activeMenuItem}
         onDismiss={onCloseBottomSheet}
         footer={
           <Flex
             className={styles.bottomSheetFooter}
-            align="center"
+            vertical
             justify="space-between"
+            gap="15px"
           >
-            <Flex vertical>
-              <CustomText>{activeMenuItem?.name}</CustomText>
-              <Flex justify="space-between">
+            <Flex align="center" justify="space-between">
+              <Flex gap="5px" align="center">
+                <CustomText size="md">{activeMenuItem?.name}</CustomText>
+                <CustomText variant="tertiary" size="sm">
+                  {activeMenuItem?.weight} гр.
+                </CustomText>
+              </Flex>
+              <Flex gap="10px">
                 <CustomText titleLevel={4}>
                   {activeMenuItem?.price} р
                 </CustomText>
-                <CustomText variant="tertiary" size="sm">
-                  {activeMenuItem?.weight} грамм
-                </CustomText>
               </Flex>
             </Flex>
-            <CustomButton label="Добавить в корзину" variant="secondary" />
+            <CustomButton
+              fullWidth
+              label="Добавить в корзину"
+              variant="secondary"
+            />
           </Flex>
         }
       >
@@ -75,7 +82,7 @@ export const Menu = () => {
           <CustomImage
             src={activeMenuItem?.image ?? ""}
             width="100%"
-            height="300px"
+            height="100%"
             borderRadius="24px 24px 0 0"
             className={styles.bottomSheetImage}
           />

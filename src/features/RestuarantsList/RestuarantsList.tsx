@@ -10,7 +10,7 @@ const SkeletonRestuarantList = () => {
       {new Array(4).fill("").map((_, i) => (
         <Flex vertical key={i}>
           <CustomSkeleton height={"200px"} />
-          <CustomSkeleton height={"20px"} />
+          <CustomSkeleton height={"50px"} />
         </Flex>
       ))}
     </Flex>

@@ -27,7 +27,7 @@ export const CustomImage: FC<IProps> = ({
       style={{ width, height, borderRadius }}
     >
       {src ? (
-        <img src={src} className={styles.image} />
+        <img src={src} className={styles.image} style={{ borderRadius }} />
       ) : (
         <CustomText>Картинки нет</CustomText>
       )}

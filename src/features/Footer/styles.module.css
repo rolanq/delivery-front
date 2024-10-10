@@ -38,6 +38,6 @@
   background-color: #c23b22;
 }
 
-.active > div > * {
+.active > div > span {
   color: white;
 }

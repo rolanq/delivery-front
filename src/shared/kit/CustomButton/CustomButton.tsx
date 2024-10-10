@@ -4,12 +4,13 @@ import classNames from "classnames";
 import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import { CustomText } from "../CustomText/CustomText";
+import { Variants } from "../consts/variantTypes";
 
 interface IProps {
   className?: string;
   label?: ReactNode;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "tertiary" | "transparent";
+  variant?: Variants;
   labelPosition?: "left" | "center" | "right";
   fullWidth?: boolean;
   fullHeight?: boolean;
@@ -54,7 +55,7 @@ export const CustomButton: FC<IProps> = ({
       )}
       onClick={getOnClick()}
     >
-      <CustomText>{label}</CustomText>
+      <CustomText variant={variant}>{label}</CustomText>
     </Flex>
   );
 };

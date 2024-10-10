@@ -30,11 +30,11 @@ export const CustomBottomSheet: FC<IProps> = ({
       footer={footer}
       scrollLocking
       expandOnContentDrag
-      defaultSnap={(viewportHeight / 100) * 80}
+      defaultSnap={(viewportHeight / 100) * snap}
       snapPoints={() => [
         (viewportHeight / 100) * snap,
       ]}
-      maxHeight={(viewportHeight / 100) * 80}
+      maxHeight={(viewportHeight / 100) * snap}
       open={open}
       onDismiss={onDismiss}
     >
