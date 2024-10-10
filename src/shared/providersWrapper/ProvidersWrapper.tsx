@@ -1,5 +1,4 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { SDKProvider } from "@telegram-apps/sdk-react";
 import { ConfigProvider } from "antd";
 import React, { FC } from "react";
 
@@ -17,7 +16,6 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
 
   return (
     <ApolloProvider client={client}>
-      <SDKProvider acceptCustomStyles>
         <ConfigProvider
           theme={{
             token: {
@@ -33,7 +31,6 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
         >
           {children}
         </ConfigProvider>
-      </SDKProvider>
     </ApolloProvider>
   );
 };

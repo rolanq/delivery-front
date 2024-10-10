@@ -16,3 +16,10 @@
 .text {
   margin: 0 !important;
 }
+
+.errorBlock {
+  background-color: white;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 24px;
+}
