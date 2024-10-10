@@ -25,7 +25,9 @@ export const App: FC = () => {
   }, [location.pathname]);
 
   if (!isMobile) {
-    return <GlobalLoader error="Приложение доступно только с мобильных устройств" />;
+    return (
+      <GlobalLoader error="Приложение доступно только с мобильных устройств" />
+    );
   }
 
   return (
@@ -33,14 +35,12 @@ export const App: FC = () => {
       <ProvidersWrapper>
         <Routes>
           {ROUTES.map((route) => (
-            <>
-              <Route
-                key={route.path}
-                index={route.index}
-                path={route.path}
-                element={<route.element />}
-              />
-            </>
+            <Route
+              key={route.path}
+              index={route.index}
+              path={route.path}
+              element={<route.element />}
+            />
           ))}
         </Routes>
         <GlobalLoaderWrapper>
