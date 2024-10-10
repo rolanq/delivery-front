@@ -3,7 +3,7 @@ import { CustomInput } from "@shared/kit/CustomInput/CustomInput";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
 import { Layout } from "@shared/kit/Layout/Layout";
 import { Flex } from "antd";
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import styles from "../styles.module.css";
 
 export const Registration: FC = () => {

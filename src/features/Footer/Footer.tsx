@@ -1,5 +1,5 @@
 import { Footer as FooterAnt } from "antd/es/layout/layout";
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./styles.module.css";
 import { Flex } from "antd";
 import { NavLink } from "react-router-dom";
