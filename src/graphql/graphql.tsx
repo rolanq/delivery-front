@@ -26,10 +26,12 @@ export type MenuCategory = {
 
 export type MenuItem = {
   __typename?: 'MenuItem';
+  description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   image?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   price?: Maybe<Scalars['Int']['output']>;
+  weight?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Query = {
@@ -46,11 +48,15 @@ export type QueryGetRestuarantArgs = {
 export type Restuarant = {
   __typename?: 'Restuarant';
   MenuCategories?: Maybe<Array<Maybe<MenuCategory>>>;
+  address: Scalars['String']['output'];
   categories?: Maybe<Scalars['String']['output']>;
+  description: Scalars['String']['output'];
+  endWorkingDay: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   rating?: Maybe<Scalars['Float']['output']>;
+  startWorkingDay: Scalars['String']['output'];
 };
 
 export type User = {
@@ -72,7 +78,7 @@ export type GetRestuarantQueryVariables = Exact<{
 }>;
 
 
-export type GetRestuarantQuery = { __typename?: 'Query', getRestuarant?: { __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, image?: string | null, MenuCategories?: Array<{ __typename?: 'MenuCategory', id: string, name: string, MenuItems?: Array<{ __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, price?: number | null } | null> | null } | null> | null } | null };
+export type GetRestuarantQuery = { __typename?: 'Query', getRestuarant?: { __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, address: string, description: string, startWorkingDay: string, endWorkingDay: string, image?: string | null, MenuCategories?: Array<{ __typename?: 'MenuCategory', id: string, name: string, MenuItems?: Array<{ __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null> | null } | null> | null } | null };
 
 
 export const GetRestaurantsDocument = gql`
@@ -125,6 +131,10 @@ export const GetRestuarantDocument = gql`
     name
     rating
     categories
+    address
+    description
+    startWorkingDay
+    endWorkingDay
     image
     MenuCategories {
       id
@@ -133,6 +143,8 @@ export const GetRestuarantDocument = gql`
         id
         name
         image
+        description
+        weight
         price
       }
     }
