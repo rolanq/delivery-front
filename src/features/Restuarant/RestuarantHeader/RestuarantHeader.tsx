@@ -11,6 +11,7 @@ import { CustomHeader } from "@shared/kit/CustomHeader/CustomHeader";
 import { GoBackButton } from "@features/GoBackButton/GoBackButton";
 import { Categories } from "@features/Categories/Categories";
 import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
+import { CustomBr } from "@shared/kit/CustomBr/CustomBr";
 
 export const RestuarantHeader: FC = () => {
   const isScrolled = useIsScrolled(270, false);
@@ -18,6 +19,8 @@ export const RestuarantHeader: FC = () => {
   const [openRating, setOpenRating] = useState(false);
   const [openTiming, setOpenTiming] = useState(false);
   const [openMore, setOpenMore] = useState(false);
+
+  const restuarantCategories = restuarant?.categories?.split(", ");
 
   return (
     <>
@@ -114,12 +117,32 @@ export const RestuarantHeader: FC = () => {
         </Flex>
       </CustomBottomSheet>
       <CustomBottomSheet
-        snap={20}
+        snap={25}
         open={openMore}
         onDismiss={() => setOpenMore(false)}
       >
-        <Flex vertical className={styles.bottomSheet}>
-          <Title level={3}>Здесь тоже что-то будет</Title>
+        <Flex vertical align="center" className={styles.bottomSheet}>
+          <Flex vertical className={styles.restuarantInfoBlock}>
+            <Title level={3}>{restuarant?.name}</Title>
+          </Flex>
+          <Flex vertical className={styles.restuarantInfoBlock}>
+            <Typography.Text>{restuarant?.address}</Typography.Text>
+            <Typography.Text>
+              Режим работы: с {restuarant?.startWorkingDay} до{" "}
+              {restuarant?.endWorkingDay}
+            </Typography.Text>
+          </Flex>
+          <CustomBr classname={styles.br} />
+          <Flex className={styles.restuarantInfoBlock} gap="5px">
+            {restuarantCategories?.map((category, index) => (
+              <>
+                <Typography.Text>{category}</Typography.Text>
+                {index !== restuarantCategories.length - 1 && (
+                  <Typography.Text>•</Typography.Text>
+                )}
+              </>
+            ))}
+          </Flex>
         </Flex>
       </CustomBottomSheet>
     </>
