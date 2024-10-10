@@ -138,12 +138,12 @@ export const RestuarantHeader: FC = () => {
           <CustomBr className={styles.br} />
           <Flex className={styles.restuarantInfoBlock} gap="5px">
             {restuarantCategories?.map((category, index) => (
-              <>
+              <Flex key={category}>
                 <CustomText>{category}</CustomText>
                 {index !== restuarantCategories.length - 1 && (
                   <CustomText>•</CustomText>
                 )}
-              </>
+              </Flex>
             ))}
           </Flex>
           <Flex

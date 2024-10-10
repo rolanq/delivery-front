@@ -8,8 +8,6 @@ import classNames from "classnames";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const Footer: FC = () => {
-  const [activeRouteName, setActiveRouteName] = useState("");
-
   return (
     <FooterAnt className={styles.wrapper}>
       <Flex className={styles.container}>
@@ -17,24 +15,16 @@ export const Footer: FC = () => {
           <NavLink
             key={route.name}
             to={route.to}
-            className={({ isActive }) => {
-              if (isActive) setActiveRouteName(route.name);
-              return classNames(
+            className={({ isActive }) =>
+              classNames(
                 styles.menuItem,
                 isActive ? styles.active : styles.notActive
-              );
-            }}
+              )
+            }
           >
             <Flex vertical gap="5px" align="center">
               <route.icon className={styles.icon} />
-              <CustomText
-                size="sm"
-                variant={
-                  activeRouteName === route.name ? "secondary" : "primary"
-                }
-              >
-                {route.name}
-              </CustomText>
+              <CustomText size="sm">{route.name}</CustomText>
             </Flex>
           </NavLink>
         ))}
