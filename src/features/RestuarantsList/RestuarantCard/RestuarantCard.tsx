@@ -2,10 +2,10 @@ import { Flex } from "antd";
 import { FC } from "react";
 import styles from "./styles.module.css";
 import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
-import { StarFilled } from "@ant-design/icons";
 import { Restuarant } from "@graphql/graphql";
 import { useNavigate } from "react-router-dom";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
+import { CustomIcon } from "@shared/kit/CustomIcon/CustomIcon";
 
 interface IProps {
   restuarant: Restuarant | null;
@@ -25,8 +25,8 @@ export const RestuarantCard: FC<IProps> = ({ restuarant }) => {
         <Flex justify="space-between" align="center">
           <CustomText titleLevel={5}>{restuarant?.name}</CustomText>
           <Flex align="center" gap={2}>
-            <StarFilled className={styles.star} />
-            <CustomText size="sm" classname={styles.rating}>
+            <CustomIcon icon="StarFilled" size="sm" />
+            <CustomText size="sm" className={styles.rating}>
               {restuarant?.rating}
             </CustomText>
           </Flex>

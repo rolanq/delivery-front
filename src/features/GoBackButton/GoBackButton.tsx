@@ -2,20 +2,20 @@ import classNames from "classnames";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { CustomIcon } from "@shared/kit/CustomIcon/CustomIcon";
 
 interface IProps {
-  classname?: string;
+  className?: string;
 }
 
-export const GoBackButton: FC<IProps> = ({ classname }) => {
+export const GoBackButton: FC<IProps> = ({ className }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={classNames(classname, styles.goBackButtonWrapper)}
+      className={classNames(className, styles.goBackButtonWrapper)}
       onClick={() => navigate("/")}
     >
-      <ArrowLeftOutlined className={styles.arrow}  />
+      <CustomIcon size="md" icon="ArrowLeftOutlined" />
     </div>
   );
 };

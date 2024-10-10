@@ -58,3 +58,7 @@
 .fullHeight {
   height: 100%;
 }
+
+.label {
+  font-weight: 800;
+}

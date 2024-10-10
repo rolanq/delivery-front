@@ -1,0 +1,25 @@
+.input:hover {
+  border-color: #c23b22;
+}
+
+.input:focus {
+  box-shadow: 0 0 1px #c23b22;
+}
+
+.input::selection {
+  background: #c23b22;
+  color: white;
+}
+
+.input::placeholder {
+    font-weight: 800;
+    color: #b0b0b0;
+}
+
+.tooltip {
+    background-color: #c23b22;
+}
+
+.title {
+    padding: 0 5px;
+}

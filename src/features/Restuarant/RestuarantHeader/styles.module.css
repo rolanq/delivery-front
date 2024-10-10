@@ -82,15 +82,6 @@
   margin-bottom: 0;
 }
 
-.favorites {
-  padding: 10px;
-}
-
-.favorites > svg {
-  width: 20px;
-  height: 20px;
-}
-
 .categoriesWrapper {
   background-color: #fff;
   padding: 0 20px;

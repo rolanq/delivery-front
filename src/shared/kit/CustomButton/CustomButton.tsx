@@ -55,7 +55,7 @@ export const CustomButton: FC<IProps> = ({
       )}
       onClick={getOnClick()}
     >
-      <CustomText variant={variant}>{label}</CustomText>
+      <CustomText className={styles.label} variant={variant}>{label}</CustomText>
     </Flex>
   );
 };

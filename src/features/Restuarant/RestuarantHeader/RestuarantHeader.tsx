@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import styles from "./styles.module.css";
-import { HeartOutlined, MoreOutlined, StarFilled } from "@ant-design/icons";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { Flex } from "antd";
 import classNames from "classnames";
@@ -12,6 +11,7 @@ import { Categories } from "@features/Categories/Categories";
 import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
 import { CustomBr } from "@shared/kit/CustomBr/CustomBr";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
+import { CustomIcon } from "@shared/kit/CustomIcon/CustomIcon";
 
 export const RestuarantHeader: FC = () => {
   const isScrolled = useIsScrolled(270, false);
@@ -25,10 +25,10 @@ export const RestuarantHeader: FC = () => {
   return (
     <>
       <div className={styles.background}>
-        <GoBackButton classname={styles.goBackButton} />
+        <GoBackButton className={styles.goBackButton} />
         <Flex className={styles.infoBlock} vertical>
           <CustomText
-            classname={styles.restuarantName}
+            className={styles.restuarantName}
             marginBottom
             titleLevel={3}
             variant="secondary"
@@ -43,9 +43,7 @@ export const RestuarantHeader: FC = () => {
                 className={classNames(styles.infoBlocks)}
                 label={
                   <Flex vertical align="center">
-                    <CustomText titleLevel={5}>
-                      35-45
-                    </CustomText>
+                    <CustomText titleLevel={5}>35-45</CustomText>
                     <CustomText>мин</CustomText>
                   </Flex>
                 }
@@ -55,7 +53,9 @@ export const RestuarantHeader: FC = () => {
                 fullWidth
                 onClick={() => setOpenMore(true)}
                 className={classNames(styles.infoBlocks, styles.moreButton)}
-                label={<MoreOutlined className={styles.more} />}
+                label={
+                  <CustomIcon icon="MoreOutlined" className={styles.more} />
+                }
                 variant="tertiary"
               />
             </Flex>
@@ -65,7 +65,7 @@ export const RestuarantHeader: FC = () => {
                 className={styles.infoBlocks}
                 label={
                   <Flex align="center" justify="center" gap="5px">
-                    <StarFilled className={styles.star} />
+                    <CustomIcon icon="StarFilled" />
                     <CustomText titleLevel={4}>{restuarant?.rating}</CustomText>
                   </Flex>
                 }
@@ -84,9 +84,9 @@ export const RestuarantHeader: FC = () => {
               justify="space-between"
               className={styles.droppingHeaderWrapper}
             >
-              <GoBackButton classname={styles.goBackButtonHeader} />
+              <GoBackButton className={styles.goBackButtonHeader} />
               <CustomText titleLevel={4}>{restuarant?.name}</CustomText>
-              <HeartOutlined className={styles.favorites} />
+              <CustomIcon size="lg" icon="HeartOutlined" />
             </Flex>
             <Flex className={styles.categoriesWrapper}>
               <Categories />
@@ -135,7 +135,7 @@ export const RestuarantHeader: FC = () => {
               {restuarant?.endWorkingDay}
             </CustomText>
           </Flex>
-          <CustomBr classname={styles.br} />
+          <CustomBr className={styles.br} />
           <Flex className={styles.restuarantInfoBlock} gap="5px">
             {restuarantCategories?.map((category, index) => (
               <>

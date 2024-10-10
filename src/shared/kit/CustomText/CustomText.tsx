@@ -13,7 +13,8 @@ interface IProps {
   marginBottom?: boolean;
   marginTop?: boolean;
   children?: React.ReactNode;
-  classname?: string;
+  weight?: 500 | 600 | 700 | 800 | 900;
+  className?: string;
 }
 
 export const CustomText: FC<IProps> = ({
@@ -23,17 +24,19 @@ export const CustomText: FC<IProps> = ({
   variant = "primary",
   marginBottom,
   marginTop,
-  classname,
+  className,
+  weight = 500
 }) => {
   if (titleLevel) {
     return (
       <Title
-        className={classNames(styles[variant], classname)}
+        className={classNames(styles[variant], className)}
         level={titleLevel}
         style={{
           marginBottom: marginBottom ? "10px" : 0,
           marginTop: marginTop ? "10px" : 0,
           color: colors[variant],
+          fontWeight: 800
         }}
       >
         {children}
@@ -43,11 +46,12 @@ export const CustomText: FC<IProps> = ({
 
   return (
     <Text
-      className={classNames(styles[size], styles[variant], classname)}
+      className={classNames(styles[size], styles[variant], className)}
       style={{
         marginBottom: marginBottom ? "10px" : 0,
         marginTop: marginTop ? "10px" : 0,
         color: colors[variant],
+        fontWeight: weight
       }}
     >
       {children}

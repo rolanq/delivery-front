@@ -40,7 +40,7 @@ export const Layout: FC<IProps> = ({
         isLoading={isLoading}
         title={title}
       >
-        {goBackButton && <GoBackButton classname={goBackButtonClassName} />}
+        {goBackButton && <GoBackButton className={goBackButtonClassName} />}
         {children}
       </Page>
       {footer && <Footer />}

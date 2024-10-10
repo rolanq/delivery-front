@@ -3,9 +3,9 @@ import styles from "./styles.module.css";
 import classNames from "classnames";
 
 interface IProps {
-  classname?: string;
+  className?: string;
 }
 
-export const CustomBr: FC<IProps> = ({ classname }) => {
-  return <div className={classNames(classname, styles.br)} />;
+export const CustomBr: FC<IProps> = ({ className }) => {
+  return <div className={classNames(className, styles.br)} />;
 };

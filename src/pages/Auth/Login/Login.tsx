@@ -1,44 +1,44 @@
 import { Layout } from "@shared/kit/Layout/Layout";
 import { Flex, Form, Input } from "antd";
-import { FC } from "react";
-import styles from "./styles.module.css";
+import { FC, useState } from "react";
+import styles from "../styles.module.css";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
-
-type FieldType = {
-  login?: string;
-  password?: string;
-};
+import { CustomInput } from "@shared/kit/CustomInput/CustomInput";
 
 export const Login: FC = () => {
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  
+  const onChangeLogin = (value: string) => {
+    setLogin(value);
+  };
+
+  const onChangePassword = (value: string) => {
+    setPassword(value);
+  };
+
   return (
     <Layout goBackButton>
-      <Flex align="center" justify="center" className={styles.content}>
-        <Form>
-          <Form.Item<FieldType>
-            label={<CustomText titleLevel={5}>Номер телефона или почта</CustomText>}
-            name="login"
-            rules={[
-              { required: true, message: "Введите номер телефона или почту" },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item<FieldType>
-            label={<CustomText titleLevel={5}>Пароль</CustomText>}
-            name="password"
-            rules={[{ required: true, message: "Введите пароль" }]}
-          >
-            <Input.Password />
-          </Form.Item>
-          <Form.Item className={styles.buttonWrapper}>
-            <CustomButton
-              label="Войти"
-              variant="secondary"
-              labelPosition="center"
+      <Flex justify="center" align="center" className={styles.content}>
+        <Flex align="center" gap="50px" vertical className={styles.form}>
+          <CustomText titleLevel={3}>Авторизация</CustomText>
+
+          <Flex vertical gap="30px" className={styles.wFull}>
+            <CustomInput
+              onChange={onChangeLogin}
+              value={login}
+              placeholder="Номер телефона или почта"
             />
-          </Form.Item>
-        </Form>
+            <CustomInput
+              onChange={onChangePassword}
+              value={password}
+              placeholder="Пароль"
+              type="password"
+            />
+            <CustomButton label="Войти" variant="secondary" fullWidth />
+          </Flex>
+        </Flex>
       </Flex>
     </Layout>
   );

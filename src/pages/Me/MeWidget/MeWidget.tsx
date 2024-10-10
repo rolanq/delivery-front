@@ -40,7 +40,7 @@ export const MeWidget = () => {
               className={styles.info}
             >
               <CustomText titleLevel={5} marginBottom>
-                Вы не авторизованы
+                Мы не распознали вас
               </CustomText>
               <CustomButton
                 label="Войти"

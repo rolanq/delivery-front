@@ -3,7 +3,8 @@ import { BottomSheet } from "react-spring-bottom-sheet";
 import styles from "./styles.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
 import "./override.css";
-import { CloseOutlined } from "@ant-design/icons";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 interface IProps {
   open: boolean;
@@ -18,7 +19,7 @@ export const CustomBottomSheet: FC<IProps> = ({
   onDismiss,
   children,
   footer,
-  snap = 30
+  snap = 30,
 }) => {
   const viewportHeight = Math.max(
     document.documentElement.clientHeight || 0,
@@ -31,14 +32,16 @@ export const CustomBottomSheet: FC<IProps> = ({
       scrollLocking
       expandOnContentDrag
       defaultSnap={(viewportHeight / 100) * snap}
-      snapPoints={() => [
-        (viewportHeight / 100) * snap,
-      ]}
+      snapPoints={() => [(viewportHeight / 100) * snap]}
       maxHeight={(viewportHeight / 100) * snap}
       open={open}
       onDismiss={onDismiss}
     >
-      <CloseOutlined className={styles.closeButton} onClick={onDismiss} />
+      <CustomButton
+        className={styles.closeButton}
+        onClick={onDismiss}
+        label={<CustomIcon icon="CloseOutlined" size="sm" />}
+      />
       {children}
     </BottomSheet>
   );

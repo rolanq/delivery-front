@@ -27,6 +27,7 @@
     "react-router-dom": "^6.26.2",
     "react-spring-bottom-sheet": "^3.4.1",
     "react-use-gesture": "^8.0.1",
+    "yup": "^1.4.0",
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
