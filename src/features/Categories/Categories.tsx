@@ -59,7 +59,7 @@ export const Categories = () => {
               activeCategory === category?.id ? "primary" : "transparent"
             }
             onClick={() => onClickCategory(category?.id)}
-            label={<CustomText>{category?.name}</CustomText>}
+            label={<CustomText size="sm">{category?.name}</CustomText>}
           />
         ))}
       </Flex>

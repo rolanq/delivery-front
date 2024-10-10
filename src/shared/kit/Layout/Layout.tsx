@@ -12,6 +12,8 @@ interface IProps {
   scrollable?: boolean;
   goBackButton?: boolean;
   goBackButtonClassName?: string;
+  title?: React.ReactNode;
+  isLoading?: boolean;
   children: React.ReactNode;
 }
 
@@ -22,6 +24,8 @@ export const Layout: FC<IProps> = ({
   horizontalPadding = true,
   scrollable = true,
   goBackButton,
+  isLoading,
+  title,
   goBackButtonClassName,
   children,
 }) => {
@@ -33,6 +37,8 @@ export const Layout: FC<IProps> = ({
         horizontalPadding={horizontalPadding}
         scrollable={scrollable}
         paddingTopWithHeader={header}
+        isLoading={isLoading}
+        title={title}
       >
         {goBackButton && <GoBackButton classname={goBackButtonClassName} />}
         {children}

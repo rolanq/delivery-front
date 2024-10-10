@@ -24,7 +24,7 @@ export const Footer: FC = () => {
           >
             <Flex vertical gap="5px" align="center">
               <route.icon className={styles.icon} />
-              <CustomText>{route.name}</CustomText>
+              <CustomText size="sm">{route.name}</CustomText>
             </Flex>
           </NavLink>
         ))}

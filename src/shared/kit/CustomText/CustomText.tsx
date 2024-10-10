@@ -4,6 +4,13 @@ import React, { FC } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 
+const colors = {
+    primary: "black",
+    secondary: "white",
+    tertiary: "#b0b0b0",
+    fourth: "#c23b22"
+}
+
 interface IProps {
   variant?: "primary" | "secondary" | "tertiary" | "fourth";
   size?: "sm" | "md" | "lg";
@@ -31,6 +38,7 @@ export const CustomText: FC<IProps> = ({
         style={{
           marginBottom: marginBottom ? "10px" : 0,
           marginTop: marginTop ? "10px" : 0,
+          color: colors[variant]
         }}
       >
         {children}

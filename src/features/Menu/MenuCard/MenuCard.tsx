@@ -20,10 +20,10 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
       </div>
 
       <Flex vertical className={styles.info}>
-        <CustomText classname={styles.price}>
+        <CustomText classname={styles.price} marginBottom>
           {menuItem?.price} р
         </CustomText>
-        <CustomText classname={styles.name}>
+        <CustomText size="sm" marginBottom>
           {menuItem?.name}
         </CustomText>
       </Flex>

@@ -2,6 +2,8 @@ import { Content } from "antd/es/layout/layout";
 import React, { FC } from "react";
 import styles from "./styles.module.css";
 import { usePreventCollapse } from "@shared/hooks/usePreventCollapse";
+import { CustomText } from "../CustomText/CustomText";
+import { CustomSkeleton } from "../CustomSkeleton/CustomSkeleton";
 
 interface IProps {
   children?: React.ReactNode;
@@ -9,6 +11,8 @@ interface IProps {
   horizontalPadding?: boolean;
   scrollable?: boolean;
   paddingTopWithHeader?: boolean;
+  title?: React.ReactNode;
+  isLoading?: boolean;
 }
 
 export const Page: FC<IProps> = ({
@@ -17,6 +21,8 @@ export const Page: FC<IProps> = ({
   horizontalPadding,
   scrollable = true,
   paddingTopWithHeader = false,
+  isLoading,
+  title,
 }) => {
   const ref = usePreventCollapse();
 
@@ -37,6 +43,15 @@ export const Page: FC<IProps> = ({
           overflow: scrollable ? "auto" : "hidden",
         }}
       >
+        {title ? (
+          isLoading ? (
+            <CustomSkeleton height={"30px"} width={"150px"} />
+          ) : (
+            <CustomText titleLevel={2} marginBottom>
+              {title}
+            </CustomText>
+          )
+        ) : null}
         {children}
       </div>
     </Content>
