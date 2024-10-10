@@ -11,7 +11,6 @@ import { useIsMobile } from "@shared/hooks/useIsMobile";
 export const App: FC = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
-  console.log(isMobile);
 
   useLayoutEffect(() => {
     document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });

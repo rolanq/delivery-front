@@ -44,21 +44,18 @@ export const GlobalLoader: FC<IPropsLoader> = ({ error }) => {
   return (
     <Flex justify="center" align="center" className={styles.block}>
       <Flex vertical align="center" gap={isMobile ? 15 : 30}>
-        <img src={maskot} alt="maskot" style={{ width: isMobile ? 100 : 200 }} />
-        {!error && <Flex justify="center">
-          <Title className={styles.text} level={isMobile ? 4 : 3}>
-            EKEE
-          </Title>
-          <Title
-            className={styles.text}
-            level={isMobile ? 4 : 3}
-            style={{ color: "#C23B22" }}
-          >
-            R
-          </Title>
-        </Flex>}
+        <img
+          src={maskot}
+          alt="maskot"
+          style={{ width: isMobile ? 100 : 200 }}
+        />
         {!!error && (
-          <Flex className={styles.errorBlock} align="center" vertical gap="25px">
+          <Flex
+            className={styles.errorBlock}
+            align="center"
+            vertical
+            gap="25px"
+          >
             <Title
               className={styles.text}
               level={isMobile ? 4 : 3}
