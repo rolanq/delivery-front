@@ -5,46 +5,61 @@ import { Layout } from "@shared/kit/Layout/Layout";
 import { Flex } from "antd";
 import { FC, useState } from "react";
 import styles from "../styles.module.css";
+import { useSignUpMutation } from "@graphql/graphql";
 
 export const Registration: FC = () => {
-  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChangeLogin = (value: string) => {
-    setLogin(value);
+  const [signUp] = useSignUpMutation({
+    onCompleted(data) {
+      if (data.signUp?.token) {
+        localStorage.setItem("token", data.signUp?.token);
+      }
+    },
+  });
+
+  const onChangeEmail = (value: string) => {
+    setEmail(value);
   };
 
   const onChangePassword = (value: string) => {
     setPassword(value);
   };
+  const onChangeName = (value: string) => {
+    setName(value);
+  };
+
+  const onSumbit = () => {
+    signUp({
+      variables: {
+        email,
+        name,
+        password,
+      },
+    });
+  };
+
   return (
     <Layout goBackButton>
       <Flex justify="center" align="center" className={styles.content}>
         <Flex align="center" gap="50px" vertical className={styles.form}>
           <CustomText titleLevel={3}>Регистрация</CustomText>
-
           <Flex vertical gap="15px" className={styles.wFull}>
-            <Flex gap="10px">
-              <CustomInput
-                onChange={onChangeLogin}
-                value={login}
-                placeholder="Имя"
-              />
-              <CustomInput
-                onChange={onChangeLogin}
-                value={login}
-                placeholder="Фамилия"
-              />
-            </Flex>
+            {/* <Flex gap="10px">
+              
+            </Flex> */}
             <CustomInput
-              onChange={onChangeLogin}
-              value={login}
-              placeholder="Номер телефона"
+              onChange={onChangeName}
+              value={name}
+              placeholder="Имя"
             />
             <CustomInput
-              onChange={onChangeLogin}
-              value={login}
+              onChange={onChangeEmail}
+              value={email}
               placeholder="Почта"
+              type="email"
             />
             <CustomInput
               onChange={onChangePassword}
@@ -52,14 +67,13 @@ export const Registration: FC = () => {
               placeholder="Пароль"
               type="password"
             />
-            <CustomInput
-              onChange={onChangePassword}
-              value={password}
-              placeholder="Подтвердите пароль"
-              type="password"
-            />
           </Flex>
-          <CustomButton label="Зарегистрироваться" variant="secondary" fullWidth />
+          <CustomButton
+            label="Зарегистрироваться"
+            variant="secondary"
+            fullWidth
+            onClick={onSumbit}
+          />
         </Flex>
       </Flex>
     </Layout>

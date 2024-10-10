@@ -1,3 +1,13 @@
+type Mutation {
+  signUp(
+    name: String!
+    phone: String
+    password: String!
+    email: String!
+  ): AuthPayload
+  signIn(email: String!, password: String!): AuthPayload
+}
+
 type Query {
   getRestaurants: [Restuarant]
   getRestuarant(id: ID!): Restuarant
@@ -37,4 +47,9 @@ type MenuItem {
   description: String
   weight: Int
   price: Int
+}
+
+type AuthPayload {
+  token: String
+  user: User
 }
