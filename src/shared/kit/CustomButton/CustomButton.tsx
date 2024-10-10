@@ -1,8 +1,9 @@
 import { FC, ReactNode } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
+import { CustomText } from "../CustomText/CustomText";
 
 interface IProps {
   className?: string;
@@ -53,7 +54,7 @@ export const CustomButton: FC<IProps> = ({
       )}
       onClick={getOnClick()}
     >
-      <Typography.Text>{label}</Typography.Text>
+      <CustomText>{label}</CustomText>
     </Flex>
   );
 };

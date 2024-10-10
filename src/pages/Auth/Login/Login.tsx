@@ -3,7 +3,7 @@ import { Flex, Form, Input } from "antd";
 import { FC } from "react";
 import styles from "./styles.module.css";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
-import Title from "antd/es/typography/Title";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 type FieldType = {
   login?: string;
@@ -16,7 +16,7 @@ export const Login: FC = () => {
       <Flex align="center" justify="center" className={styles.content}>
         <Form>
           <Form.Item<FieldType>
-            label={<Title level={5}>Номер телефона или почта</Title>}
+            label={<CustomText titleLevel={5}>Номер телефона или почта</CustomText>}
             name="login"
             rules={[
               { required: true, message: "Введите номер телефона или почту" },
@@ -25,7 +25,7 @@ export const Login: FC = () => {
             <Input />
           </Form.Item>
           <Form.Item<FieldType>
-            label={<Title level={5}>Пароль</Title>}
+            label={<CustomText titleLevel={5}>Пароль</CustomText>}
             name="password"
             rules={[{ required: true, message: "Введите пароль" }]}
           >

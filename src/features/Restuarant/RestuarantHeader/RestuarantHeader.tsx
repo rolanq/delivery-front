@@ -2,9 +2,8 @@ import { FC, useState } from "react";
 import styles from "./styles.module.css";
 import { HeartOutlined, MoreOutlined, StarFilled } from "@ant-design/icons";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import classNames from "classnames";
-import Title from "antd/es/typography/Title";
 import { useRestuarantStore } from "@shared/stores/Restuarant";
 import { useIsScrolled } from "@shared/hooks/useIsScrolled";
 import { CustomHeader } from "@shared/kit/CustomHeader/CustomHeader";
@@ -12,6 +11,7 @@ import { GoBackButton } from "@features/GoBackButton/GoBackButton";
 import { Categories } from "@features/Categories/Categories";
 import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
 import { CustomBr } from "@shared/kit/CustomBr/CustomBr";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const RestuarantHeader: FC = () => {
   const isScrolled = useIsScrolled(270, false);
@@ -27,13 +27,14 @@ export const RestuarantHeader: FC = () => {
       <div className={styles.background}>
         <GoBackButton classname={styles.goBackButton} />
         <Flex className={styles.infoBlock} vertical>
-          <Title
-            className={styles.restuarantName}
-            style={{ color: "white" }}
-            level={3}
+          <CustomText
+            classname={styles.restuarantName}
+            marginBottom
+            titleLevel={3}
+            variant="secondary"
           >
             {restuarant?.name}
-          </Title>
+          </CustomText>
           <Flex gap="10px" wrap>
             <Flex vertical justify="space-between" gap="10px">
               <CustomButton
@@ -42,10 +43,10 @@ export const RestuarantHeader: FC = () => {
                 className={classNames(styles.infoBlocks)}
                 label={
                   <Flex vertical align="center">
-                    <Title style={{ margin: 0 }} level={5}>
+                    <CustomText titleLevel={5}>
                       35-45
-                    </Title>
-                    <Typography.Text>мин</Typography.Text>
+                    </CustomText>
+                    <CustomText>мин</CustomText>
                   </Flex>
                 }
                 variant="tertiary"
@@ -65,9 +66,7 @@ export const RestuarantHeader: FC = () => {
                 label={
                   <Flex align="center" justify="center" gap="5px">
                     <StarFilled className={styles.star} />
-                    <Title style={{ margin: 0 }} level={4}>
-                      {restuarant?.rating}
-                    </Title>
+                    <CustomText titleLevel={4}>{restuarant?.rating}</CustomText>
                   </Flex>
                 }
                 variant="tertiary"
@@ -86,7 +85,7 @@ export const RestuarantHeader: FC = () => {
               className={styles.droppingHeaderWrapper}
             >
               <GoBackButton classname={styles.goBackButtonHeader} />
-              <Title level={4}>{restuarant?.name}</Title>
+              <CustomText titleLevel={4}>{restuarant?.name}</CustomText>
               <HeartOutlined className={styles.favorites} />
             </Flex>
             <Flex className={styles.categoriesWrapper}>
@@ -101,10 +100,12 @@ export const RestuarantHeader: FC = () => {
         onDismiss={() => setOpenRating(false)}
       >
         <Flex vertical className={styles.bottomSheet}>
-          <Title level={3}>Рейтинг ресторана: {restuarant?.rating}</Title>
-          <Typography>
+          <CustomText titleLevel={3}>
+            Рейтинг ресторана: {restuarant?.rating}
+          </CustomText>
+          <CustomText>
             Рейтинг основан на оценках пользователей. Обновляется каждый день
-          </Typography>
+          </CustomText>
         </Flex>
       </CustomBottomSheet>
       <CustomBottomSheet
@@ -113,7 +114,9 @@ export const RestuarantHeader: FC = () => {
         onDismiss={() => setOpenTiming(false)}
       >
         <Flex vertical className={styles.bottomSheet}>
-          <Title level={3}>Примерное время доставки: 35 минут</Title>
+          <CustomText titleLevel={3}>
+            Примерное время доставки: 35 минут
+          </CustomText>
         </Flex>
       </CustomBottomSheet>
       <CustomBottomSheet
@@ -123,25 +126,33 @@ export const RestuarantHeader: FC = () => {
       >
         <Flex vertical align="center" className={styles.bottomSheet}>
           <Flex vertical className={styles.restuarantInfoBlock}>
-            <Title level={3}>{restuarant?.name}</Title>
+            <CustomText titleLevel={3}>{restuarant?.name}</CustomText>
           </Flex>
           <Flex vertical className={styles.restuarantInfoBlock}>
-            <Typography.Text>{restuarant?.address}</Typography.Text>
-            <Typography.Text>
+            <CustomText>{restuarant?.address}</CustomText>
+            <CustomText>
               Режим работы: с {restuarant?.startWorkingDay} до{" "}
               {restuarant?.endWorkingDay}
-            </Typography.Text>
+            </CustomText>
           </Flex>
           <CustomBr classname={styles.br} />
           <Flex className={styles.restuarantInfoBlock} gap="5px">
             {restuarantCategories?.map((category, index) => (
               <>
-                <Typography.Text>{category}</Typography.Text>
+                <CustomText>{category}</CustomText>
                 {index !== restuarantCategories.length - 1 && (
-                  <Typography.Text>•</Typography.Text>
+                  <CustomText>•</CustomText>
                 )}
               </>
             ))}
+          </Flex>
+          <Flex
+            className={classNames(
+              styles.restuarantInfoBlock,
+              styles.restuarantDescription
+            )}
+          >
+            <CustomText>{restuarant?.description}</CustomText>
           </Flex>
         </Flex>
       </CustomBottomSheet>

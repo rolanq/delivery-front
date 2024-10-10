@@ -1,9 +1,9 @@
 import styles from "./styles.module.css";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import { useUserStore } from "@shared/stores/User";
-import Title from "antd/es/typography/Title";
 import classNames from "classnames";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const MeWidget = () => {
   const user = useUserStore((state) => state.user);
@@ -17,18 +17,18 @@ export const MeWidget = () => {
             !user ? styles.blur : undefined
           )}
         >
-          <Title level={3}>EKEE</Title>
-          <Title level={3} style={{ color: "#C23B22" }}>
+          <CustomText titleLevel={3}>EKEE</CustomText>
+          <CustomText titleLevel={3} variant="fourth">
             R
-          </Title>
+          </CustomText>
         </Flex>
 
         {user ? (
           <>
-            <Title level={5}>{user.name}</Title>
+            <CustomText titleLevel={5}>{user.name}</CustomText>
             <Flex vertical justify="flex-end" className={styles.info}>
-              <Typography.Text>{user.phone}</Typography.Text>
-              <Typography.Text>{user.address}</Typography.Text>
+              <CustomText size="sm">{user.phone}</CustomText>
+              <CustomText size="sm">{user.address}</CustomText>
             </Flex>
           </>
         ) : (
@@ -39,7 +39,9 @@ export const MeWidget = () => {
               justify="center"
               className={styles.info}
             >
-              <Title level={5}>Вы не авторизованы</Title>
+              <CustomText titleLevel={5} marginBottom>
+                Вы не авторизованы
+              </CustomText>
               <CustomButton
                 label="Войти"
                 variant="secondary"

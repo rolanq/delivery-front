@@ -1,17 +1,17 @@
 import styles from "./styles.module.css";
-import Title from "antd/es/typography/Title";
 import { Flex } from "antd";
 import { CustomHeader } from "@shared/kit/CustomHeader/CustomHeader";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const Header = () => {
   return (
     <>
       <CustomHeader>
         <Flex className={styles.content} justify="center" align="center">
-          <Title level={3}>EKEE</Title>
-          <Title level={3} style={{ color: "#C23B22" }}>
+          <CustomText titleLevel={3}>EKEE</CustomText>
+          <CustomText titleLevel={3} variant="fourth">
             R
-          </Title>
+          </CustomText>
         </Flex>
       </CustomHeader>
     </>

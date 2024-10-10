@@ -1,11 +1,11 @@
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import { FC } from "react";
 import styles from "./styles.module.css";
 import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
-import Title from "antd/es/typography/Title";
 import { StarFilled } from "@ant-design/icons";
 import { Restuarant } from "@graphql/graphql";
 import { useNavigate } from "react-router-dom";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 interface IProps {
   restuarant: Restuarant | null;
@@ -23,18 +23,16 @@ export const RestuarantCard: FC<IProps> = ({ restuarant }) => {
       <CustomImage src={restuarant?.image ?? ""} />
       <Flex vertical className={styles.infoContainer}>
         <Flex justify="space-between" align="center">
-          <Title style={{ margin: 0 }} level={5}>
-            {restuarant?.name}
-          </Title>
+          <CustomText titleLevel={5}>{restuarant?.name}</CustomText>
           <Flex align="center" gap={2}>
             <StarFilled className={styles.star} />
-            <Typography.Text className={styles.rating}>
+            <CustomText size="sm" classname={styles.rating}>
               {restuarant?.rating}
-            </Typography.Text>
+            </CustomText>
           </Flex>
         </Flex>
         <Flex justify="flex-start">
-          <Typography.Text>{restuarant?.categories}</Typography.Text>
+          <CustomText size="sm">{restuarant?.categories}</CustomText>
         </Flex>
       </Flex>
     </Flex>

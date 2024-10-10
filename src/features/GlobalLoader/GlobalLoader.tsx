@@ -1,11 +1,11 @@
-import { Flex, Typography } from "antd";
-import Title from "antd/es/typography/Title";
+import { Flex } from "antd";
 import React, { FC } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { animated, useSpring } from "@react-spring/web";
 import maskot from "@assets/maskot.png";
 import { useIsMobile } from "@shared/hooks/useIsMobile";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 interface IProps {
   children?: React.ReactNode;
@@ -56,14 +56,7 @@ export const GlobalLoader: FC<IPropsLoader> = ({ error }) => {
             vertical
             gap="25px"
           >
-            <Title
-              className={styles.text}
-              level={isMobile ? 4 : 3}
-              style={{ color: "#C23B22" }}
-            >
-              Ошибка
-            </Title>
-            <Typography>{error}</Typography>
+            <CustomText>{error}</CustomText>
           </Flex>
         )}
       </Flex>

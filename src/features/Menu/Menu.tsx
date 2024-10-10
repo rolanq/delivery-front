@@ -1,7 +1,6 @@
 import { useRestuarantStore } from "@shared/stores/Restuarant";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import styles from "./styles.module.css";
-import Title from "antd/es/typography/Title";
 import { MenuCard } from "./MenuCard/MenuCard";
 import { Categories } from "@features/Categories/Categories";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import { MenuItem } from "@graphql/graphql";
 import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
 import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const Menu = () => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
@@ -32,9 +32,7 @@ export const Menu = () => {
       <Flex vertical className={styles.menuList} gap="20px">
         {restuarant?.MenuCategories?.map((category) => (
           <Flex key={category?.id} id={category?.id} vertical>
-            <Title style={{ margin: "0 0 8px 8px" }} level={3}>
-              {category?.name}
-            </Title>
+            <CustomText titleLevel={3}>{category?.name}</CustomText>
             <Flex wrap>
               {category?.MenuItems?.map((menuItem) => (
                 <MenuCard
@@ -53,12 +51,21 @@ export const Menu = () => {
         open={!!activeMenuItem}
         onDismiss={onCloseBottomSheet}
         footer={
-          <Flex className={styles.bottomSheetFooter} align="center" justify="space-between">
+          <Flex
+            className={styles.bottomSheetFooter}
+            align="center"
+            justify="space-between"
+          >
             <Flex vertical>
-              <Typography.Text>{activeMenuItem?.name}</Typography.Text>
-              <Title style={{ margin: 0 }} level={4}>
-                {activeMenuItem?.price} р
-              </Title>
+              <CustomText>{activeMenuItem?.name}</CustomText>
+              <Flex justify="space-between">
+                <CustomText titleLevel={4}>
+                  {activeMenuItem?.price} р
+                </CustomText>
+                <CustomText variant="tertiary" size="sm">
+                  {activeMenuItem?.weight} грамм
+                </CustomText>
+              </Flex>
             </Flex>
             <CustomButton label="Добавить в корзину" variant="secondary" />
           </Flex>
@@ -73,7 +80,7 @@ export const Menu = () => {
             className={styles.bottomSheetImage}
           />
           <Flex vertical className={styles.bottomSheetContent}>
-            <Title level={5}>Здесь будет описание</Title>
+            <CustomText size="sm">{activeMenuItem?.description}</CustomText>
           </Flex>
         </Flex>
       </CustomBottomSheet>

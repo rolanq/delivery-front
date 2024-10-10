@@ -1,8 +1,9 @@
 import { useRestuarantStore } from "@shared/stores/Restuarant";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import styles from "./styles.module.css";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { useEffect, useState } from "react";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const Categories = () => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
@@ -58,7 +59,7 @@ export const Categories = () => {
               activeCategory === category?.id ? "primary" : "transparent"
             }
             onClick={() => onClickCategory(category?.id)}
-            label={<Typography.Text>{category?.name}</Typography.Text>}
+            label={<CustomText>{category?.name}</CustomText>}
           />
         ))}
       </Flex>

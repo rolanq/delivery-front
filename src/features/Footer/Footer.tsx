@@ -1,10 +1,11 @@
 import { Footer as FooterAnt } from "antd/es/layout/layout";
 import { FC } from "react";
 import styles from "./styles.module.css";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import { NavLink } from "react-router-dom";
 import { FooterRoutes } from "@shared/routes/routes";
 import classNames from "classnames";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const Footer: FC = () => {
   return (
@@ -23,7 +24,7 @@ export const Footer: FC = () => {
           >
             <Flex vertical gap="5px" align="center">
               <route.icon className={styles.icon} />
-              <Typography>{route.name}</Typography>
+              <CustomText>{route.name}</CustomText>
             </Flex>
           </NavLink>
         ))}

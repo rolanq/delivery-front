@@ -1,0 +1,30 @@
+.sm {
+  font-size: 14px !important;
+  line-height: 16px !important;
+}
+
+.md {
+  font-size: 16px !important;
+  line-height: 18px !important;
+}
+
+.lg {
+  font-size: 18px !important;
+  line-height: 20px !important;
+}
+
+.primary {
+  color: black !important;
+}
+
+.secondary {
+  color: white !important;
+}
+
+.tertiary {
+  color: #b0b0b0 !important;
+}
+
+.fourth {
+  color: #c23b22 !important;
+}

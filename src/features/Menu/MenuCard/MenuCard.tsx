@@ -1,10 +1,11 @@
 import { MenuItem } from "@graphql/graphql";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import { FC } from "react";
 import styles from "./styles.module.css";
 import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { PlusOutlined } from "@ant-design/icons";
+import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 interface IProps {
   menuItem: MenuItem | null;
@@ -19,12 +20,12 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
       </div>
 
       <Flex vertical className={styles.info}>
-        <Typography.Text className={styles.price}>
+        <CustomText classname={styles.price}>
           {menuItem?.price} р
-        </Typography.Text>
-        <Typography.Text className={styles.name}>
+        </CustomText>
+        <CustomText classname={styles.name}>
           {menuItem?.name}
-        </Typography.Text>
+        </CustomText>
       </Flex>
 
       <CustomButton

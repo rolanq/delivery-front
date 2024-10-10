@@ -1,7 +1,8 @@
 import { FC } from "react";
 import styles from "./styles.module.css";
-import { Flex, Typography } from "antd";
+import { Flex } from "antd";
 import classNames from "classnames";
+import { CustomText } from "../CustomText/CustomText";
 
 interface IProps {
   src?: string;
@@ -28,7 +29,7 @@ export const CustomImage: FC<IProps> = ({
       {src ? (
         <img src={src} className={styles.image} />
       ) : (
-        <Typography>Картинки нет</Typography>
+        <CustomText>Картинки нет</CustomText>
       )}
     </Flex>
   );
