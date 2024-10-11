@@ -13,6 +13,7 @@ export const MeWidget = () => {
   const onClickAuth = () => {
     triggerAuth(true);
   };
+  
 
   return (
     <div className={styles.wrapper}>
@@ -33,7 +34,7 @@ export const MeWidget = () => {
           <>
             <CustomText titleLevel={5}>{user.name}</CustomText>
             <Flex vertical justify="flex-end" className={styles.info}>
-              <CustomText size="sm">{user.phone}</CustomText>
+              <CustomText size="sm">{user.email}</CustomText>
               <CustomText size="sm">{user.address}</CustomText>
             </Flex>
           </>

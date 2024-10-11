@@ -5,6 +5,7 @@ import { MeWidget } from "./MeWidget/MeWidget";
 import { useUserStore } from "@shared/stores/User";
 import { Layout } from "@shared/kit/Layout/Layout";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
+import toast from "react-hot-toast";
 
 export const Me: FC = () => {
   const user = useUserStore((state) => state.user);
@@ -13,6 +14,7 @@ export const Me: FC = () => {
   const onLogout = () => {
     localStorage.removeItem("token");
     logout();
+    toast.success("Вы успешно вышли из аккаунта!")
   };
 
   return (
@@ -36,8 +38,6 @@ export const Me: FC = () => {
           <CustomButton
             onClick={onLogout}
             fullWidth
-            type="link"
-            path="/logout"
             label="Выйти"
             variant="secondary"
           />
