@@ -8,11 +8,12 @@ interface IProps {
 
 export const AuthWrapper: FC<IProps> = ({ children }) => {
   const setUser = useUserStore((state) => state.setUser);
+  const user = useUserStore((state) => state.user);
   const token = localStorage.getItem("token");
 
   useGetUserQuery({
     variables: { token: token ?? "" },
-    skip: !token,
+    skip: !token || !!user?.id,
     onCompleted: (data) => {
       if (data.getUser) {
         setUser(data.getUser);
