@@ -4,9 +4,15 @@ import { useUserStore } from "@shared/stores/User";
 import classNames from "classnames";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
+import { useAppStore } from "@shared/stores/App";
 
 export const MeWidget = () => {
   const user = useUserStore((state) => state.user);
+  const triggerAuth = useAppStore((state) => state.triggerAuthBottomSheet);
+
+  const onClickAuth = () => {
+    triggerAuth(true);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -43,10 +49,9 @@ export const MeWidget = () => {
                 Мы не распознали вас
               </CustomText>
               <CustomButton
+                onClick={onClickAuth}
                 label="Войти"
                 variant="secondary"
-                type="link"
-                path="/login"
               />
             </Flex>
           </>

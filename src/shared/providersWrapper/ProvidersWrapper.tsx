@@ -7,6 +7,7 @@ import {
 import { ConfigProvider } from "antd";
 import { setContext } from "@apollo/client/link/context";
 import React, { FC } from "react";
+import { Auth } from "@features/Auth/Auth";
 
 interface IProps {
   children: React.ReactNode;
@@ -53,6 +54,7 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
         }}
       >
         {children}
+        <Auth />
       </ConfigProvider>
     </ApolloProvider>
   );

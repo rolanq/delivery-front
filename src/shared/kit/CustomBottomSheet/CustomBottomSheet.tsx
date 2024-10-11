@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useLayoutEffect, useRef } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import styles from "./styles.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
 import "./override.css";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { CustomButton } from "../CustomButton/CustomButton";
+import classNames from "classnames";
 
 interface IProps {
   open: boolean;
@@ -12,6 +13,7 @@ interface IProps {
   children?: React.ReactNode;
   footer?: React.ReactNode;
   snap?: number;
+  footerWithoutBoxShadow?: boolean;
 }
 
 export const CustomBottomSheet: FC<IProps> = ({
@@ -20,6 +22,7 @@ export const CustomBottomSheet: FC<IProps> = ({
   children,
   footer,
   snap = 30,
+  footerWithoutBoxShadow,
 }) => {
   const viewportHeight = Math.max(
     document.documentElement.clientHeight || 0,
@@ -28,6 +31,9 @@ export const CustomBottomSheet: FC<IProps> = ({
 
   return (
     <BottomSheet
+      className={classNames(
+        footerWithoutBoxShadow && styles.footerWithoutBoxShadow
+      )}
       footer={footer}
       scrollLocking
       expandOnContentDrag

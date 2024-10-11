@@ -22,7 +22,7 @@ export const ErrorPage: FC = () => {
         className={styles.container}
       >
         <Flex vertical align="center">
-          <CustomText titleLevel={3}>Ой, что-то случилось</CustomText>
+          <CustomText titleLevel={3}>Ой, что-то сломалсь</CustomText>
           <CustomText>Мы не смогли найти страницу</CustomText>
         </Flex>
 

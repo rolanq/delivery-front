@@ -1,5 +1,5 @@
 import { Flex, Input, Tooltip } from "antd";
-import React, { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { CustomText } from "../CustomText/CustomText";
@@ -15,6 +15,9 @@ interface IProps {
   };
   className?: string;
   type?: string;
+  fullWidth?: boolean;
+  fullHeight?: boolean;
+  disabled?: boolean;
 }
 
 export const CustomInput: FC<IProps> = ({
@@ -25,6 +28,9 @@ export const CustomInput: FC<IProps> = ({
   error,
   title,
   type,
+  fullWidth = false,
+  fullHeight = false,
+  disabled,
 }) => {
   const [internalValue, setInternalValue] = useState("");
   const onBlur = () => {
@@ -35,15 +41,11 @@ export const CustomInput: FC<IProps> = ({
     setInternalValue(e.target.value);
   };
 
-  return (
-    <Flex vertical>
-      {title && (
-        <CustomText marginBottom className={styles.title} titleLevel={5}>
-          {title}
-        </CustomText>
-      )}
+  const prepareInput = useMemo(() => {
+    return (
       <Tooltip overlay={tooltip?.overlay} color={error ? "red" : undefined}>
         <Input
+          disabled={disabled}
           value={internalValue}
           onChange={onChangeValue}
           onBlur={onBlur}
@@ -53,6 +55,36 @@ export const CustomInput: FC<IProps> = ({
           type={type}
         />
       </Tooltip>
+    );
+  }, [
+    internalValue,
+    onChangeValue,
+    onBlur,
+    placeholder,
+    type,
+    className,
+    tooltip?.overlay,
+    error,
+  ]);
+
+  if (!title) {
+    return prepareInput;
+  }
+
+  return (
+    <Flex
+      vertical
+      style={{
+        width: fullWidth ? "100%" : "auto",
+        height: fullHeight ? "100%" : "auto",
+      }}
+    >
+      {title && (
+        <CustomText marginBottom className={styles.title} titleLevel={5}>
+          {title}
+        </CustomText>
+      )}
+      {prepareInput}
     </Flex>
   );
 };
