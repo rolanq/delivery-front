@@ -5,6 +5,7 @@ import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import { CustomText } from "../CustomText/CustomText";
 import { Variants } from "../consts/variantTypes";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 
 interface IProps {
   className?: string;
@@ -32,10 +33,14 @@ export const CustomButton: FC<IProps> = ({
   type = "button",
   path,
   id,
+  disabled,
+  loading,
 }) => {
   const navigate = useNavigate();
 
   const getOnClick = () => {
+    if (disabled) return () => {};
+
     if (type === "link" && path) {
       return () => navigate(path);
     } else if (type === "button" && onClick) {
@@ -50,14 +55,23 @@ export const CustomButton: FC<IProps> = ({
       className={classNames(
         className,
         styles.container,
-        styles[variant],
+        disabled ? styles.disabled : styles[variant],
         styles[labelPosition],
         fullWidth ? styles.fullWidth : styles.minWidth,
         fullHeight ? styles.fullHeight : styles.minHeight
       )}
       onClick={getOnClick()}
     >
-      <CustomText className={styles.label} variant={variant}>{label}</CustomText>
+      <CustomText className={styles.label} variant={variant}>
+        {loading ? (
+          <CustomIcon
+            variant={disabled ? "primary" : variant}
+            icon="LoadingOutlined"
+          />
+        ) : (
+          label
+        )}
+      </CustomText>
     </Flex>
   );
 };

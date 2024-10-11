@@ -4,7 +4,7 @@ type Mutation {
 }
 
 type Query {
-  getUser(id: ID!): User
+  getUser(token: String!): User
   getRestaurants: [Restuarant]
   getRestuarant(id: ID!): Restuarant
 }

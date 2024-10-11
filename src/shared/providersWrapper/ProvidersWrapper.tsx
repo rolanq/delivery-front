@@ -8,6 +8,8 @@ import { ConfigProvider } from "antd";
 import { setContext } from "@apollo/client/link/context";
 import React, { FC } from "react";
 import { Auth } from "@features/Auth/Auth";
+import { Toaster } from "react-hot-toast";
+import { AuthWrapper } from "./AuthWrapper";
 
 interface IProps {
   children: React.ReactNode;
@@ -40,22 +42,25 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
 
   return (
     <ApolloProvider client={client}>
-      <ConfigProvider
-        theme={{
-          token: {
-            fontFamily: "'Noto Sans JP', sans-serif",
-            fontWeightStrong: 800,
-          },
-          components: {
-            Typography: {
-              colorTextSecondary: "white",
+      <AuthWrapper>
+        <ConfigProvider
+          theme={{
+            token: {
+              fontFamily: "'Noto Sans JP', sans-serif",
+              fontWeightStrong: 800,
             },
-          },
-        }}
-      >
-        {children}
-        <Auth />
-      </ConfigProvider>
+            components: {
+              Typography: {
+                colorTextSecondary: "white",
+              },
+            },
+          }}
+        >
+          {children}
+          <Auth />
+          <Toaster />
+        </ConfigProvider>
+      </AuthWrapper>
     </ApolloProvider>
   );
 };

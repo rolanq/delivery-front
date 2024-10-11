@@ -9,6 +9,7 @@ import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import classNames from "classnames";
 import { useSignUpMutation, useUpdateUserMutation } from "@graphql/graphql";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 enum Steps {
   first = "first",
@@ -22,20 +23,40 @@ export const Auth = () => {
   const [confirmCode, setConfirmCode] = useState("");
   const navigate = useNavigate();
 
-  const [signUp] = useSignUpMutation();
-  const [confirm] = useUpdateUserMutation();
+  const [signUp, { loading: isLoadingSignUp }] = useSignUpMutation({
+    onCompleted: (data) => {
+      if (data.signUp?.success === "true") {
+        setStep(Steps.second);
+      }
+    },
+    onError: (error) => {
+      toast.error(error.message, { position: "top-center" });
+    },
+  });
+  const [confirm] = useUpdateUserMutation({
+    onCompleted: (data) => {
+      if (data.updateUser?.token && data.updateUser.user?.id) {
+        localStorage.setItem("token", data.updateUser?.token);
+
+        toast.success("Вы успешно зарегистрировались!", {
+          position: "top-center",
+        });
+
+        navigate("/");
+        onDismiss();
+      }
+    },
+    onError: (error) => {
+      toast.error(error.message, { position: "top-center" });
+    },
+  });
 
   const onSignUp = () => {
-    signUp({ variables: { data: { email } } }).then(() => {
-      setStep(Steps.second);
-    });
+    signUp({ variables: { data: { email } } });
   };
 
   const onConfirm = () => {
-    confirm({ variables: { data: { email, verifyCode: confirmCode } } }).then(() => {
-      navigate("/");
-      onDismiss();
-    });
+    confirm({ variables: { data: { email, verifyCode: confirmCode } } });
   };
 
   const onDismiss = () => {
@@ -57,7 +78,7 @@ export const Auth = () => {
         </Flex>
       }
       footerWithoutBoxShadow
-      snap={40}
+      snap={60}
       onDismiss={onDismiss}
       open={appStore.AuthBottomSheetOpen}
     >
@@ -86,6 +107,7 @@ export const Auth = () => {
             {step === Steps.first ? (
               <CustomButton
                 fullWidth
+                loading={isLoadingSignUp}
                 label="Отправить код"
                 variant="secondary"
                 onClick={onSignUp}
