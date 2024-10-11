@@ -42,32 +42,42 @@ export type MenuItem = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  signIn?: Maybe<AuthPayload>;
-  signUp?: Maybe<AuthPayload>;
-};
-
-
-export type MutationSignInArgs = {
-  email: Scalars['String']['input'];
-  password: Scalars['String']['input'];
+  signUp?: Maybe<SignUpPayload>;
+  updateUser?: Maybe<AuthPayload>;
 };
 
 
 export type MutationSignUpArgs = {
-  email: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  password: Scalars['String']['input'];
+  data?: InputMaybe<SignUpInput>;
+};
+
+
+export type MutationUpdateUserArgs = {
+  data?: InputMaybe<PartialUpdateUserInput>;
+};
+
+export type PartialUpdateUserInput = {
+  address?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
+  verifyCode?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Query = {
   __typename?: 'Query';
   getRestaurants?: Maybe<Array<Maybe<Restuarant>>>;
   getRestuarant?: Maybe<Restuarant>;
+  getUser?: Maybe<User>;
 };
 
 
 export type QueryGetRestuarantArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryGetUserArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -85,32 +95,37 @@ export type Restuarant = {
   startWorkingDay: Scalars['String']['output'];
 };
 
+export type SignUpInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SignUpPayload = {
+  __typename?: 'SignUpPayload';
+  success?: Maybe<Scalars['String']['output']>;
+};
+
 export type User = {
   __typename?: 'User';
   address?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
   phone?: Maybe<Scalars['String']['output']>;
 };
 
 export type SignUpMutationVariables = Exact<{
-  name: Scalars['String']['input'];
-  phone?: InputMaybe<Scalars['String']['input']>;
-  password: Scalars['String']['input'];
-  email: Scalars['String']['input'];
+  data?: InputMaybe<SignUpInput>;
 }>;
 
 
-export type SignUpMutation = { __typename?: 'Mutation', signUp?: { __typename?: 'AuthPayload', token?: string | null, user?: { __typename?: 'User', id: string, name: string, phone?: string | null, email?: string | null } | null } | null };
+export type SignUpMutation = { __typename?: 'Mutation', signUp?: { __typename?: 'SignUpPayload', success?: string | null } | null };
 
-export type SignInMutationVariables = Exact<{
-  email: Scalars['String']['input'];
-  password: Scalars['String']['input'];
+export type UpdateUserMutationVariables = Exact<{
+  data?: InputMaybe<PartialUpdateUserInput>;
 }>;
 
 
-export type SignInMutation = { __typename?: 'Mutation', signIn?: { __typename?: 'AuthPayload', token?: string | null, user?: { __typename?: 'User', id: string, name: string, phone?: string | null, email?: string | null } | null } | null };
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typename?: 'AuthPayload', token?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, phone?: string | null, email?: string | null, address?: string | null } | null } | null };
 
 export type GetRestaurantsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -126,15 +141,9 @@ export type GetRestuarantQuery = { __typename?: 'Query', getRestuarant?: { __typ
 
 
 export const SignUpDocument = gql`
-    mutation SignUp($name: String!, $phone: String, $password: String!, $email: String!) {
-  signUp(name: $name, phone: $phone, password: $password, email: $email) {
-    token
-    user {
-      id
-      name
-      phone
-      email
-    }
+    mutation SignUp($data: SignUpInput) {
+  signUp(data: $data) {
+    success
   }
 }
     `;
@@ -153,10 +162,7 @@ export type SignUpMutationFn = Apollo.MutationFunction<SignUpMutation, SignUpMut
  * @example
  * const [signUpMutation, { data, loading, error }] = useSignUpMutation({
  *   variables: {
- *      name: // value for 'name'
- *      phone: // value for 'phone'
- *      password: // value for 'password'
- *      email: // value for 'email'
+ *      data: // value for 'data'
  *   },
  * });
  */
@@ -167,46 +173,46 @@ export function useSignUpMutation(baseOptions?: Apollo.MutationHookOptions<SignU
 export type SignUpMutationHookResult = ReturnType<typeof useSignUpMutation>;
 export type SignUpMutationResult = Apollo.MutationResult<SignUpMutation>;
 export type SignUpMutationOptions = Apollo.BaseMutationOptions<SignUpMutation, SignUpMutationVariables>;
-export const SignInDocument = gql`
-    mutation SignIn($email: String!, $password: String!) {
-  signIn(password: $password, email: $email) {
+export const UpdateUserDocument = gql`
+    mutation UpdateUser($data: PartialUpdateUserInput) {
+  updateUser(data: $data) {
     token
     user {
       id
       name
       phone
       email
+      address
     }
   }
 }
     `;
-export type SignInMutationFn = Apollo.MutationFunction<SignInMutation, SignInMutationVariables>;
+export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
 
 /**
- * __useSignInMutation__
+ * __useUpdateUserMutation__
  *
- * To run a mutation, you first call `useSignInMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useSignInMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [signInMutation, { data, loading, error }] = useSignInMutation({
+ * const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({
  *   variables: {
- *      email: // value for 'email'
- *      password: // value for 'password'
+ *      data: // value for 'data'
  *   },
  * });
  */
-export function useSignInMutation(baseOptions?: Apollo.MutationHookOptions<SignInMutation, SignInMutationVariables>) {
+export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, options);
+        return Apollo.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, options);
       }
-export type SignInMutationHookResult = ReturnType<typeof useSignInMutation>;
-export type SignInMutationResult = Apollo.MutationResult<SignInMutation>;
-export type SignInMutationOptions = Apollo.BaseMutationOptions<SignInMutation, SignInMutationVariables>;
+export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
+export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
+export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
 export const GetRestaurantsDocument = gql`
     query GetRestaurants {
   getRestaurants {

@@ -1,24 +1,32 @@
 type Mutation {
-  signUp(
-    name: String!
-    phone: String
-    password: String!
-    email: String!
-  ): AuthPayload
-  signIn(email: String!, password: String!): AuthPayload
+  signUp(data: SignUpInput): SignUpPayload
+  updateUser(data: PartialUpdateUserInput): AuthPayload
 }
 
 type Query {
+  getUser(id: ID!): User
   getRestaurants: [Restuarant]
   getRestuarant(id: ID!): Restuarant
 }
 
 type User {
   id: ID!
-  name: String!
+  name: String
   phone: String
   email: String
   address: String
+}
+
+input SignUpInput {
+  email: String
+}
+
+input PartialUpdateUserInput {
+  name: String
+  phone: String
+  email: String
+  address: String
+  verifyCode: String
 }
 
 type Restuarant {
@@ -52,4 +60,8 @@ type MenuItem {
 type AuthPayload {
   token: String
   user: User
+}
+
+type SignUpPayload {
+  success: String
 }

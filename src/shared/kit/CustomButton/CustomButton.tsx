@@ -17,6 +17,8 @@ interface IProps {
   path?: string;
   type?: "button" | "link";
   id?: string;
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 export const CustomButton: FC<IProps> = ({
@@ -30,6 +32,8 @@ export const CustomButton: FC<IProps> = ({
   type = "button",
   path,
   id,
+  disabled,
+  loading
 }) => {
   const navigate = useNavigate();
 
