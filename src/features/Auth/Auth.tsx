@@ -22,7 +22,7 @@ export const Auth = () => {
   const [confirmCode, setConfirmCode] = useState("");
   const navigate = useNavigate();
 
-  const [signUp, { loading }] = useSignUpMutation();
+  const [signUp] = useSignUpMutation();
   const [confirm] = useUpdateUserMutation();
 
   const onSignUp = () => {

@@ -32,8 +32,6 @@ export const CustomButton: FC<IProps> = ({
   type = "button",
   path,
   id,
-  disabled,
-  loading
 }) => {
   const navigate = useNavigate();
 
