@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useLayoutEffect, useRef } from "react";
+import React, { FC } from "react";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import styles from "./styles.module.css";
 import "react-spring-bottom-sheet/dist/style.css";
