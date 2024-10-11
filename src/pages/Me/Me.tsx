@@ -8,6 +8,12 @@ import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 
 export const Me: FC = () => {
   const user = useUserStore((state) => state.user);
+  const logout = useUserStore((state) => state.logout);
+
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    logout();
+  };
 
   return (
     <Layout footer paddingVertical scrollable={false}>
@@ -28,6 +34,7 @@ export const Me: FC = () => {
         />
         {user && (
           <CustomButton
+            onClick={onLogout}
             fullWidth
             type="link"
             path="/logout"
