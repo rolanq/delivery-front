@@ -45,7 +45,7 @@ export const CartList = () => {
   return (
     <Flex vertical gap="10px">
       {cart.cart?.length &&
-        cart.cart?.map((cartItem) => <CartCard card={cartItem} />)}
+        cart.cart?.map((cartItem) => <CartCard key={cartItem?.menuItem?.id} card={cartItem} />)}
     </Flex>
   );
 };
