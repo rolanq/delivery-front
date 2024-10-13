@@ -1,8 +1,8 @@
 import {
   AppstoreOutlined,
-  ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { CartIcon } from "@features/Footer/CartIcon/CartIcon";
 import { Cart } from "@pages/Cart/Cart";
 import { ErrorPage } from "@pages/Error/ErrorPage";
 import { Me } from "@pages/Me/Me";
@@ -44,6 +44,6 @@ export const FooterRoutes = [
     to: "/",
     name: "Рестораны",
   },
-  { icon: ShoppingCartOutlined, to: "/cart", name: "Корзина" },
+  { icon: CartIcon, to: "/cart", name: "Корзина" },
   { icon: UserOutlined, to: "/me", name: "Я" },
 ];

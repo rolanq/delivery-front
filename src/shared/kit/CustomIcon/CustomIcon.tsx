@@ -7,12 +7,6 @@ import { Variants } from "../consts/variantTypes";
 
 type IconsNames = keyof typeof Icons;
 
-const sizes = {
-  sm: 16,
-  md: 20,
-  lg: 24,
-};
-
 interface IProps {
   size?: "sm" | "md" | "lg";
   icon: IconsNames;
@@ -29,11 +23,9 @@ export const CustomIcon: FC<IProps> = ({
   const Iconed = Icons[icon];
   return (
     <Iconed
-      className={classNames(styles.icon, className)}
+      className={classNames(styles.icon, styles[size], className)}
       style={{
         color: colors[variant],
-        width: sizes[size],
-        height: sizes[size],
       }}
     />
   );

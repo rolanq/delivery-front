@@ -21,7 +21,7 @@ query GetRestuarant($id: ID!) {
     image
     MenuCategories {
       id
-      name 
+      name
       MenuItems {
         id
         name
@@ -31,5 +31,16 @@ query GetRestuarant($id: ID!) {
         price
       }
     }
+  }
+}
+
+query getMenuItems($ids: [IDsInput]) {
+  getMenuItems(ids: $ids) {
+    id
+    name
+    image
+    description
+    weight
+    price
   }
 }

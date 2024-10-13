@@ -1,0 +1,16 @@
+query getCart($userId: IDsInput) {
+  getCart(userId: $userId) {
+    cart {
+      count
+      menuItem {
+        id
+        name
+        image
+        description
+        weight
+        price
+      }
+    }
+    totalCount
+  }
+}

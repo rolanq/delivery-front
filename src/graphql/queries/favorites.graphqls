@@ -1,0 +1,9 @@
+query getFavorites($userId: IDsInput) {
+  getFavorites(userId: $userId) {
+    id
+    name
+    rating
+    categories
+    image
+  }
+}

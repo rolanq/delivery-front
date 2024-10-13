@@ -1,12 +1,18 @@
 type Mutation {
   signUp(data: SignUpInput): SignUpPayload
   updateUser(data: PartialUpdateUserInput): AuthPayload
+
+  addItemToCart(data: AddItemToCartInput): Cart
+  deleteCartItems(data: DeleteCartItemsInput): Cart
 }
 
 type Query {
-  getUser(token: String!): User
+  getUser(token: String!): User!
   getRestaurants: [Restuarant]
-  getRestuarant(id: ID!): Restuarant
+  getRestuarant(id: ID!): Restuarant!
+  getMenuItems(ids: [IDsInput]): [MenuItem!]!
+  getCart(userId: IDsInput): Cart
+  getFavorites(userId: IDsInput): [Restuarant]
 }
 
 type User {
@@ -64,4 +70,35 @@ type AuthPayload {
 
 type SignUpPayload {
   success: String
+}
+
+input IDsInput {
+  id: String!
+}
+
+type Cart {
+  cart: [CartItem]
+  totalCount: Int
+}
+
+type CartItem {
+  count: Int
+  menuItem: MenuItem
+}
+
+input AddItemToCartInput {
+  userId: String
+  menuItemId: Int
+  count: Int
+}
+
+input UpdateCartItemInput {
+  userId: String
+  menuItemId: Int
+  count: Int
+}
+
+input DeleteCartItemsInput {
+  userId: String
+  menuItemIds: [String]
 }

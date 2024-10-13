@@ -7,10 +7,12 @@ import {
 import { ROUTES } from "@shared/routes/routes";
 import { ProvidersWrapper } from "@shared/providersWrapper/ProvidersWrapper";
 import { useIsMobile } from "@shared/hooks/useIsMobile";
+import { useAppStore } from "@shared/stores/App";
 
 export const App: FC = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
+  const appLoaded = useAppStore((state) => state.isLoaded);
 
   useLayoutEffect(() => {
     document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -33,16 +35,18 @@ export const App: FC = () => {
   return (
     <>
       <ProvidersWrapper>
-        <Routes>
-          {ROUTES.map((route) => (
-            <Route
-              key={route.path}
-              index={route.index}
-              path={route.path}
-              element={<route.element />}
-            />
-          ))}
-        </Routes>
+        {appLoaded && (
+          <Routes>
+            {ROUTES.map((route) => (
+              <Route
+                key={route.path}
+                index={route.index}
+                path={route.path}
+                element={<route.element />}
+              />
+            ))}
+          </Routes>
+        )}
         <GlobalLoaderWrapper>
           <GlobalLoader />
         </GlobalLoaderWrapper>

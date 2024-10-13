@@ -1,5 +1,10 @@
-import { useGetUserQuery } from "@graphql/graphql";
+import {
+  Cart,
+  useGetCartQuery,
+  useGetUserQuery,
+} from "@graphql/graphql";
 import { useAppStore } from "@shared/stores/App";
+import { useCartStore } from "@shared/stores/Cart";
 import { useUserStore } from "@shared/stores/User";
 import React, { FC, useEffect } from "react";
 
@@ -13,6 +18,8 @@ export const AuthWrapper: FC<IProps> = ({ children }) => {
   const triggerAuthBottomSheet = useAppStore(
     (state) => state.triggerAuthBottomSheet
   );
+  const setCart = useCartStore((state) => state.setCart);
+  const setIsLoading = useCartStore((state) => state.setLoading);
   const isAppLoaded = useAppStore((state) => state.isLoaded);
   const token = localStorage.getItem("token");
   const authBottomSheet = localStorage.getItem("ABSShouldOpen");
@@ -28,14 +35,29 @@ export const AuthWrapper: FC<IProps> = ({ children }) => {
     },
   });
 
-  useEffect(() => {
-    if (!isAppLoaded || user?.id) return;
+  useGetCartQuery({
+    skip: !user?.id,
+    variables: {
+      userId: {
+        id: user?.id ?? "",
+      },
+    },
+    onCompleted: (data) => {
+      if (data.getCart?.cart?.length) {
+        setCart(data.getCart as Cart);
+        setIsLoading(false);
+      }
+    },
+  });
 
-    if (!authBottomSheet) {
+  useEffect(() => {
+    if (user?.id) return;
+
+    if (!authBottomSheet && isAppLoaded) {
       triggerAuthBottomSheet(true);
     }
 
-    if (authBottomSheet) {
+    if (authBottomSheet && isAppLoaded) {
       const date = new Date(authBottomSheet);
 
       if (date < currentDate) {

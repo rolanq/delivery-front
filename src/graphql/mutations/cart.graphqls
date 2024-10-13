@@ -1,0 +1,33 @@
+mutation AddItemToCart($data: AddItemToCartInput) {
+  addItemToCart(data: $data) {
+    totalCount
+    cart {
+      count
+      menuItem {
+        id
+        name
+        image
+        description
+        weight
+        price
+      }
+    }
+  }
+}
+
+mutation DeleteCartItems($data: DeleteCartItemsInput) {
+  deleteCartItems(data: $data) {
+    totalCount
+    cart {
+      count
+      menuItem {
+        id
+        name
+        image
+        description
+        weight
+        price
+      }
+    }
+  }
+}

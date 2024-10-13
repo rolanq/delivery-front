@@ -65,7 +65,7 @@ export const Auth = () => {
     appStore.triggerAuthBottomSheet(false);
 
     const newDateTime = new Date();
-    newDateTime.setHours(newDateTime.getHours() + 2);
+    newDateTime.setHours(newDateTime.getHours() + 24);
     localStorage.setItem("ABSShouldOpen", newDateTime.toString());
   };
 

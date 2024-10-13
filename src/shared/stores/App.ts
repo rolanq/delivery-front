@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
-interface AppState {
+interface AppStore {
   isLoaded: boolean;
   setIsLoaded: (newState: boolean) => void;
   isAuth: boolean;
   AuthBottomSheetOpen: boolean;
   triggerAuthBottomSheet: (newState: boolean) => void;
 }
-export const useAppStore = create<AppState>((set) => ({
+export const useAppStore = create<AppStore>((set) => ({
   isLoaded: false,
   setIsLoaded: (newState) => {
     set({ isLoaded: newState });

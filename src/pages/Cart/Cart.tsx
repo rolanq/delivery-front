@@ -1,21 +1,16 @@
 import { Flex } from "antd";
 import { FC } from "react";
-import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
 import { Layout } from "@shared/kit/Layout/Layout";
+import { CartList } from "@features/CartList/CartList";
+import { useCartStore } from "@shared/stores/Cart";
 
 export const Cart: FC = () => {
-  const isLoading = true;
+  const isLoading = useCartStore((state) => state.loading);
+
   return (
     <Layout footer paddingVertical isLoading={isLoading} title={"Корзина"}>
       <Flex justify="center" vertical>
-        {isLoading && (
-          <>
-            <CustomSkeleton height={"150px"} width={"100%"} />
-            <CustomSkeleton height={"150px"} width={"100%"} />
-            <CustomSkeleton height={"150px"} width={"100%"} />
-            <CustomSkeleton height={"150px"} width={"100%"} />
-          </>
-        )}
+        <CartList />
       </Flex>
     </Layout>
   );
