@@ -13,7 +13,6 @@ export const MeWidget = () => {
   const onClickAuth = () => {
     triggerAuth(true);
   };
-  
 
   return (
     <div className={styles.wrapper}>
@@ -46,8 +45,15 @@ export const MeWidget = () => {
               justify="center"
               className={styles.info}
             >
-              <CustomText titleLevel={5} marginBottom>
-                Мы не распознали вас
+              <CustomText
+                titleLevel={5}
+                marginBottom
+                className={styles.infoText}
+              >
+                Войдите в аккаунт.
+              </CustomText>
+              <CustomText marginBottom className={styles.infoText}>
+                Чтобы заказывать еду. Это быстро и удобно
               </CustomText>
               <CustomButton
                 onClick={onClickAuth}

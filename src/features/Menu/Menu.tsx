@@ -9,9 +9,15 @@ import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomShe
 import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
+import { useAppStore } from "@shared/stores/App";
+import { useUserStore } from "@shared/stores/User";
 
 export const Menu = () => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
+  const user = useUserStore((state) => state.user);
+  const triggerAuthBottomSheet = useAppStore(
+    (state) => state.triggerAuthBottomSheet
+  );
   const [activeMenuItem, setActiveMenuItem] = useState<MenuItem | undefined>(
     undefined
   );
@@ -25,6 +31,23 @@ export const Menu = () => {
   const onCloseBottomSheet = () => {
     setActiveMenuItem(undefined);
   };
+
+  const onAddToCart = () => {
+    if (!user?.id) {
+      triggerAuthBottomSheet(true);
+    }
+  };
+  if (
+    !restuarant?.MenuCategories?.map((category) => category?.MenuItems).flatMap(
+      (menuItem) => menuItem
+    ).length
+  ) {
+    return (
+      <Flex vertical className={styles.menuList} gap="20px">
+        <CustomText titleLevel={3}>Ой, у ресторана пока нет товаров.</CustomText>
+      </Flex>
+    );
+  }
 
   return (
     <>
@@ -71,6 +94,7 @@ export const Menu = () => {
               </Flex>
             </Flex>
             <CustomButton
+              onClick={onAddToCart}
               fullWidth
               label="Добавить в корзину"
               variant="secondary"

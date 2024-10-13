@@ -31,3 +31,7 @@
 .blur {
   filter: blur(3px);
 }
+
+.infoText {
+  text-align: center;
+}

@@ -10,7 +10,7 @@ import { CustomIcon } from "../CustomIcon/CustomIcon";
 interface IProps {
   className?: string;
   label?: ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   variant?: Variants;
   labelPosition?: "left" | "center" | "right";
   fullWidth?: boolean;

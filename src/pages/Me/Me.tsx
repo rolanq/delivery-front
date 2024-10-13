@@ -14,12 +14,11 @@ export const Me: FC = () => {
   const onLogout = () => {
     localStorage.removeItem("token");
     logout();
-    toast.success("Вы успешно вышли из аккаунта!")
+    toast.success("Вы успешно вышли из аккаунта!");
   };
 
   return (
     <Layout footer paddingVertical scrollable={false}>
-      {/* <CustomSkeleton height={"240px"} width={"100%"} /> */}
       <MeWidget />
       <Flex
         vertical
@@ -29,18 +28,18 @@ export const Me: FC = () => {
       >
         <CustomButton
           fullWidth
-          type="link"
-          path="/settings"
           label="Настройки"
           variant="primary"
         />
         {user && (
-          <CustomButton
-            onClick={onLogout}
-            fullWidth
-            label="Выйти"
-            variant="secondary"
-          />
+          <>
+            <CustomButton
+              onClick={onLogout}
+              fullWidth
+              label="Выйти"
+              variant="secondary"
+            />
+          </>
         )}
       </Flex>
     </Layout>

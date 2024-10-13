@@ -6,20 +6,25 @@ import { animated, useSpring } from "@react-spring/web";
 import maskot from "@assets/maskot.png";
 import { useIsMobile } from "@shared/hooks/useIsMobile";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
+import { useAppStore } from "@shared/stores/App";
 
 interface IProps {
   children?: React.ReactNode;
 }
 
 export const GlobalLoaderWrapper: FC<IProps> = ({ children }) => {
+  const setIsLoaded = useAppStore((state) => state.setIsLoaded);
   const [props] = useSpring(
     () => ({
       config: { duration: 250 },
-      delay: 1000,
+      delay: 1500,
       from: { opacity: 1, zIndex: 10000 },
       to: {
         opacity: 0,
         zIndex: -100,
+      },
+      onResolve() {
+        setIsLoaded(true);
       },
     }),
     []

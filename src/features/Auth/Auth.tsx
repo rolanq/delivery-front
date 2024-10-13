@@ -10,6 +10,8 @@ import classNames from "classnames";
 import { useSignUpMutation, useUpdateUserMutation } from "@graphql/graphql";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import maskot from "@assets/maskot.png";
+import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 
 enum Steps {
   first = "first",
@@ -61,6 +63,10 @@ export const Auth = () => {
 
   const onDismiss = () => {
     appStore.triggerAuthBottomSheet(false);
+
+    const newDateTime = new Date();
+    newDateTime.setHours(newDateTime.getHours() + 2);
+    localStorage.setItem("ABSShouldOpen", newDateTime.toString());
   };
 
   return (
@@ -78,7 +84,7 @@ export const Auth = () => {
         </Flex>
       }
       footerWithoutBoxShadow
-      snap={60}
+      snap={80}
       onDismiss={onDismiss}
       open={appStore.AuthBottomSheetOpen}
     >
@@ -90,6 +96,14 @@ export const Auth = () => {
         gap="20px"
       >
         <Flex gap="20px" vertical className={styles.fullW}>
+          <CustomImage
+            className={styles.imageContainer}
+            height="180px"
+            src={maskot}
+            withBackground={false}
+            imageFullHeight
+            imageFullWidth={false}
+          />
           <Flex vertical align="center" gap="15px">
             <CustomText titleLevel={4}>Привет!</CustomText>
             <CustomText weight={500}>Введите почту, чтобы войти</CustomText>

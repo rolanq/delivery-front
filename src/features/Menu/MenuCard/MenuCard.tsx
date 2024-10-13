@@ -6,6 +6,8 @@ import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
 import { CustomIcon } from "@shared/kit/CustomIcon/CustomIcon";
+import { useAppStore } from "@shared/stores/App";
+import { useUserStore } from "@shared/stores/User";
 
 interface IProps {
   menuItem: MenuItem | null;
@@ -13,6 +15,18 @@ interface IProps {
 }
 
 export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
+  const user = useUserStore((state) => state.user);
+  const triggerAuthBottomSheet = useAppStore(
+    (state) => state.triggerAuthBottomSheet
+  );
+
+  const onClickPlus = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    if (!user?.id) {
+      triggerAuthBottomSheet(true);
+    }
+  };
+
   return (
     <Flex
       className={styles.container}
@@ -36,6 +50,7 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
       </Flex>
 
       <CustomButton
+        onClick={onClickPlus}
         className={styles.buttonAdd}
         fullWidth
         variant="tertiary"
