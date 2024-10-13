@@ -45,9 +45,9 @@ export const Page: FC<IProps> = ({
       >
         {title ? (
           isLoading ? (
-            <CustomSkeleton height={"30px"} width={"150px"} />
+            <CustomSkeleton className={styles.title} height={"30px"} width={"150px"} />
           ) : (
-            <CustomText titleLevel={2} marginBottom>
+            <CustomText titleLevel={2} marginBottom className={styles.title}>
               {title}
             </CustomText>
           )

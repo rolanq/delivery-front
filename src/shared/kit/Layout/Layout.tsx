@@ -5,6 +5,7 @@ import { Header } from "@features/Header/Header";
 import { GoBackButton } from "@features/GoBackButton/GoBackButton";
 
 interface IProps {
+  customFooter?: React.ReactNode;
   header?: boolean;
   footer?: boolean;
   paddingVertical?: boolean;
@@ -28,6 +29,7 @@ export const Layout: FC<IProps> = ({
   title,
   goBackButtonClassName,
   children,
+  customFooter,
 }) => {
   return (
     <>
@@ -36,14 +38,14 @@ export const Layout: FC<IProps> = ({
         paddingVertical={paddingVertical}
         horizontalPadding={horizontalPadding}
         scrollable={scrollable}
-        paddingTopWithHeader={header}
+        paddingTopWithHeader={header || goBackButton}
         isLoading={isLoading}
         title={title}
       >
         {goBackButton && <GoBackButton className={goBackButtonClassName} />}
         {children}
       </Page>
-      {footer && <Footer />}
+      {footer && <Footer customFooter={customFooter} />}
     </>
   );
 };

@@ -1,1 +1,11 @@
+.cartWrapper {
+  min-height: 100%;
+}
 
+.br {
+  width: 50%;
+}
+
+.payButton {
+    height: 40px;
+}

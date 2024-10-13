@@ -52,6 +52,7 @@ export const CustomButton: FC<IProps> = ({
   return (
     <Flex
       id={id}
+      align="center"
       className={classNames(
         className,
         styles.container,

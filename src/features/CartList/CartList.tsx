@@ -8,7 +8,6 @@ import {
   useGetCartLazyQuery,
   useGetMenuItemsLazyQuery,
 } from "@graphql/index";
-import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 export const CartList = () => {
   const user = useUserStore((state) => state.user);
@@ -45,11 +44,8 @@ export const CartList = () => {
 
   return (
     <Flex vertical gap="10px">
-      {cart.cart?.length ? (
-        cart.cart?.map((cartItem) => <CartCard card={cartItem} />)
-      ) : (
-        <CustomText>Ваша корзина пуста</CustomText>
-      )}
+      {cart.cart?.length &&
+        cart.cart?.map((cartItem) => <CartCard card={cartItem} />)}
     </Flex>
   );
 };

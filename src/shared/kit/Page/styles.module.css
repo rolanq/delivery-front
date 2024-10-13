@@ -16,3 +16,7 @@
   flex: 1;
   margin-inline: auto;
 }
+
+.title {
+  margin-bottom: 25px;
+}

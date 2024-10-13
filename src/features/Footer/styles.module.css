@@ -18,6 +18,10 @@
   overflow: hidden;
 }
 
+.customFooter {
+  padding: 10px 20px;
+}
+
 .menuItem {
   width: 100%;
   height: 100%;

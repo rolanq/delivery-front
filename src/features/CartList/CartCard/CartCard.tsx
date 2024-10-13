@@ -38,7 +38,7 @@ export const CartCard: FC<IProps> = ({ card }) => {
           src={card?.menuItem?.image ?? ""}
           height="60px"
           width="60px"
-          borderRadius="5px"
+          borderRadius="12px"
         />
         <Flex vertical gap="5px">
           <CustomText size="md">
