@@ -18,36 +18,36 @@ export type Scalars = {
 };
 
 export type AddItemToCartInput = {
-  count?: InputMaybe<Scalars['Int']['input']>;
-  menuItemId?: InputMaybe<Scalars['Int']['input']>;
-  restuarantId?: InputMaybe<Scalars['Int']['input']>;
-  userId?: InputMaybe<Scalars['String']['input']>;
+  count: Scalars['Int']['input'];
+  menuItemId: Scalars['Int']['input'];
+  restuarantId: Scalars['Int']['input'];
+  userId: Scalars['String']['input'];
 };
 
 export type AuthPayload = {
   __typename?: 'AuthPayload';
-  token?: Maybe<Scalars['String']['output']>;
+  token: Scalars['String']['output'];
   user?: Maybe<User>;
 };
 
 export type Cart = {
   __typename?: 'Cart';
-  cart?: Maybe<Array<Maybe<CartItem>>>;
-  fullPrice?: Maybe<Scalars['Int']['output']>;
-  restuarantId?: Maybe<Scalars['Int']['output']>;
-  totalCount?: Maybe<Scalars['Int']['output']>;
+  cart: Array<CartItem>;
+  fullPrice: Scalars['Int']['output'];
+  restuarantId: Scalars['Int']['output'];
+  totalCount: Scalars['Int']['output'];
 };
 
 export type CartItem = {
   __typename?: 'CartItem';
-  count?: Maybe<Scalars['Int']['output']>;
-  menuItem?: Maybe<MenuItem>;
+  count: Scalars['Int']['output'];
+  menuItem: MenuItem;
 };
 
 export type DeleteCartItemsInput = {
-  menuItemIds?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  restuarantId?: InputMaybe<Scalars['Int']['input']>;
-  userId?: InputMaybe<Scalars['String']['input']>;
+  menuItemIds: Array<Scalars['String']['input']>;
+  restuarantId: Scalars['Int']['input'];
+  userId: Scalars['String']['input'];
 };
 
 export type IDsInput = {
@@ -57,17 +57,17 @@ export type IDsInput = {
 export type MenuCategory = {
   __typename?: 'MenuCategory';
   MenuItems?: Maybe<Array<Maybe<MenuItem>>>;
-  id: Scalars['ID']['output'];
+  id: Scalars['String']['output'];
   name: Scalars['String']['output'];
 };
 
 export type MenuItem = {
   __typename?: 'MenuItem';
   description?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
+  id: Scalars['String']['output'];
   image?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  price?: Maybe<Scalars['Int']['output']>;
+  name: Scalars['String']['output'];
+  price: Scalars['Int']['output'];
   weight?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -101,7 +101,7 @@ export type MutationUpdateUserArgs = {
 
 export type PartialUpdateUserInput = {
   address?: InputMaybe<Scalars['String']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
   name?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
   verifyCode?: InputMaybe<Scalars['String']['input']>;
@@ -134,7 +134,7 @@ export type QueryGetMenuItemsArgs = {
 
 
 export type QueryGetRestuarantArgs = {
-  id: Scalars['ID']['input'];
+  id: Scalars['String']['input'];
 };
 
 
@@ -149,7 +149,7 @@ export type Restuarant = {
   categories?: Maybe<Scalars['String']['output']>;
   description: Scalars['String']['output'];
   endWorkingDay: Scalars['String']['output'];
-  id: Scalars['ID']['output'];
+  id: Scalars['String']['output'];
   image?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   rating?: Maybe<Scalars['Float']['output']>;
@@ -157,26 +157,26 @@ export type Restuarant = {
 };
 
 export type SignUpInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
 };
 
 export type SignUpPayload = {
   __typename?: 'SignUpPayload';
-  success?: Maybe<Scalars['String']['output']>;
+  success: Scalars['String']['output'];
 };
 
 export type UpdateCartItemInput = {
-  count?: InputMaybe<Scalars['Int']['input']>;
-  menuItemId?: InputMaybe<Scalars['Int']['input']>;
-  restuarantId?: InputMaybe<Scalars['Int']['input']>;
-  userId?: InputMaybe<Scalars['String']['input']>;
+  count: Scalars['Int']['input'];
+  menuItemId: Scalars['Int']['input'];
+  restuarantId: Scalars['Int']['input'];
+  userId: Scalars['String']['input'];
 };
 
 export type User = {
   __typename?: 'User';
   address?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
+  id: Scalars['String']['output'];
   name?: Maybe<Scalars['String']['output']>;
   phone?: Maybe<Scalars['String']['output']>;
 };
@@ -186,35 +186,35 @@ export type SignUpMutationVariables = Exact<{
 }>;
 
 
-export type SignUpMutation = { __typename?: 'Mutation', signUp?: { __typename?: 'SignUpPayload', success?: string | null } | null };
+export type SignUpMutation = { __typename?: 'Mutation', signUp?: { __typename?: 'SignUpPayload', success: string } | null };
 
 export type UpdateUserMutationVariables = Exact<{
   data?: InputMaybe<PartialUpdateUserInput>;
 }>;
 
 
-export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typename?: 'AuthPayload', token?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, phone?: string | null, email?: string | null, address?: string | null } | null } | null };
+export type UpdateUserMutation = { __typename?: 'Mutation', updateUser?: { __typename?: 'AuthPayload', token: string, user?: { __typename?: 'User', id: string, name?: string | null, phone?: string | null, email?: string | null, address?: string | null } | null } | null };
 
 export type AddItemToCartMutationVariables = Exact<{
   data?: InputMaybe<AddItemToCartInput>;
 }>;
 
 
-export type AddItemToCartMutation = { __typename?: 'Mutation', addItemToCart?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, fullPrice?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
+export type AddItemToCartMutation = { __typename?: 'Mutation', addItemToCart?: { __typename?: 'Cart', totalCount: number, restuarantId: number, fullPrice: number, cart: Array<{ __typename?: 'CartItem', count: number, menuItem: { __typename?: 'MenuItem', id: string, name: string, image?: string | null, description?: string | null, weight?: number | null, price: number } }> } | null };
 
 export type DeleteCartItemsMutationVariables = Exact<{
   data?: InputMaybe<DeleteCartItemsInput>;
 }>;
 
 
-export type DeleteCartItemsMutation = { __typename?: 'Mutation', deleteCartItems?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, fullPrice?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
+export type DeleteCartItemsMutation = { __typename?: 'Mutation', deleteCartItems?: { __typename?: 'Cart', totalCount: number, restuarantId: number, fullPrice: number, cart: Array<{ __typename?: 'CartItem', count: number, menuItem: { __typename?: 'MenuItem', id: string, name: string, image?: string | null, description?: string | null, weight?: number | null, price: number } }> } | null };
 
 export type GetCartQueryVariables = Exact<{
   userId?: InputMaybe<IDsInput>;
 }>;
 
 
-export type GetCartQuery = { __typename?: 'Query', getCart?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, fullPrice?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
+export type GetCartQuery = { __typename?: 'Query', getCart?: { __typename?: 'Cart', totalCount: number, restuarantId: number, fullPrice: number, cart: Array<{ __typename?: 'CartItem', count: number, menuItem: { __typename?: 'MenuItem', id: string, name: string, image?: string | null, description?: string | null, weight?: number | null, price: number } }> } | null };
 
 export type GetFavoritesQueryVariables = Exact<{
   userId?: InputMaybe<IDsInput>;
@@ -236,18 +236,18 @@ export type GetRestaurantsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetRestaurantsQuery = { __typename?: 'Query', getRestaurants?: Array<{ __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, image?: string | null } | null> | null };
 
 export type GetRestuarantQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
+  id: Scalars['String']['input'];
 }>;
 
 
-export type GetRestuarantQuery = { __typename?: 'Query', getRestuarant: { __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, address: string, description: string, startWorkingDay: string, endWorkingDay: string, image?: string | null, MenuCategories?: Array<{ __typename?: 'MenuCategory', id: string, name: string, MenuItems?: Array<{ __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null> | null } | null> | null } };
+export type GetRestuarantQuery = { __typename?: 'Query', getRestuarant: { __typename?: 'Restuarant', id: string, name: string, rating?: number | null, categories?: string | null, address: string, description: string, startWorkingDay: string, endWorkingDay: string, image?: string | null, MenuCategories?: Array<{ __typename?: 'MenuCategory', id: string, name: string, MenuItems?: Array<{ __typename?: 'MenuItem', id: string, name: string, image?: string | null, description?: string | null, weight?: number | null, price: number } | null> | null } | null> | null } };
 
 export type GetMenuItemsQueryVariables = Exact<{
   ids?: InputMaybe<Array<InputMaybe<IDsInput>> | InputMaybe<IDsInput>>;
 }>;
 
 
-export type GetMenuItemsQuery = { __typename?: 'Query', getMenuItems: Array<{ __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null }> };
+export type GetMenuItemsQuery = { __typename?: 'Query', getMenuItems: Array<{ __typename?: 'MenuItem', id: string, name: string, image?: string | null, description?: string | null, weight?: number | null, price: number }> };
 
 
 export const SignUpDocument = gql`
@@ -600,7 +600,7 @@ export type GetRestaurantsLazyQueryHookResult = ReturnType<typeof useGetRestaura
 export type GetRestaurantsSuspenseQueryHookResult = ReturnType<typeof useGetRestaurantsSuspenseQuery>;
 export type GetRestaurantsQueryResult = Apollo.QueryResult<GetRestaurantsQuery, GetRestaurantsQueryVariables>;
 export const GetRestuarantDocument = gql`
-    query GetRestuarant($id: ID!) {
+    query GetRestuarant($id: String!) {
   getRestuarant(id: $id) {
     id
     name

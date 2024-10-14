@@ -9,14 +9,14 @@ type Mutation {
 type Query {
   getUser(token: String!): User!
   getRestaurants: [Restuarant]
-  getRestuarant(id: ID!): Restuarant!
+  getRestuarant(id: String!): Restuarant!
   getMenuItems(ids: [IDsInput]): [MenuItem!]!
   getCart(userId: IDsInput): Cart
   getFavorites(userId: IDsInput): [Restuarant]
 }
 
 type User {
-  id: ID!
+  id: String!
   name: String
   phone: String
   email: String
@@ -24,19 +24,19 @@ type User {
 }
 
 input SignUpInput {
-  email: String
+  email: String!
 }
 
 input PartialUpdateUserInput {
   name: String
   phone: String
-  email: String
+  email: String!
   address: String
   verifyCode: String
 }
 
 type Restuarant {
-  id: ID!
+  id: String!
   name: String!
   rating: Float
   address: String!
@@ -49,27 +49,27 @@ type Restuarant {
 }
 
 type MenuCategory {
-  id: ID!
+  id: String!
   name: String!
   MenuItems: [MenuItem]
 }
 
 type MenuItem {
-  id: ID!
-  name: String
+  id: String!
+  name: String!
   image: String
   description: String
   weight: Int
-  price: Int
+  price: Int!
 }
 
 type AuthPayload {
-  token: String
+  token: String!
   user: User
 }
 
 type SignUpPayload {
-  success: String
+  success: String!
 }
 
 input IDsInput {
@@ -77,33 +77,33 @@ input IDsInput {
 }
 
 type Cart {
-  cart: [CartItem]
-  totalCount: Int
-  restuarantId: Int
-  fullPrice: Int
+  cart: [CartItem!]!
+  totalCount: Int!
+  restuarantId: Int!
+  fullPrice: Int!
 }
 
 type CartItem {
-  count: Int
-  menuItem: MenuItem
+  count: Int!
+  menuItem: MenuItem!
 }
 
 input AddItemToCartInput {
-  userId: String
-  menuItemId: Int
-  count: Int
-  restuarantId: Int
+  userId: String!
+  menuItemId: Int!
+  count: Int!
+  restuarantId: Int!
 }
 
 input UpdateCartItemInput {
-  userId: String
-  menuItemId: Int
-  count: Int
-  restuarantId: Int
+  userId: String!
+  menuItemId: Int!
+  count: Int!
+  restuarantId: Int!
 }
 
 input DeleteCartItemsInput {
-  userId: String
-  menuItemIds: [String]
-  restuarantId: Int
+  userId: String!
+  menuItemIds: [String!]!
+  restuarantId: Int!
 }

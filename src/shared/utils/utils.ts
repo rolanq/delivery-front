@@ -12,8 +12,8 @@ export const clearEmptyFields = (fields: Object | undefined) => {
 
 export const prepareInputValuesToUpdateUser = (
   fields: User | undefined
-): PartialUpdateUserInput => {
-  if (!fields) return {};
+): PartialUpdateUserInput | undefined => {
+  if (!fields) return;
 
   const { id, __typename, ...otherUser } = fields;
 

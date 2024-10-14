@@ -8,7 +8,7 @@ query GetRestaurants {
   }
 }
 
-query GetRestuarant($id: ID!) {
+query GetRestuarant($id: String!) {
   getRestuarant(id: $id) {
     id
     name

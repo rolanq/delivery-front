@@ -46,7 +46,7 @@ export const CartCard: FC<IProps> = ({ card }) => {
     deleteItem({
       variables: {
         data: {
-          userId: user?.id,
+          userId: user?.id ?? "",
           menuItemIds: [card?.menuItem?.id ?? ""],
           restuarantId: Number(restuarant?.id ?? 0),
         },
@@ -61,9 +61,9 @@ export const CartCard: FC<IProps> = ({ card }) => {
       variables: {
         data: {
           count: value,
-          restuarantId: cart.restuarantId,
+          restuarantId: Number(cart?.restuarantId ?? 0),
           menuItemId: Number(card?.menuItem?.id),
-          userId: user?.id,
+          userId: user?.id ?? "",
         },
       },
     });

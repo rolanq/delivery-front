@@ -45,8 +45,8 @@ export const Menu = () => {
     deleteItem({
       variables: {
         data: {
-          userId: user?.id,
-          menuItemIds: cart.cart?.map((item) => item?.menuItem?.id ?? ""),
+          userId: user?.id ?? "",
+          menuItemIds: cart?.cart?.map((item) => item?.menuItem?.id ?? "") ?? [],
           restuarantId: Number(restuarant?.id ?? 0),
         },
       },
@@ -193,7 +193,7 @@ export const Menu = () => {
             <Flex gap="15px" vertical>
               <CustomButton
                 label="Открыть ресторан"
-                onClick={() => navigate(`/r/${cart.restuarantId}`)}
+                onClick={() => navigate(`/r/${cart?.restuarantId}`)}
                 fullWidth
               />
               <Flex gap="15px">

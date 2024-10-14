@@ -32,7 +32,7 @@ export const ConfirmCart: FC<IProps> = ({ open = false, setOpen }) => {
         <Flex gap="15px" align="center">
           <Flex className={styles.fullPriceBlock} vertical align="center">
             <CustomText titleLevel={4}>Итого</CustomText>
-            <CustomText titleLevel={5}>{cart.fullPrice} р</CustomText>
+            <CustomText titleLevel={5}>{cart?.fullPrice} р</CustomText>
           </Flex>
           <CustomButton variant="secondary" fullWidth label="К оплате" />
         </Flex>
@@ -76,11 +76,11 @@ export const ConfirmCart: FC<IProps> = ({ open = false, setOpen }) => {
           <Flex vertical gap="5px" className={styles.contentBlock}>
             <Flex justify="space-between">
               <CustomText>Товары в корзине</CustomText>
-              <CustomText>{cart.fullPrice} р</CustomText>
+              <CustomText>{cart?.fullPrice} р</CustomText>
             </Flex>
             <Flex justify="space-between">
               <CustomText>Доставка</CustomText>
-              <CustomText>{cart.fullPrice} р</CustomText>
+              <CustomText>{cart?.fullPrice} р</CustomText>
             </Flex>
             <Flex justify="space-between">
               <CustomText>Сервисный сбор</CustomText>

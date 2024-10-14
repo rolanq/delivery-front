@@ -37,8 +37,8 @@ export const Cart: FC = () => {
     deleteItem({
       variables: {
         data: {
-          userId: user?.id,
-          menuItemIds: cart.cart?.map((item) => item?.menuItem?.id ?? ""),
+          userId: user?.id ?? "",
+          menuItemIds: cart?.cart?.map((item) => item?.menuItem?.id ?? "") ?? [],
           restuarantId: Number(restuarant?.id ?? 0),
         },
       },
@@ -46,10 +46,10 @@ export const Cart: FC = () => {
   };
 
   const onOpenMenu = () => {
-    navigate(`/r/${cart.restuarantId}`);
+    navigate(`/r/${cart?.restuarantId}`);
   };
 
-  const isEmpty = !cart.cart?.length && !isCartLoading;
+  const isEmpty = !cart?.cart?.length && !isCartLoading;
 
   return (
     <>
@@ -89,7 +89,7 @@ export const Cart: FC = () => {
                 <Flex justify="space-between" align="center">
                   <CustomText>Доставит курьер: ~35 мин</CustomText>
                   <CustomText titleLevel={4}>
-                    {cart.fullPrice ?? ""} р
+                    {cart?.fullPrice ?? ""} р
                   </CustomText>
                 </Flex>
                 <CustomButton

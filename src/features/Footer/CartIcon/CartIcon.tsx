@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import classNames from "classnames";
 
 export const CartIcon = () => {
-  const cartCount = useCartStore((state) => state.cart.totalCount);
+  const cartCount = useCartStore((state) => state.cart?.totalCount);
   const { pathname } = useLocation();
   const isActive = pathname === "/cart";
   const isShowDot = !isActive && !!cartCount;

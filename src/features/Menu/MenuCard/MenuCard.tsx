@@ -29,7 +29,7 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick, setModalOpen }) => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
   const triggerAuth = useAppStore((state) => state.triggerAuth);
 
-  const isItemAdded = cart.cart?.find(
+  const isItemAdded = cart?.cart?.find(
     (cartItem) => cartItem?.menuItem?.id === menuItem?.id
   );
 
@@ -55,7 +55,7 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick, setModalOpen }) => {
     deleteItem({
       variables: {
         data: {
-          userId: user?.id,
+          userId: user?.id ?? "",
           menuItemIds: [menuItem?.id ?? ""],
           restuarantId: Number(restuarant?.id ?? 0),
         },
@@ -68,9 +68,9 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick, setModalOpen }) => {
       variables: {
         data: {
           count: value,
-          restuarantId: cart.restuarantId,
+          restuarantId: cart?.restuarantId ?? 0,
           menuItemId: Number(menuItem?.id),
-          userId: user?.id,
+          userId: user?.id ?? "",
         },
       },
     });
@@ -145,7 +145,7 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick, setModalOpen }) => {
             onChange={onChange}
             value={count ?? 1}
             size="sm"
-            loading={loading || isDeleting}
+            loading={isDeleting}
           />
         )}
       </Flex>

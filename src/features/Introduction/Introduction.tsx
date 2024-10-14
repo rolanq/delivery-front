@@ -8,9 +8,7 @@ import { useEffect, useState } from "react";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { PartialUpdateUserInput, useUpdateUserMutation } from "@graphql/index";
 import { useUserStore } from "@shared/stores/User";
-import {
-  prepareInputValuesToUpdateUser,
-} from "@shared/utils/utils";
+import { prepareInputValuesToUpdateUser } from "@shared/utils/utils";
 import toast from "react-hot-toast";
 
 export const Introduction = () => {
@@ -19,7 +17,7 @@ export const Introduction = () => {
   const setUser = useUserStore((state) => state.setUser);
   const user = useUserStore((state) => state.user);
 
-  const [inputValues, setInputValues] = useState<PartialUpdateUserInput>({});
+  const [inputValues, setInputValues] = useState<PartialUpdateUserInput>();
 
   const [updateUser, { loading }] = useUpdateUserMutation({
     onCompleted: (data) => {
@@ -38,11 +36,19 @@ export const Introduction = () => {
   });
 
   const onChangeName = (value: string) => {
-    setInputValues((prev) => ({ ...prev, name: value }));
+    setInputValues((prev) => ({
+      ...prev,
+      name: value,
+      email: prev?.email ?? "",
+    }));
   };
 
   const onChangePhone = (value: string) => {
-    setInputValues((prev) => ({ ...prev, phone: value }));
+    setInputValues((prev) => ({
+      ...prev,
+      phone: value,
+      email: prev?.email ?? "",
+    }));
   };
 
   const onDismiss = () => {
@@ -58,7 +64,7 @@ export const Introduction = () => {
       variables: {
         data: {
           ...inputValues,
-          email: user?.email,
+          email: user?.email ?? "",
         },
       },
     });
