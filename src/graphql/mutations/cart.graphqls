@@ -2,6 +2,7 @@ mutation AddItemToCart($data: AddItemToCartInput) {
   addItemToCart(data: $data) {
     totalCount
     restuarantId
+    fullPrice
     cart {
       count
       menuItem {
@@ -20,6 +21,7 @@ mutation DeleteCartItems($data: DeleteCartItemsInput) {
   deleteCartItems(data: $data) {
     totalCount
     restuarantId
+    fullPrice
     cart {
       count
       menuItem {

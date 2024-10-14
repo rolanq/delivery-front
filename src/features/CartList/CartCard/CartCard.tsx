@@ -12,6 +12,7 @@ import { useUserStore } from "@shared/stores/User";
 import { useCartStore } from "@shared/stores/Cart";
 import { CustomCounter } from "@shared/kit/CustomCounter/CustomCounter";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
+import { useRestuarantStore } from "@shared/stores/Restuarant";
 
 interface IProps {
   card: CartItem | null;
@@ -19,6 +20,7 @@ interface IProps {
 
 export const CartCard: FC<IProps> = ({ card }) => {
   const user = useUserStore((state) => state.user);
+  const restuarant = useRestuarantStore((state) => state.restuarant);
   const setCart = useCartStore((state) => state.setCart);
   const cart = useCartStore((state) => state.cart);
   const [count, setCount] = useState(card?.count ?? 1);
@@ -43,7 +45,11 @@ export const CartCard: FC<IProps> = ({ card }) => {
   const onDeleteItem = () => {
     deleteItem({
       variables: {
-        data: { userId: user?.id, menuItemIds: [card?.menuItem?.id ?? ""] },
+        data: {
+          userId: user?.id,
+          menuItemIds: [card?.menuItem?.id ?? ""],
+          restuarantId: Number(restuarant?.id ?? 0),
+        },
       },
     }).then(() => {
       setOpenModal(false);

@@ -80,6 +80,7 @@ type Cart {
   cart: [CartItem]
   totalCount: Int
   restuarantId: Int
+  fullPrice: Int
 }
 
 type CartItem {

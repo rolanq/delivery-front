@@ -1,0 +1,24 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+.block {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: white;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 18px;
+}
+
+.contentBlock {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.fullPriceBlock {
+  text-wrap: nowrap;
+}

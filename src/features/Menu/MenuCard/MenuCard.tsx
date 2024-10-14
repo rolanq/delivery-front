@@ -54,9 +54,13 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick, setModalOpen }) => {
   const onDeleteItem = () => {
     deleteItem({
       variables: {
-        data: { userId: user?.id, menuItemIds: [menuItem?.id ?? ""] },
+        data: {
+          userId: user?.id,
+          menuItemIds: [menuItem?.id ?? ""],
+          restuarantId: Number(restuarant?.id ?? 0),
+        },
       },
-    })
+    });
   };
 
   const onChange = (value: number) => {

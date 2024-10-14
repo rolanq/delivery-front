@@ -13,5 +13,6 @@ query getCart($userId: IDsInput) {
     }
     totalCount
     restuarantId
+    fullPrice
   }
 }

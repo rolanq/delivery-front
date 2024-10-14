@@ -33,6 +33,7 @@ export type AuthPayload = {
 export type Cart = {
   __typename?: 'Cart';
   cart?: Maybe<Array<Maybe<CartItem>>>;
+  fullPrice?: Maybe<Scalars['Int']['output']>;
   restuarantId?: Maybe<Scalars['Int']['output']>;
   totalCount?: Maybe<Scalars['Int']['output']>;
 };
@@ -199,21 +200,21 @@ export type AddItemToCartMutationVariables = Exact<{
 }>;
 
 
-export type AddItemToCartMutation = { __typename?: 'Mutation', addItemToCart?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
+export type AddItemToCartMutation = { __typename?: 'Mutation', addItemToCart?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, fullPrice?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
 
 export type DeleteCartItemsMutationVariables = Exact<{
   data?: InputMaybe<DeleteCartItemsInput>;
 }>;
 
 
-export type DeleteCartItemsMutation = { __typename?: 'Mutation', deleteCartItems?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
+export type DeleteCartItemsMutation = { __typename?: 'Mutation', deleteCartItems?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, fullPrice?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
 
 export type GetCartQueryVariables = Exact<{
   userId?: InputMaybe<IDsInput>;
 }>;
 
 
-export type GetCartQuery = { __typename?: 'Query', getCart?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
+export type GetCartQuery = { __typename?: 'Query', getCart?: { __typename?: 'Cart', totalCount?: number | null, restuarantId?: number | null, fullPrice?: number | null, cart?: Array<{ __typename?: 'CartItem', count?: number | null, menuItem?: { __typename?: 'MenuItem', id: string, name?: string | null, image?: string | null, description?: string | null, weight?: number | null, price?: number | null } | null } | null> | null } | null };
 
 export type GetFavoritesQueryVariables = Exact<{
   userId?: InputMaybe<IDsInput>;
@@ -327,6 +328,7 @@ export const AddItemToCartDocument = gql`
   addItemToCart(data: $data) {
     totalCount
     restuarantId
+    fullPrice
     cart {
       count
       menuItem {
@@ -372,6 +374,7 @@ export const DeleteCartItemsDocument = gql`
   deleteCartItems(data: $data) {
     totalCount
     restuarantId
+    fullPrice
     cart {
       count
       menuItem {
@@ -428,6 +431,7 @@ export const GetCartDocument = gql`
     }
     totalCount
     restuarantId
+    fullPrice
   }
 }
     `;

@@ -47,6 +47,7 @@ export const Menu = () => {
         data: {
           userId: user?.id,
           menuItemIds: cart.cart?.map((item) => item?.menuItem?.id ?? ""),
+          restuarantId: Number(restuarant?.id ?? 0),
         },
       },
     }).then(() => {

@@ -14,6 +14,7 @@ interface IProps {
   footer?: React.ReactNode;
   snap?: number;
   footerWithoutBoxShadow?: boolean;
+  closeIcon: boolean;
 }
 
 export const CustomBottomSheet: FC<IProps> = ({
@@ -23,6 +24,7 @@ export const CustomBottomSheet: FC<IProps> = ({
   footer,
   snap = 30,
   footerWithoutBoxShadow,
+  closeIcon = true
 }) => {
   const viewportHeight = Math.max(
     document.documentElement.clientHeight || 0,
@@ -43,11 +45,11 @@ export const CustomBottomSheet: FC<IProps> = ({
       open={open}
       onDismiss={onDismiss}
     >
-      <CustomButton
+      {closeIcon && <CustomButton
         className={styles.closeButton}
         onClick={onDismiss}
         label={<CustomIcon icon="CloseOutlined" size="sm" />}
-      />
+      />}
       {children}
     </BottomSheet>
   );
