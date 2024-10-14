@@ -15,6 +15,7 @@ import { useUserStore } from "@shared/stores/User";
 import { useRestuarantStore } from "@shared/stores/Restuarant";
 import { useCartStore } from "@shared/stores/Cart";
 import { useAppStore } from "@shared/stores/App";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   menuItem: MenuItem | null;
@@ -26,8 +27,9 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
   const cart = useCartStore((state) => state.cart);
   const setCart = useCartStore((state) => state.setCart);
   const restuarant = useRestuarantStore((state) => state.restuarant);
-  const triggerAuth = useAppStore((state) => state.triggerAuth)
+  const triggerAuth = useAppStore((state) => state.triggerAuth);
   const [isModalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const [deleteItem, { loading: isDeleting }] = useDeleteCartItemsMutation({
     onCompleted: (data) => {
@@ -75,7 +77,7 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
         },
       });
     } else {
-      triggerAuth(true)
+      triggerAuth(true);
     }
   };
 
@@ -117,19 +119,26 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
         onCancel={() => setModalOpen(false)}
         footer={
           <>
-            <Flex gap="15px">
+            <Flex gap="15px" vertical>
               <CustomButton
-                label="Отмена"
-                onClick={() => setModalOpen(false)}
+                label="Открыть ресторан"
+                onClick={() => navigate(`/r/${cart.restuarantId}`)}
                 fullWidth
               />
-              <CustomButton
-                onClick={onDeleteCart}
-                label="Да"
-                fullWidth
-                variant="secondary"
-                loading={isDeleting}
-              />
+              <Flex gap="15px">
+                <CustomButton
+                  label="Отмена"
+                  onClick={() => setModalOpen(false)}
+                  fullWidth
+                />
+                <CustomButton
+                  onClick={onDeleteCart}
+                  label="Да"
+                  fullWidth
+                  variant="secondary"
+                  loading={isDeleting}
+                />
+              </Flex>
             </Flex>
           </>
         }

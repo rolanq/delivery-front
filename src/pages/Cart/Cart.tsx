@@ -19,7 +19,7 @@ export const Cart: FC = () => {
   const setCart = useCartStore((state) => state.setCart);
   const cart = useCartStore((state) => state.cart);
   const navigate = useNavigate();
-  
+
   const [deleteItem, { loading: isDeleting }] = useDeleteCartItemsMutation({
     onCompleted: (data) => {
       setCart(data.deleteCartItems as CartType);
@@ -38,10 +38,16 @@ export const Cart: FC = () => {
   };
 
   const onOpenMenu = () => {
-    navigate("/");
+    navigate(`/r/${cart.restuarantId}`);
   };
 
   const isEmpty = !cart.cart?.length;
+  const fullPrice = cart.cart?.reduce((acc, cartItem) => {
+    if (cartItem?.menuItem?.price) {
+      return acc + cartItem.menuItem.price;
+    }
+    return acc;
+  }, 0);
 
   return (
     <Layout
@@ -67,9 +73,12 @@ export const Cart: FC = () => {
       footerHeight="120px"
       customFooter={
         <Flex vertical className={styles.footer} justify="space-between">
-          <CustomText titleLevel={4}>459 р</CustomText>
+          <Flex justify="space-between" align="center">
+            <CustomText>Доставит курьер: ~35 мин</CustomText>
+            <CustomText titleLevel={4}>{fullPrice} р</CustomText>
+          </Flex>
           <CustomButton
-            label="К оплате"
+            label="Всё верно"
             variant="secondary"
             fullWidth
             className={styles.payButton}
@@ -118,7 +127,7 @@ export const Cart: FC = () => {
             </Flex>
             <CustomButton
               label="Открыть меню"
-              onClick={onOpenMenu}
+              onClick={() => navigate("/")}
               variant="secondary"
               className={styles.payButton}
             />

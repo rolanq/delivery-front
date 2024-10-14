@@ -43,7 +43,7 @@ export const RestuarantHeader: FC = () => {
                 className={classNames(styles.infoBlocks)}
                 label={
                   <Flex vertical align="center">
-                    <CustomText titleLevel={5}>35-45</CustomText>
+                    <CustomText titleLevel={5}>~35</CustomText>
                     <CustomText>мин</CustomText>
                   </Flex>
                 }
@@ -115,7 +115,7 @@ export const RestuarantHeader: FC = () => {
       >
         <Flex vertical className={styles.bottomSheet}>
           <CustomText titleLevel={3}>
-            Примерное время доставки: 35 минут
+            Время доставки: ~35 минут
           </CustomText>
         </Flex>
       </CustomBottomSheet>

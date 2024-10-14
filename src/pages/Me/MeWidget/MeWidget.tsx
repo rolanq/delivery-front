@@ -22,9 +22,11 @@ export const MeWidget = () => {
           </CustomText>
         </Flex>
 
-        <CustomText titleLevel={5}>{user?.name}</CustomText>
         <Flex vertical justify="flex-end" className={styles.info}>
-          <CustomText size="sm">{user?.email}</CustomText>
+          <Flex align="center" justify="space-between">
+            <CustomText titleLevel={5}>{user?.name}</CustomText>
+            <CustomText size="sm">{user?.email}</CustomText>
+          </Flex>
           <CustomText size="sm">{user?.address}</CustomText>
         </Flex>
       </Flex>
