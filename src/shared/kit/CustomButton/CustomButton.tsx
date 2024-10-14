@@ -66,7 +66,10 @@ export const CustomButton: FC<IProps> = ({
     >
       <CustomText className={styles.label} variant={variant}>
         {loading ? (
-          <CustomIcon variant={"primary"} icon="LoadingOutlined" />
+          <CustomIcon
+            variant={disabled ? "primary" : variant}
+            icon="LoadingOutlined"
+          />
         ) : (
           label
         )}
