@@ -35,3 +35,12 @@
   padding: 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 }
+
+.modalBody {
+  margin-top: 15px;
+  margin-bottom: 60px;
+}
+
+.modalText {
+  text-align: center;
+}

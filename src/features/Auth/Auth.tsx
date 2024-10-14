@@ -24,7 +24,6 @@ export const Auth = () => {
   const [email, setEmail] = useState("");
   const [confirmCode, setConfirmCode] = useState("");
   const navigate = useNavigate();
-
   const [signUp, { loading: isLoadingSignUp }] = useSignUpMutation({
     onCompleted: (data) => {
       if (data.signUp?.success === "true") {
@@ -112,6 +111,7 @@ export const Auth = () => {
           </Flex>
           <Flex className={classNames(styles.input, styles.fullW)}>
             <CustomInput
+              disabled={step !== Steps.first}
               fullWidth
               fullHeight
               onChange={(v) => setEmail(v)}

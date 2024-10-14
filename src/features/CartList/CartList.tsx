@@ -33,11 +33,7 @@ export const CartList = () => {
   });
 
   useEffect(() => {
-    if (!user?.id) {
-      const prevCart = localStorage.getItem("ECart");
-      const parsedPrevCart = prevCart ? JSON.parse(prevCart) : [];
-      getMenuItems({ variables: { ids: parsedPrevCart } });
-    } else {
+    if (user?.id) {
       getCart({ variables: { userId: { id: user.id } } });
     }
   }, [user]);
@@ -45,7 +41,9 @@ export const CartList = () => {
   return (
     <Flex vertical gap="10px">
       {cart.cart?.length &&
-        cart.cart?.map((cartItem) => <CartCard key={cartItem?.menuItem?.id} card={cartItem} />)}
+        cart.cart?.map((cartItem) => (
+          <CartCard key={cartItem?.menuItem?.id} card={cartItem} />
+        ))}
     </Flex>
   );
 };

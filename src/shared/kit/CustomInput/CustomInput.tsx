@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { CustomText } from "../CustomText/CustomText";
 
 interface IProps {
-  value: string | number;
+  value?: string | null;
   onChange: (value: string) => void;
   placeholder?: string;
   error?: boolean;
@@ -31,10 +31,12 @@ export const CustomInput: FC<IProps> = ({
   fullWidth = false,
   fullHeight = false,
   disabled,
+  value,
 }) => {
-  const [internalValue, setInternalValue] = useState("");
+  const [internalValue, setInternalValue] = useState<string | undefined | null>(value);
+
   const onBlur = () => {
-    onChange(internalValue);
+    if (internalValue) onChange(internalValue);
   };
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +48,7 @@ export const CustomInput: FC<IProps> = ({
       <Tooltip overlay={tooltip?.overlay} color={error ? "red" : undefined}>
         <Input
           disabled={disabled}
-          value={internalValue}
+          value={internalValue ?? ""}
           onChange={onChangeValue}
           onBlur={onBlur}
           variant="outlined"
@@ -65,6 +67,7 @@ export const CustomInput: FC<IProps> = ({
     className,
     tooltip?.overlay,
     error,
+    disabled,
   ]);
 
   if (!title) {

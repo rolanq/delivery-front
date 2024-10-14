@@ -4,24 +4,36 @@ import { useAppStore } from "@shared/stores/App";
 import { Flex } from "antd";
 import styles from "./styles.module.css";
 import { CustomInput } from "@shared/kit/CustomInput/CustomInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
-import { useUpdateUserMutation } from "@graphql/index";
+import { PartialUpdateUserInput, useUpdateUserMutation } from "@graphql/index";
 import { useUserStore } from "@shared/stores/User";
-import { clearEmptyFields } from "@shared/utils/utils";
+import {
+  prepareInputValuesToUpdateUser,
+} from "@shared/utils/utils";
+import toast from "react-hot-toast";
 
 export const Introduction = () => {
   const isOpenIntroduction = useAppStore((state) => state.isOpenIntroduction);
   const triggerIntroduction = useAppStore((state) => state.triggerIntroduction);
   const setUser = useUserStore((state) => state.setUser);
   const user = useUserStore((state) => state.user);
-  const [inputValues, setInputValues] = useState({ name: "", phone: "" });
 
-  const [updateUser] = useUpdateUserMutation({
+  const [inputValues, setInputValues] = useState<PartialUpdateUserInput>({});
+
+  const [updateUser, { loading }] = useUpdateUserMutation({
     onCompleted: (data) => {
       if (data.updateUser?.user) {
         setUser(data.updateUser.user);
+        triggerIntroduction(false);
+
+        toast.success("Изменения сохранены", {
+          position: "top-center",
+        });
       }
+    },
+    onError: (error) => {
+      toast.error(error.message, { position: "top-center" });
     },
   });
 
@@ -44,10 +56,17 @@ export const Introduction = () => {
   const onSave = () => {
     updateUser({
       variables: {
-        data: { ...clearEmptyFields(inputValues), email: user?.email },
+        data: {
+          ...inputValues,
+          email: user?.email,
+        },
       },
     });
   };
+
+  useEffect(() => {
+    setInputValues(prepareInputValuesToUpdateUser(user));
+  }, [user]);
 
   return (
     <CustomBottomSheet
@@ -58,6 +77,7 @@ export const Introduction = () => {
       footer={
         <CustomButton
           onClick={onSave}
+          loading={loading}
           label="Сохранить"
           variant="secondary"
           fullWidth
@@ -70,12 +90,12 @@ export const Introduction = () => {
 
         <Flex gap="10px" vertical>
           <CustomInput
-            value={inputValues.name}
+            value={inputValues?.name}
             onChange={onChangeName}
             placeholder="Имя"
           />
           <CustomInput
-            value={inputValues.phone}
+            value={inputValues?.phone}
             onChange={onChangePhone}
             placeholder="Номер телефона"
           />

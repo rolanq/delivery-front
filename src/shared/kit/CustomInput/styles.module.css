@@ -1,8 +1,14 @@
+.input[type="text"] {
+  font-weight: 800;
+  font-size: 16px;
+}
+
 .input:hover {
   border-color: #c23b22;
 }
 
 .input:focus {
+  border-color: #c23b22;
   box-shadow: 0 0 1px #c23b22;
 }
 
@@ -12,14 +18,15 @@
 }
 
 .input::placeholder {
-    font-weight: 800;
-    color: #b0b0b0;
+  font-weight: 800;
+  font-size: 16px;
+  color: #b0b0b0;
 }
 
 .tooltip {
-    background-color: #c23b22;
+  background-color: #c23b22;
 }
 
 .title {
-    padding: 0 5px;
+  padding: 0 5px;
 }

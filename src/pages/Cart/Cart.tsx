@@ -19,7 +19,7 @@ export const Cart: FC = () => {
   const setCart = useCartStore((state) => state.setCart);
   const cart = useCartStore((state) => state.cart);
   const navigate = useNavigate();
-
+  
   const [deleteItem, { loading: isDeleting }] = useDeleteCartItemsMutation({
     onCompleted: (data) => {
       setCart(data.deleteCartItems as CartType);

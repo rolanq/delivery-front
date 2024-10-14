@@ -79,6 +79,7 @@ input IDsInput {
 type Cart {
   cart: [CartItem]
   totalCount: Int
+  restuarantId: Int
 }
 
 type CartItem {
@@ -90,15 +91,18 @@ input AddItemToCartInput {
   userId: String
   menuItemId: Int
   count: Int
+  restuarantId: Int
 }
 
 input UpdateCartItemInput {
   userId: String
   menuItemId: Int
   count: Int
+  restuarantId: Int
 }
 
 input DeleteCartItemsInput {
   userId: String
   menuItemIds: [String]
+  restuarantId: Int
 }

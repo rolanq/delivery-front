@@ -51,11 +51,11 @@ export const AuthWrapper: FC<IProps> = ({ children }) => {
     if (!isAppLoaded) return;
     if (!!user?.id && isUserSetted) return;
 
-    if (!introductionBottomSheet && !isUserSetted) {
+    if (!introductionBottomSheet && !isUserSetted && !!user?.id) {
       triggerIntroduction(true);
     }
 
-    if (introductionBottomSheet) {
+    if (introductionBottomSheet && !!user?.id) {
       const date = new Date(introductionBottomSheet);
 
       if (date < currentDate) {
