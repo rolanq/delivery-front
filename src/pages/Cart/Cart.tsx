@@ -15,11 +15,14 @@ import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 import maskot from "@assets/maskot.png";
 import { ConfirmCart } from "@features/ConfirmCart/ConfirmCart";
 import { useRestuarantStore } from "@shared/stores/Restuarant";
+import { CustomSkeleton } from "@shared/kit/CustomSkeleton/CustomSkeleton";
+import { CartSkeleton } from "@features/CartList/CartSkeleton/CartSkeleton";
 
 export const Cart: FC = () => {
   const user = useUserStore((state) => state.user);
   const restuarant = useRestuarantStore((state) => state.restuarant);
   const setCart = useCartStore((state) => state.setCart);
+  const isCartLoading = useCartStore((state) => state.loading);
   const cart = useCartStore((state) => state.cart);
   const navigate = useNavigate();
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -57,17 +60,23 @@ export const Cart: FC = () => {
           <>
             {!isEmpty && (
               <Flex justify="space-between" align="center">
-                <CustomText marginBottom titleLevel={2}>
-                  Корзина
-                </CustomText>
-                <CustomButton
-                  variant="secondary"
-                  loading={isDeleting}
-                  onClick={onDeleteCart}
-                  label={
-                    <CustomIcon variant="secondary" icon="DeleteOutlined" />
-                  }
-                />
+                {!isCartLoading ? (
+                  <>
+                    <CustomText marginBottom titleLevel={2}>
+                      Корзина
+                    </CustomText>
+                    <CustomButton
+                      variant="secondary"
+                      loading={isDeleting}
+                      onClick={onDeleteCart}
+                      label={
+                        <CustomIcon variant="secondary" icon="DeleteOutlined" />
+                      }
+                    />
+                  </>
+                ) : (
+                  <CustomSkeleton height="30px" />
+                )}
               </Flex>
             )}
           </>
@@ -75,17 +84,28 @@ export const Cart: FC = () => {
         footerHeight="120px"
         customFooter={
           <Flex vertical className={styles.footer} justify="space-between">
-            <Flex justify="space-between" align="center">
-              <CustomText>Доставит курьер: ~35 мин</CustomText>
-              <CustomText titleLevel={4}>{cart.fullPrice ?? ""} р</CustomText>
-            </Flex>
-            <CustomButton
-              onClick={() => setConfirmOpen(true)}
-              label="Далее"
-              variant="secondary"
-              fullWidth
-              className={styles.payButton}
-            />
+            {!isCartLoading ? (
+              <>
+                <Flex justify="space-between" align="center">
+                  <CustomText>Доставит курьер: ~35 мин</CustomText>
+                  <CustomText titleLevel={4}>
+                    {cart.fullPrice ?? ""} р
+                  </CustomText>
+                </Flex>
+                <CustomButton
+                  onClick={() => setConfirmOpen(true)}
+                  label="Далее"
+                  variant="secondary"
+                  fullWidth
+                  className={styles.payButton}
+                />
+              </>
+            ) : (
+              <>
+                <CustomSkeleton height="30px" />
+                <CustomSkeleton height="50px" />
+              </>
+            )}
           </Flex>
         }
         footer={!isEmpty}
@@ -98,15 +118,21 @@ export const Cart: FC = () => {
               justify="space-between"
             >
               <Flex justify="center" vertical gap="10px">
-                <CartList />
-                <Flex align="center" vertical gap="50px">
-                  <CustomBr width="50%" className={styles.br} />
-                  <CustomButton
-                    label="Открыть меню"
-                    fullWidth
-                    onClick={onOpenMenu}
-                  />
-                </Flex>
+                {!isCartLoading ? (
+                  <>
+                    <CartList />
+                    <Flex align="center" vertical gap="50px">
+                      <CustomBr width="50%" className={styles.br} />
+                      <CustomButton
+                        label="Открыть меню"
+                        fullWidth
+                        onClick={onOpenMenu}
+                      />
+                    </Flex>
+                  </>
+                ) : (
+                  <CartSkeleton />
+                )}
               </Flex>
             </Flex>
           </>
