@@ -62,7 +62,7 @@ export const Auth = () => {
   };
 
   const onDismiss = () => {
-    appStore.triggerAuthBottomSheet(false);
+    appStore.triggerAuth(false);
 
     const newDateTime = new Date();
     newDateTime.setHours(newDateTime.getHours() + 24);
@@ -86,7 +86,7 @@ export const Auth = () => {
       footerWithoutBoxShadow
       snap={80}
       onDismiss={onDismiss}
-      open={appStore.AuthBottomSheetOpen}
+      open={appStore.isOpenAuth}
     >
       <Flex
         className={classNames(styles.container, styles.fullW)}

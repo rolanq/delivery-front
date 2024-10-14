@@ -14,7 +14,8 @@ import maskot from "@assets/maskot.png";
 export const Me: FC = () => {
   const user = useUserStore((state) => state.user);
   const logout = useUserStore((state) => state.logout);
-  const triggerAuth = useAppStore((state) => state.triggerAuthBottomSheet);
+  const triggerAuth = useAppStore((state) => state.triggerAuth);
+  const triggerIntroduction = useAppStore((state) => state.triggerIntroduction);
 
   const onClickAuth = () => {
     triggerAuth(true);
@@ -24,6 +25,10 @@ export const Me: FC = () => {
     localStorage.removeItem("token");
     logout();
     toast.success("Вы успешно вышли из аккаунта!");
+  };
+
+  const onClickSettings = () => {
+    triggerIntroduction(true);
   };
 
   return (
@@ -37,7 +42,12 @@ export const Me: FC = () => {
             justify="space-between"
             className={styles.container}
           >
-            <CustomButton fullWidth label="Настройки" variant="primary" />
+            <CustomButton
+              onClick={onClickSettings}
+              fullWidth
+              label="Настройки"
+              variant="primary"
+            />
             {user && (
               <>
                 <CustomButton

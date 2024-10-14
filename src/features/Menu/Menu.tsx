@@ -15,9 +15,7 @@ import { useUserStore } from "@shared/stores/User";
 export const Menu = () => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
   const user = useUserStore((state) => state.user);
-  const triggerAuthBottomSheet = useAppStore(
-    (state) => state.triggerAuthBottomSheet
-  );
+  const triggerAuthBottomSheet = useAppStore((state) => state.triggerAuth);
   const [activeMenuItem, setActiveMenuItem] = useState<MenuItem | undefined>(
     undefined
   );
@@ -44,7 +42,9 @@ export const Menu = () => {
   ) {
     return (
       <Flex vertical className={styles.menuList} gap="20px">
-        <CustomText titleLevel={3}>Ой, у ресторана пока нет товаров.</CustomText>
+        <CustomText titleLevel={3}>
+          Ой, у ресторана пока нет товаров.
+        </CustomText>
       </Flex>
     );
   }
