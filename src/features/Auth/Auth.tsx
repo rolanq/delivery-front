@@ -45,6 +45,8 @@ export const Auth = () => {
         });
 
         navigate("/");
+
+        appStore.triggerIntroduction(true);
         onDismiss();
       }
     },
