@@ -61,3 +61,7 @@
 .rightButton:active::before {
   opacity: 1;
 }
+
+.fullWidth {
+  width: 100%;
+}

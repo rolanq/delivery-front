@@ -13,6 +13,8 @@ interface IProps {
   minValue: number;
   size?: "sm" | "md" | "lg";
   loading?: boolean;
+  className?: string;
+  fullWidth?: boolean;
 }
 
 export const CustomCounter: FC<IProps> = ({
@@ -22,14 +24,18 @@ export const CustomCounter: FC<IProps> = ({
   minValue,
   size,
   loading,
+  fullWidth,
+  className,
 }) => {
   const [internalValue, setInternalValue] = useState(value ?? minValue);
 
-  const onIncrease = () => {
+  const onIncrease = (e?: React.MouseEvent<HTMLElement>) => {
+    e?.stopPropagation();
     setInternalValue((prev) => prev + 1);
   };
 
-  const onDecrease = () => {
+  const onDecrease = (e?: React.MouseEvent<HTMLElement>) => {
+    e?.stopPropagation();
     setInternalValue((prev) => {
       if (minValue < prev - 1) {
         return prev - 1;
@@ -48,7 +54,14 @@ export const CustomCounter: FC<IProps> = ({
   }, [internalValue]);
 
   return (
-    <Flex className={styles.container} align="center">
+    <Flex
+      className={classNames(
+        styles.container,
+        fullWidth && styles.fullWidth,
+        className
+      )}
+      align="center"
+    >
       <CustomButton
         className={classNames(styles.button, styles.leftButton)}
         onClick={onDecrease}

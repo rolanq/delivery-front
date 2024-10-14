@@ -5,7 +5,6 @@ import { MenuCard } from "./MenuCard/MenuCard";
 import { Categories } from "@features/Categories/Categories";
 import { useState } from "react";
 import {
-  Cart,
   MenuItem,
   useAddItemToCartMutation,
   useDeleteCartItemsMutation,
@@ -36,7 +35,9 @@ export const Menu = () => {
   const [addItem, { loading }] = useAddItemToCartMutation();
   const [deleteItem, { loading: isDeleting }] = useDeleteCartItemsMutation({
     onCompleted: (data) => {
-      setCart(data.deleteCartItems as Cart);
+      if (data.deleteCartItems) {
+        setCart(data.deleteCartItems);
+      }
     },
   });
 

@@ -3,11 +3,7 @@ import { useUserStore } from "@shared/stores/User";
 import { Flex } from "antd";
 import { useEffect } from "react";
 import { CartCard } from "./CartCard/CartCard";
-import {
-  Cart,
-  useGetCartLazyQuery,
-  useGetMenuItemsLazyQuery,
-} from "@graphql/index";
+import { useGetCartLazyQuery } from "@graphql/index";
 
 export const CartList = () => {
   const user = useUserStore((state) => state.user);
@@ -25,8 +21,8 @@ export const CartList = () => {
 
   const [getCart] = useGetCartLazyQuery({
     onCompleted: (data) => {
-      if (data.getCart?.cart?.length) {
-        setCart(data.getCart as Cart);
+      if (data.getCart) {
+        setCart(data.getCart);
         setIsLoading(false);
       }
     },

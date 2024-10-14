@@ -44,3 +44,10 @@
 .modalText {
   text-align: center;
 }
+
+.counter {
+  border-radius: 24px;
+  padding: 3px;
+  justify-content: space-between;
+  background-color: #fff;
+}

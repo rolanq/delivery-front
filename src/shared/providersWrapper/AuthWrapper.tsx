@@ -1,4 +1,4 @@
-import { Cart, useGetCartQuery, useGetUserQuery } from "@graphql/graphql";
+import { useGetCartQuery, useGetUserQuery } from "@graphql/graphql";
 import { useAppStore } from "@shared/stores/App";
 import { useCartStore } from "@shared/stores/Cart";
 import { useUserStore } from "@shared/stores/User";
@@ -40,8 +40,8 @@ export const AuthWrapper: FC<IProps> = ({ children }) => {
       },
     },
     onCompleted: (data) => {
-      if (data.getCart?.cart?.length) {
-        setCart(data.getCart as Cart);
+      if (data.getCart) {
+        setCart(data.getCart);
         setIsLoading(false);
       }
     },
@@ -74,7 +74,13 @@ export const AuthWrapper: FC<IProps> = ({ children }) => {
         triggerAuth(true);
       }
     }
-  }, [authBottomSheet, currentDate, isAppLoaded, introductionBottomSheet, isUserSetted]);
+  }, [
+    authBottomSheet,
+    currentDate,
+    isAppLoaded,
+    introductionBottomSheet,
+    isUserSetted,
+  ]);
 
   return <>{children}</>;
 };

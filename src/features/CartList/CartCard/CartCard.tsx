@@ -1,5 +1,4 @@
 import {
-  Cart,
   CartItem,
   useAddItemToCartMutation,
   useDeleteCartItemsMutation,
@@ -27,13 +26,17 @@ export const CartCard: FC<IProps> = ({ card }) => {
 
   const [updateItem, { loading: isUpdating }] = useAddItemToCartMutation({
     onCompleted: (data) => {
-      setCart(data.addItemToCart as Cart);
+      if (data.addItemToCart) {
+        setCart(data.addItemToCart);
+      }
     },
   });
 
   const [deleteItem, { loading: isDeleting }] = useDeleteCartItemsMutation({
     onCompleted: (data) => {
-      setCart(data.deleteCartItems as Cart);
+      if (data.deleteCartItems) {
+        setCart(data.deleteCartItems);
+      }
     },
   });
 
