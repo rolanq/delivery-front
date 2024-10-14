@@ -9,12 +9,18 @@ import { CustomText } from "@shared/kit/CustomText/CustomText";
 
 interface IProps {
   customFooter?: React.ReactNode;
+  footerHeight?: string;
 }
 
-export const Footer: FC<IProps> = ({ customFooter }) => {
+export const Footer: FC<IProps> = ({ customFooter, footerHeight }) => {
   return (
-    <FooterAnt className={styles.wrapper}>
-      <Flex className={classNames(styles.container, customFooter && styles.customFooter)}>
+    <FooterAnt className={styles.wrapper} style={{ height: footerHeight ? footerHeight : "64px" }}>
+      <Flex
+        className={classNames(
+          styles.container,
+          customFooter && styles.customFooter
+        )}
+      >
         {customFooter
           ? customFooter
           : FooterRoutes.map((route) => (

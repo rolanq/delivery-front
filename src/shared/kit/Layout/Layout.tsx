@@ -16,6 +16,7 @@ interface IProps {
   title?: React.ReactNode;
   isLoading?: boolean;
   children: React.ReactNode;
+  footerHeight?: string;
 }
 
 export const Layout: FC<IProps> = ({
@@ -30,6 +31,7 @@ export const Layout: FC<IProps> = ({
   goBackButtonClassName,
   children,
   customFooter,
+  footerHeight,
 }) => {
   return (
     <>
@@ -45,7 +47,9 @@ export const Layout: FC<IProps> = ({
         {goBackButton && <GoBackButton className={goBackButtonClassName} />}
         {children}
       </Page>
-      {footer && <Footer customFooter={customFooter} />}
+      {footer && (
+        <Footer customFooter={customFooter} footerHeight={footerHeight} />
+      )}
     </>
   );
 };

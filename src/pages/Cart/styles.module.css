@@ -7,5 +7,13 @@
 }
 
 .payButton {
-    height: 40px;
+  height: 50px;
+}
+
+.footer {
+  width: 100%;
+}
+
+.emptyCartText {
+  text-align: center;
 }

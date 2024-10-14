@@ -67,7 +67,7 @@ export const MenuCard: FC<IProps> = ({ menuItem, onClick }) => {
         className={styles.buttonAdd}
         fullWidth
         variant="tertiary"
-        label={<CustomIcon icon="PlusOutlined" />}
+        label={<CustomIcon icon="PlusOutlined" variant="primary" />}
       />
     </Flex>
   );

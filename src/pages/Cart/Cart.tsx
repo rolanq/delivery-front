@@ -11,6 +11,8 @@ import { CustomIcon } from "@shared/kit/CustomIcon/CustomIcon";
 import { useUserStore } from "@shared/stores/User";
 import { CustomBr } from "@shared/kit/CustomBr/CustomBr";
 import { useNavigate } from "react-router-dom";
+import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
+import maskot from "@assets/maskot.png";
 
 export const Cart: FC = () => {
   const user = useUserStore((state) => state.user);
@@ -49,7 +51,9 @@ export const Cart: FC = () => {
         <>
           {!isEmpty && (
             <Flex justify="space-between" align="center">
-              <CustomText titleLevel={2}>Корзина</CustomText>
+              <CustomText marginBottom titleLevel={2}>
+                Корзина
+              </CustomText>
               <CustomButton
                 variant="secondary"
                 loading={isDeleting}
@@ -60,19 +64,23 @@ export const Cart: FC = () => {
           )}
         </>
       }
+      footerHeight="120px"
       customFooter={
-        <CustomButton
-          label="К оплате"
-          variant="secondary"
-          fullWidth
-          className={styles.payButton}
-        />
+        <Flex vertical className={styles.footer} justify="space-between">
+          <CustomText titleLevel={4}>459 р</CustomText>
+          <CustomButton
+            label="К оплате"
+            variant="secondary"
+            fullWidth
+            className={styles.payButton}
+          />
+        </Flex>
       }
       footer={!isEmpty}
     >
-      <Flex className={styles.cartWrapper} vertical justify="space-between">
-        {!isEmpty ? (
-          <>
+      {!isEmpty ? (
+        <>
+          <Flex className={styles.cartWrapper} vertical justify="space-between">
             <Flex justify="center" vertical gap="10px">
               <CartList />
               <Flex align="center" vertical gap="50px">
@@ -84,11 +92,39 @@ export const Cart: FC = () => {
                 />
               </Flex>
             </Flex>
-          </>
-        ) : (
-          <CustomText titleLevel={4}>Ваша корзина пуста</CustomText>
-        )}
-      </Flex>
+          </Flex>
+        </>
+      ) : (
+        <>
+          <Flex
+            className={styles.cartWrapper}
+            vertical
+            gap="25px"
+            justify="center"
+            align="center"
+          >
+            <CustomImage
+              height="180px"
+              src={maskot}
+              withBackground={false}
+              imageFullHeight
+              imageFullWidth={false}
+            />
+            <Flex vertical gap="10px" align="center">
+              <CustomText titleLevel={3}>Ваша корзина пуста</CustomText>
+              <CustomText className={styles.emptyCartText} size="lg">
+                А товаров полно - выбирайте из понравившихся
+              </CustomText>
+            </Flex>
+            <CustomButton
+              label="Открыть меню"
+              onClick={onOpenMenu}
+              variant="secondary"
+              className={styles.payButton}
+            />
+          </Flex>
+        </>
+      )}
     </Layout>
   );
 };

@@ -9,6 +9,7 @@ export const CartIcon = () => {
   const cartCount = useCartStore((state) => state.cart.totalCount);
   const { pathname } = useLocation();
   const isActive = pathname === "/cart";
+  const isShowDot = !isActive && !!cartCount;
 
   return (
     <Flex
@@ -18,7 +19,7 @@ export const CartIcon = () => {
       )}
     >
       <CustomIcon icon="ShoppingCartOutlined" />
-      {!isActive && cartCount !== 0 && <div className={classNames(styles.countWrapper)} />}
+      {isShowDot && <div className={classNames(styles.countWrapper)} />}
     </Flex>
   );
 };

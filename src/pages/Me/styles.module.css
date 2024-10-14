@@ -12,3 +12,15 @@
 .logoutButton > span {
   color: white;
 }
+
+.loginText {
+  text-align: center;
+}
+
+.loginButton {
+  height: 50px;
+}
+
+.loginWrapper {
+  height: 100%;
+}
