@@ -1,24 +1,57 @@
 import { useRestuarantStore } from "@shared/stores/Restuarant";
-import { Flex } from "antd";
+import { Flex, Modal } from "antd";
 import styles from "./styles.module.css";
 import { MenuCard } from "./MenuCard/MenuCard";
 import { Categories } from "@features/Categories/Categories";
 import { useState } from "react";
-import { MenuItem } from "@graphql/graphql";
+import {
+  Cart,
+  MenuItem,
+  useAddItemToCartMutation,
+  useDeleteCartItemsMutation,
+} from "@graphql/graphql";
 import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
 import { CustomImage } from "@shared/kit/CustomImage/CustomImage";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
 import { useAppStore } from "@shared/stores/App";
 import { useUserStore } from "@shared/stores/User";
+import { CustomCounter } from "@shared/kit/CustomCounter/CustomCounter";
+import { useCartStore } from "@shared/stores/Cart";
+import { useNavigate } from "react-router-dom";
 
 export const Menu = () => {
   const restuarant = useRestuarantStore((state) => state.restuarant);
   const user = useUserStore((state) => state.user);
-  const triggerAuthBottomSheet = useAppStore((state) => state.triggerAuth);
+  const cart = useCartStore((state) => state.cart);
+  const triggerAuth = useAppStore((state) => state.triggerAuth);
+  const setCart = useCartStore((state) => state.setCart);
+  const navigate = useNavigate();
   const [activeMenuItem, setActiveMenuItem] = useState<MenuItem | undefined>(
     undefined
   );
+  const [count, setCount] = useState(1);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const [addItem, { loading }] = useAddItemToCartMutation();
+  const [deleteItem, { loading: isDeleting }] = useDeleteCartItemsMutation({
+    onCompleted: (data) => {
+      setCart(data.deleteCartItems as Cart);
+    },
+  });
+
+  const onDeleteCart = () => {
+    deleteItem({
+      variables: {
+        data: {
+          userId: user?.id,
+          menuItemIds: cart.cart?.map((item) => item?.menuItem?.id ?? ""),
+        },
+      },
+    }).then(() => {
+      setModalOpen(false);
+    });
+  };
 
   const onClickMenuItem = (item: MenuItem | null) => {
     if (item) {
@@ -31,10 +64,35 @@ export const Menu = () => {
   };
 
   const onAddToCart = () => {
-    if (!user?.id) {
-      triggerAuthBottomSheet(true);
+    if (
+      cart &&
+      !!cart.restuarantId &&
+      cart.restuarantId !== Number(restuarant?.id ?? 0)
+    ) {
+      setModalOpen(true);
+      return;
+    }
+
+    if (user?.id) {
+      addItem({
+        variables: {
+          data: {
+            count,
+            menuItemId: Number(activeMenuItem?.id ?? 0),
+            userId: user.id,
+            restuarantId: Number(restuarant?.id ?? 0),
+          },
+        },
+      });
+    } else {
+      triggerAuth(true);
     }
   };
+
+  const onChangeCount = (value: number) => {
+    setCount(value);
+  };
+
   if (
     !restuarant?.MenuCategories?.map((category) => category?.MenuItems).flatMap(
       (menuItem) => menuItem
@@ -62,6 +120,7 @@ export const Menu = () => {
                   key={menuItem?.id}
                   menuItem={menuItem}
                   onClick={onClickMenuItem}
+                  setModalOpen={setModalOpen}
                 />
               ))}
             </Flex>
@@ -93,12 +152,20 @@ export const Menu = () => {
                 </CustomText>
               </Flex>
             </Flex>
-            <CustomButton
-              onClick={onAddToCart}
-              fullWidth
-              label="Добавить в корзину"
-              variant="secondary"
-            />
+            <Flex gap="10px">
+              <CustomCounter
+                minValue={0}
+                onChange={onChangeCount}
+                value={count}
+              />
+              <CustomButton
+                onClick={onAddToCart}
+                loading={loading}
+                fullWidth
+                label="Добавить в корзину"
+                variant="secondary"
+              />
+            </Flex>
           </Flex>
         }
       >
@@ -115,6 +182,45 @@ export const Menu = () => {
           </Flex>
         </Flex>
       </CustomBottomSheet>
+      <Modal
+        closeIcon={false}
+        open={isModalOpen}
+        onCancel={() => setModalOpen(false)}
+        footer={
+          <>
+            <Flex gap="15px" vertical>
+              <CustomButton
+                label="Открыть ресторан"
+                onClick={() => navigate(`/r/${cart.restuarantId}`)}
+                fullWidth
+              />
+              <Flex gap="15px">
+                <CustomButton
+                  label="Отмена"
+                  onClick={() => setModalOpen(false)}
+                  fullWidth
+                />
+                <CustomButton
+                  onClick={onDeleteCart}
+                  label="Да"
+                  fullWidth
+                  variant="secondary"
+                  loading={isDeleting}
+                />
+              </Flex>
+            </Flex>
+          </>
+        }
+      >
+        <Flex vertical gap="10px" className={styles.modalBody}>
+          <CustomText titleLevel={4} className={styles.modalText}>
+            Добавлять товары можно только из одного ресторана
+          </CustomText>
+          <CustomText className={styles.modalText}>
+            Очистить корзину и добавить товар в новую корзину?
+          </CustomText>
+        </Flex>
+      </Modal>
     </>
   );
 };

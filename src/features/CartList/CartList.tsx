@@ -15,13 +15,13 @@ export const CartList = () => {
   const setCart = useCartStore((state) => state.setCart);
   const setIsLoading = useCartStore((state) => state.setLoading);
 
-  const [getMenuItems] = useGetMenuItemsLazyQuery({
-    onCompleted: (data) => {
-      if (data.getMenuItems.length) {
-        // setCartItems(data);
-      }
-    },
-  });
+  // const [getMenuItems] = useGetMenuItemsLazyQuery({
+  //   onCompleted: (data) => {
+  //     if (data.getMenuItems.length) {
+  //       // setCartItems(data);
+  //     }
+  //   },
+  // });
 
   const [getCart] = useGetCartLazyQuery({
     onCompleted: (data) => {

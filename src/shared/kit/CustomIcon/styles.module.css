@@ -2,17 +2,32 @@
   color: black;
 }
 
-.sm > span > svg {
+.sm {
   width: 16px;
   height: 16px;
 }
 
-.md > span > svg {
+.sm > svg {
+  width: 14px;
+  height: 14px;
+}
+
+.md {
   width: 20px;
   height: 20px;
 }
 
-.lg > span > svg {
+.md > svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lg {
   width: 24px;
   height: 24px;
+}
+
+.lg > svg {
+  width: 22px;
+  height: 22px;
 }

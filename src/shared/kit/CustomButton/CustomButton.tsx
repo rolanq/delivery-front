@@ -1,7 +1,6 @@
 import { FC, ReactNode } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
-import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import { CustomText } from "../CustomText/CustomText";
 import { Variants } from "../consts/variantTypes";
@@ -20,6 +19,7 @@ interface IProps {
   id?: string;
   loading?: boolean;
   disabled?: boolean;
+  size?: "sm" | "md" | "lg";
 }
 
 export const CustomButton: FC<IProps> = ({
@@ -35,6 +35,7 @@ export const CustomButton: FC<IProps> = ({
   id,
   disabled,
   loading,
+  size = "md",
 }) => {
   const navigate = useNavigate();
 
@@ -50,14 +51,14 @@ export const CustomButton: FC<IProps> = ({
     return () => {};
   };
   return (
-    <Flex
+    <button
       id={id}
-      align="center"
       className={classNames(
         className,
         styles.container,
         disabled ? styles.disabled : styles[variant],
         styles[labelPosition],
+        styles[size],
         fullWidth ? styles.fullWidth : styles.minWidth,
         fullHeight ? styles.fullHeight : styles.minHeight
       )}
@@ -73,6 +74,6 @@ export const CustomButton: FC<IProps> = ({
           label
         )}
       </CustomText>
-    </Flex>
+    </button>
   );
 };
