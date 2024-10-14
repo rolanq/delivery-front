@@ -49,7 +49,7 @@ export const Cart: FC = () => {
     navigate(`/r/${cart.restuarantId}`);
   };
 
-  const isEmpty = !cart.cart?.length;
+  const isEmpty = !cart.cart?.length && !isCartLoading;
 
   return (
     <>
