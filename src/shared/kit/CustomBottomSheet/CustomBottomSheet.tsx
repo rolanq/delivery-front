@@ -14,7 +14,7 @@ interface IProps {
   footer?: React.ReactNode;
   snap?: number;
   footerWithoutBoxShadow?: boolean;
-  closeIcon: boolean;
+  closeIcon?: boolean;
 }
 
 export const CustomBottomSheet: FC<IProps> = ({
