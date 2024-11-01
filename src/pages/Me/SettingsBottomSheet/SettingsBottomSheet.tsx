@@ -9,7 +9,6 @@ import { useUserStore } from "@shared/stores/User";
 import { prepareInputValuesToUpdateUser } from "@shared/utils/utils";
 import toast from "react-hot-toast";
 import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
-import { CustomMaskInput } from "@shared/kit/CustomMaskInput/CustomMaskInput";
 
 interface IProps {
   isOpen: boolean;
@@ -87,13 +86,13 @@ export const SettingsBottomSheet: FC<IProps> = ({ isOpen, onClose }) => {
             placeholder="Имя"
             name="name"
           />
-          <CustomMaskInput
+          {/* <CustomMaskInput
             value={values?.phone}
             onChange={onChange}
             placeholder="Номер телефона"
             name="phone"
             mask="+7 (999) 999 99-99"
-          />
+          /> */}
         </Flex>
       </Flex>
     </CustomBottomSheet>

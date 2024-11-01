@@ -114,7 +114,7 @@ export const Auth = () => {
               disabled={step !== Steps.first}
               fullWidth
               fullHeight
-              onChange={(v) => setEmail(v)}
+              onChange={(_, v) => setEmail(v)}
               value={email}
               placeholder="Почта"
             />
@@ -132,7 +132,7 @@ export const Auth = () => {
               <CustomInput
                 fullWidth
                 fullHeight
-                onChange={(v) => setConfirmCode(v)}
+                onChange={(_, v) => setConfirmCode(v)}
                 value={confirmCode}
                 placeholder="Введите код подтверждения"
               />
