@@ -1,12 +1,12 @@
 import { Flex, Input, Tooltip } from "antd";
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, FocusEvent, useMemo, useState } from "react";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 import { CustomText } from "../CustomText/CustomText";
 
-interface IProps {
+export interface CustomInputProps {
   value?: string | null;
-  onChange: (value: string) => void;
+  onChange: (event: FocusEvent<HTMLInputElement>, value: string) => void;
   placeholder?: string;
   error?: boolean;
   title?: string;
@@ -18,9 +18,10 @@ interface IProps {
   fullWidth?: boolean;
   fullHeight?: boolean;
   disabled?: boolean;
+  name?: string
 }
 
-export const CustomInput: FC<IProps> = ({
+export const CustomInput: FC<CustomInputProps> = ({
   placeholder,
   onChange,
   className,
@@ -32,11 +33,12 @@ export const CustomInput: FC<IProps> = ({
   fullHeight = false,
   disabled,
   value,
+  name
 }) => {
   const [internalValue, setInternalValue] = useState<string | undefined | null>(value);
 
-  const onBlur = () => {
-    if (internalValue) onChange(internalValue);
+  const onBlur = (e: FocusEvent<HTMLInputElement>) => {
+    if (internalValue) onChange(e, internalValue);
   };
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +57,7 @@ export const CustomInput: FC<IProps> = ({
           className={classNames(styles.input, className)}
           placeholder={placeholder}
           type={type}
+          name={name}
         />
       </Tooltip>
     );

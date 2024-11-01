@@ -1,29 +1,40 @@
 import { CustomBottomSheet } from "@shared/kit/CustomBottomSheet/CustomBottomSheet";
 import { CustomText } from "@shared/kit/CustomText/CustomText";
-import { useAppStore } from "@shared/stores/App";
 import { Flex } from "antd";
+import { FC, FocusEvent, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { CustomInput } from "@shared/kit/CustomInput/CustomInput";
-import { FocusEvent, useEffect, useState } from "react";
-import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
 import { PartialUpdateUserInput, useUpdateUserMutation } from "@graphql/index";
 import { useUserStore } from "@shared/stores/User";
 import { prepareInputValuesToUpdateUser } from "@shared/utils/utils";
 import toast from "react-hot-toast";
+import { CustomButton } from "@shared/kit/CustomButton/CustomButton";
+import { CustomMaskInput } from "@shared/kit/CustomMaskInput/CustomMaskInput";
 
-export const Introduction = () => {
-  const isOpenIntroduction = useAppStore((state) => state.isOpenIntroduction);
-  const triggerIntroduction = useAppStore((state) => state.triggerIntroduction);
-  const setUser = useUserStore((state) => state.setUser);
+interface IProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const SettingsBottomSheet: FC<IProps> = ({ isOpen, onClose }) => {
   const user = useUserStore((state) => state.user);
+  const [values, setValues] =
+    useState<Exclude<PartialUpdateUserInput, "verifyCode">>();
+  const setUser = useUserStore((state) => state.setUser);
 
-  const [values, setValues] = useState<PartialUpdateUserInput>();
+  const onChange = (e: FocusEvent<HTMLInputElement>, value: string) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      [e.target.name]: value,
+      email: user?.email ?? "",
+    }));
+  };
 
   const [updateUser, { loading }] = useUpdateUserMutation({
     onCompleted: (data) => {
       if (data.updateUser?.user) {
         setUser(data.updateUser.user);
-        triggerIntroduction(false);
+        onClose();
 
         toast.success("Изменения сохранены", {
           position: "top-center",
@@ -35,21 +46,9 @@ export const Introduction = () => {
     },
   });
 
-  const onChange = (e: FocusEvent<HTMLInputElement>, value: string) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [e.target.name]: value,
-      email: user?.email ?? "",
-    }));
-  };
-
-  const onDismiss = () => {
-    triggerIntroduction(false);
-
-    const newDateTime = new Date();
-    newDateTime.setHours(newDateTime.getHours() + 24);
-    localStorage.setItem("IBSShouldOpen", newDateTime.toString());
-  };
+  useEffect(() => {
+    setValues(prepareInputValuesToUpdateUser(user));
+  }, [user]);
 
   const onSave = () => {
     updateUser({
@@ -62,15 +61,11 @@ export const Introduction = () => {
     });
   };
 
-  useEffect(() => {
-    setValues(prepareInputValuesToUpdateUser(user));
-  }, [user]);
-
   return (
     <CustomBottomSheet
       snap={50}
-      open={isOpenIntroduction}
-      onDismiss={onDismiss}
+      open={isOpen}
+      onDismiss={onClose}
       footerWithoutBoxShadow
       footer={
         <CustomButton
@@ -83,21 +78,21 @@ export const Introduction = () => {
         />
       }
     >
-      <Flex vertical align="center" className={styles.container} gap="35px">
-        <CustomText titleLevel={3}>Давайте знакомиться</CustomText>
-
-        <Flex gap="10px" vertical>
+      <Flex vertical align="center" className={styles.content} gap="30px">
+        <CustomText titleLevel={3}>Настройки</CustomText>
+        <Flex vertical gap="10px" className={styles.content}>
           <CustomInput
             value={values?.name}
             onChange={onChange}
             placeholder="Имя"
             name="name"
           />
-          <CustomInput
+          <CustomMaskInput
             value={values?.phone}
             onChange={onChange}
             placeholder="Номер телефона"
             name="phone"
+            mask="+7 (999) 999 99-99"
           />
         </Flex>
       </Flex>

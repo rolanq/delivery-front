@@ -24,10 +24,15 @@ export const MeWidget = () => {
 
         <Flex vertical justify="flex-end" className={styles.info}>
           <Flex align="center" justify="space-between">
-            <CustomText titleLevel={5}>{user?.name}</CustomText>
-            <CustomText size="sm">{user?.email}</CustomText>
+            <Flex vertical gap="5px" align="flex-start">
+              <CustomText titleLevel={5}>{user?.name}</CustomText>
+              <CustomText size="sm">{user?.address}</CustomText>
+            </Flex>
+            <Flex vertical gap="5px" align="flex-end">
+              <CustomText size="sm">{user?.phone}</CustomText>
+              <CustomText size="sm">{user?.email}</CustomText>
+            </Flex>
           </Flex>
-          <CustomText size="sm">{user?.address}</CustomText>
         </Flex>
       </Flex>
     </div>
