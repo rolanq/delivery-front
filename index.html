@@ -42,10 +42,25 @@
     <div id="root">
       <div class="preloadWrapper">
         <div class="preloadContainer">
-          <img src="/maskot/maskot.png" alt="maskot" style="width: 100px;">
+          <img
+            src="/maskot/maskot.png"
+            alt="maskot"
+            id="maskot"
+            style="width: 100px"
+          />
         </div>
       </div>
     </div>
+    <script>
+      const width = window.innerWidth;
+      const maskotElement = document.getElementById("maskot");
+
+      if (width <= 768) {
+        maskotElement.style.width = "100px";
+      } else {
+        maskotElement.style.width = "200px";
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

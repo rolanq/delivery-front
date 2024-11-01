@@ -1,8 +1,14 @@
 import {
   AppstoreOutlined,
+  HomeOutlined,
+  MenuOutlined,
+  MessageOutlined,
+  SettingOutlined,
+  ShopOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { CartIcon } from "@features/Footer/CartIcon/CartIcon";
+import { AdminMainPage } from "@pages/AdminMainPage/AdminMainPage";
 import { Cart } from "@pages/Cart/Cart";
 import { ErrorPage } from "@pages/Error/ErrorPage";
 import { Me } from "@pages/Me/Me";
@@ -15,6 +21,7 @@ export interface Route {
   path: string;
   name?: string;
   element: FC;
+  icon?: any;
 }
 
 export const ROUTES: Route[] = [
@@ -46,4 +53,32 @@ export const FooterRoutes = [
   },
   { icon: CartIcon, to: "/cart", name: "Корзина" },
   { icon: UserOutlined, to: "/me", name: "Я" },
+];
+
+export const ADMIN_ROUTES: Route[] = [
+  {
+    element: AdminMainPage,
+    path: "/",
+    name: "Главная",
+  },
+  {
+    element: AdminMainPage,
+    path: "/requests",
+    name: "Запросы",
+  },
+  {
+    element: AdminMainPage,
+    path: "/orders",
+    name: "Заказы",
+  },
+  {
+    element: AdminMainPage,
+    path: "/menu",
+    name: "Меню ресторана",
+  },
+  {
+    element: AdminMainPage,
+    path: "/settings",
+    name: "Настройки ресторана",
+  },
 ];

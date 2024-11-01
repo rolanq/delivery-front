@@ -1,56 +1,19 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import { FC, useLayoutEffect } from "react";
-import {
-  GlobalLoader,
-  GlobalLoaderWrapper,
-} from "@features/GlobalLoader/GlobalLoader";
-import { ROUTES } from "@shared/routes/routes";
+import { BrowserRouter } from "react-router-dom";
+import { FC } from "react";
 import { ProvidersWrapper } from "@shared/providersWrapper/ProvidersWrapper";
-import { useIsMobile } from "@shared/hooks/useIsMobile";
-import { useAppStore } from "@shared/stores/App";
+import { AppRoutes } from "@features/AppRoutes/AppRoutes";
+import { useIsMainApp } from "@shared/hooks/useIsAdmin";
 
 export const App: FC = () => {
-  const location = useLocation();
-  const isMobile = useIsMobile();
-  const appLoaded = useAppStore((state) => state.isLoaded);
-
-  useLayoutEffect(() => {
-    document.documentElement.scrollTo({ top: 0, left: 0, behavior: "instant" });
-
-    const w: any = window;
-
-    if (w.visualViewport) {
-      w.visualViewport.addEventListener("resize", () => {
-        document.body.style.height = w.visualViewport.height + "px";
-      });
-    }
-  }, [location.pathname]);
-
-  if (!isMobile) {
-    return (
-      <GlobalLoader error="Приложение доступно только с мобильных устройств" />
-    );
-  }
+  const isMainApp = useIsMainApp();
 
   return (
     <>
-      <ProvidersWrapper>
-        {appLoaded && (
-          <Routes>
-            {ROUTES.map((route) => (
-              <Route
-                key={route.path}
-                index={route.index}
-                path={route.path}
-                element={<route.element />}
-              />
-            ))}
-          </Routes>
-        )}
-        <GlobalLoaderWrapper>
-          <GlobalLoader />
-        </GlobalLoaderWrapper>
-      </ProvidersWrapper>
+      <BrowserRouter basename={isMainApp ? "" : "admin"}>
+        <ProvidersWrapper>
+          <AppRoutes />
+        </ProvidersWrapper>
+      </BrowserRouter>
     </>
   );
 };

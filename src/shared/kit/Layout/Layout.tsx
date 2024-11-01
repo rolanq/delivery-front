@@ -3,6 +3,8 @@ import React, { FC } from "react";
 import { Page } from "../Page/Page";
 import { Header } from "@features/Header/Header";
 import { GoBackButton } from "@features/GoBackButton/GoBackButton";
+import { useIsMainApp } from "@shared/hooks/useIsAdmin";
+import { NavSideBarAdmin } from "@features/NavSideBarAdmin/NavSideBarAdmin";
 
 interface IProps {
   customFooter?: React.ReactNode;
@@ -17,6 +19,7 @@ interface IProps {
   isLoading?: boolean;
   children: React.ReactNode;
   footerHeight?: string;
+  adminSideBar?: boolean;
 }
 
 export const Layout: FC<IProps> = ({
@@ -32,7 +35,9 @@ export const Layout: FC<IProps> = ({
   children,
   customFooter,
   footerHeight,
+  adminSideBar = false,
 }) => {
+  const isMainApp = useIsMainApp();
   return (
     <>
       {header && <Header />}
@@ -43,10 +48,12 @@ export const Layout: FC<IProps> = ({
         paddingTopWithHeader={header || goBackButton}
         isLoading={isLoading}
         title={title}
+        sidebar={!isMainApp && adminSideBar}
       >
         {goBackButton && <GoBackButton className={goBackButtonClassName} />}
         {children}
       </Page>
+      {!isMainApp && adminSideBar && <NavSideBarAdmin />}
       {footer && (
         <Footer customFooter={customFooter} footerHeight={footerHeight} />
       )}

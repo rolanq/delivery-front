@@ -11,6 +11,7 @@ import { Auth } from "@features/Auth/Auth";
 import { Toaster } from "react-hot-toast";
 import { AuthWrapper } from "./AuthWrapper";
 import { Introduction } from "@features/Introduction/Introduction";
+import { useIsMainApp } from "@shared/hooks/useIsAdmin";
 
 interface IProps {
   children: React.ReactNode;
@@ -40,6 +41,7 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
+  const isMainApp = useIsMainApp();
 
   return (
     <ApolloProvider client={client}>
@@ -58,8 +60,12 @@ export const ProvidersWrapper: FC<IProps> = ({ children }) => {
           }}
         >
           {children}
-          <Auth />
-          <Introduction />
+          {isMainApp && (
+            <>
+              <Auth />
+              <Introduction />
+            </>
+          )}
           <Toaster />
         </ConfigProvider>
       </AuthWrapper>

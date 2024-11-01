@@ -1,0 +1,32 @@
+.sideBar {
+  position: absolute;
+  left: 0;
+  background-color: #f5f4f2;
+  height: 100vh;
+  width: 250px;
+  box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.sideBarItem {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.notActive {
+  background-color: transparent;
+}
+
+.active {
+  background-color: #c23b22;
+}
+
+.active > div > h5 {
+  color: white !important;
+}
+
+.title {
+  padding: 10px 15px;
+}

@@ -14,6 +14,7 @@ interface IProps {
 
 export const GlobalLoaderWrapper: FC<IProps> = ({ children }) => {
   const setIsLoaded = useAppStore((state) => state.setIsLoaded);
+  const isLoaded = useAppStore((state) => state.isLoaded);
   const [props] = useSpring(
     () => ({
       config: { duration: 250 },
@@ -29,6 +30,9 @@ export const GlobalLoaderWrapper: FC<IProps> = ({ children }) => {
     }),
     []
   );
+
+  if (isLoaded) return null;
+
   return (
     <animated.div
       className={classNames(styles.wrapper, styles.block)}
