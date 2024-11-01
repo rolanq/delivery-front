@@ -42,7 +42,7 @@ export const Page: FC<IProps> = ({
               ? "64px"
               : "20px"
             : 0,
-          paddingLeft: sidebar ? "200px" : horizontalPadding ? "20px" : 0,
+          paddingLeft: sidebar ? "250px" : horizontalPadding ? "20px" : 0,
           paddingRight: horizontalPadding ? "20px" : 0,
           overflow: scrollable ? "auto" : "hidden",
           maxWidth: isMobile ? "820px" : "100vw",

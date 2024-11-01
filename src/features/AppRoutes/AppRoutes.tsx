@@ -4,7 +4,6 @@ import {
 } from "@features/GlobalLoader/GlobalLoader";
 import { useIsMainApp } from "@shared/hooks/useIsAdmin";
 import { ADMIN_ROUTES, ROUTES } from "@shared/routes/routes";
-import { useAppStore } from "@shared/stores/App";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 

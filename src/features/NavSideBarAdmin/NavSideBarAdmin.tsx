@@ -1,7 +1,7 @@
 import { CustomText } from "@shared/kit/CustomText/CustomText";
 import { ADMIN_ROUTES } from "@shared/routes/routes";
 import { Flex } from "antd";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
 import classNames from "classnames";
 

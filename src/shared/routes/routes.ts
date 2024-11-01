@@ -1,10 +1,5 @@
 import {
   AppstoreOutlined,
-  HomeOutlined,
-  MenuOutlined,
-  MessageOutlined,
-  SettingOutlined,
-  ShopOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { CartIcon } from "@features/Footer/CartIcon/CartIcon";
