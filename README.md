@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# 🍔 Delivery Front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern food delivery web application built with **React**, **TypeScript**, and **Redux Toolkit**. The app allows users to browse restaurants, view menus, and simulate food ordering within a clean and responsive interface.
 
-Currently, two official plugins are available:
+<img width="384" height="590" alt="image" src="https://github.com/user-attachments/assets/f5925d85-b39d-428a-a6c2-f9207b34fd63" />
+<img width="381" height="590" alt="image" src="https://github.com/user-attachments/assets/46d26ce4-5a14-4509-942c-abb829f67b83" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[🔍 Check — open mini app](https://t.me/ekeer_bot)
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Features
 
-- Configure the top-level `parserOptions` property like this:
+- 🔍 **Restaurant Browsing** — Explore restaurants and their menus in a user-friendly layout.
+- 🍽 **Menu Display** — View detailed menus, including dish images, prices, and descriptions.
+- 🛒 **Cart System** — Add/remove dishes to your cart with live state updates via Redux Toolkit.
+- 🧭 **Client-Side Routing** — Seamless navigation between pages using React Router.
+- 💎 **Modern UI** — Clean component structure and layout, ready for further styling and expansion.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠️ Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **React** with **TypeScript**
+- **Redux Toolkit** for state management
+- **React Router DOM** for navigation
+- **Vite** for fast development and optimized builds
+- **ESLint / Prettier** for code quality and formatting
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 📦 Project Structure
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+src/
+├── components/ # Reusable UI components
+├── pages/ # Route-level pages
+├── store/ # Redux slices and store setup
+├── types/ # TypeScript interfaces and types
+├── assets/ # Static images and media
+└── App.tsx # Root component and routing
+
+
+## 🧪 Getting Started
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/rolanq/delivery-front.git
+2. **Install dependencies:**
+   ```bash
+   npm install
+3. **Start the development server:**
+   ```bash
+   npm run dev
+4. Open http://localhost:5173 in your browser.
