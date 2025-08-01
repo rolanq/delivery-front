@@ -1,6 +1,7 @@
 # 🍔 Delivery Front
 
 A modern food delivery web application built with **React**, **TypeScript**, and **Redux Toolkit**. The app allows users to browse restaurants, view menus, and simulate food ordering within a clean and responsive interface.
+
 [🔍 Check — open mini app](https://t.me/ekeer_bot)
 <img width="384" height="590" alt="image" src="https://github.com/user-attachments/assets/f5925d85-b39d-428a-a6c2-f9207b34fd63" />
 <img width="381" height="590" alt="image" src="https://github.com/user-attachments/assets/46d26ce4-5a14-4509-942c-abb829f67b83" />
